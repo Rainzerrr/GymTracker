@@ -8,6 +8,9 @@ export type ActiveExerciseCardProps = {
   targetLabel: string
   reps: number
   onRepsChange: (value: number) => void
+  weight: number
+  onWeightChange: (value: number) => void
+  isBodyweight: boolean
   selectedRir: RirValue | null
   onSelectRir: (value: RirValue) => void
   isResting: boolean

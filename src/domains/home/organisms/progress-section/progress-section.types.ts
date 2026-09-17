@@ -1,6 +1,12 @@
+export type ProgressSectionLastExercise = {
+  name: string
+  rankLabel: string
+  thumbnailUrl: string
+}
+
 export type ProgressSectionProps = {
   musclesUnderTarget: number
-  lastExerciseName: string
-  lastExerciseRankLabel: string
-  lastExerciseThumbnailUrl: string
+  lastExercise?: ProgressSectionLastExercise
+  onVolumeClick: () => void
+  onLastExerciseClick: () => void
 }

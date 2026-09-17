@@ -1,0 +1,70 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.exercise-progress-chart__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: $spacing-3xs;
+}
+
+.exercise-progress-chart__name {
+  font-family: $font-family-heading;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-lg;
+  color: $color-text;
+}
+
+.exercise-progress-chart__tier {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+}
+
+.exercise-progress-chart__svg {
+  display: block;
+  width: 100%;
+  max-width: 22.5rem;
+  height: auto;
+  margin: 0 auto;
+}
+
+.exercise-progress-chart__axis {
+  stroke: $color-border;
+  stroke-width: 1;
+}
+
+.exercise-progress-chart__line {
+  fill: none;
+  stroke: $color-accent;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.exercise-progress-chart__dot {
+  fill: $color-background;
+  stroke: $color-accent;
+  stroke-width: 2;
+}
+
+.exercise-progress-chart__dot--last {
+  fill: $color-accent;
+}
+
+.exercise-progress-chart__value-label {
+  font-family: $font-family-heading;
+  font-size: 11px;
+  fill: $color-text-muted;
+}
+
+.exercise-progress-chart__value-label--last {
+  font-family: $font-family-heading;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  fill: $color-accent;
+}
+
+.exercise-progress-chart__period-label {
+  font-family: $font-family-base;
+  font-size: 10px;
+  fill: $color-text-dim;
+}

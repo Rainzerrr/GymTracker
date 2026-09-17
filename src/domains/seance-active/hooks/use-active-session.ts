@@ -1,31 +1,51 @@
 import { useState } from 'react'
+import { getLibraryExercise } from '@domains/seances/hooks/use-exercise-library'
 import { useSessions } from '@domains/seances/hooks/use-sessions'
 import { parseRestSeconds } from '@domains/seances/utils/parse-rest-seconds'
 import { parseSetCount } from '@domains/seances/utils/parse-set-count'
 import { useCountdown } from '@shared/hooks/use-countdown'
 import { useLocalStorageState } from '@shared/hooks/use-local-storage-state'
 import { useStopwatch } from '@shared/hooks/use-stopwatch'
+import { useSessionLog } from './use-session-log'
+import type { ExerciseLogEntry } from '../types/exercise-log-entry'
 import type { RirValue } from '../types/rir-value'
 import type { SessionSummary } from '../types/session-summary'
+import type { SetLogEntry } from '../types/set-log-entry'
 
 const DEFAULT_REPS = 8
+const DEFAULT_WEIGHT = 20
+const BODYWEIGHT_EQUIPMENT = 'Poids du corps'
 
 export const useActiveSession = (sessionId: string | undefined) => {
   const { getSession } = useSessions()
   const session = sessionId ? getSession(sessionId) : undefined
 
-  const exercises = (session?.exercises ?? []).map((exercise) => ({
-    ...exercise,
-    setCount: parseSetCount(exercise.targetLabel),
-    restSeconds: parseRestSeconds(exercise.restLabel),
-  }))
+  const exercises = (session?.exercises ?? []).map((exercise) => {
+    const libraryExercise = getLibraryExercise(exercise.libraryExerciseId)
+
+    return {
+      ...exercise,
+      setCount: parseSetCount(exercise.targetLabel),
+      restSeconds: parseRestSeconds(exercise.restLabel),
+      muscleGroup: libraryExercise?.muscleGroup,
+      isBodyweight: libraryExercise?.equipment === BODYWEIGHT_EQUIPMENT,
+    }
+  })
 
   const [progress, setProgress] = useState<number[]>(() => exercises.map(() => 0))
+  const [setLogsByExercise, setSetLogsByExercise] = useState<SetLogEntry[][]>(() =>
+    exercises.map(() => []),
+  )
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0)
   const [reps, setReps] = useState(DEFAULT_REPS)
+  const [weight, setWeight] = useState(DEFAULT_WEIGHT)
   const [selectedRir, setSelectedRir] = useState<RirValue | null>(null)
   const [isSessionComplete, setIsSessionComplete] = useState(false)
-  const [, setLastSummary] = useLocalStorageState<SessionSummary | null>('seance-active/last-summary', null)
+  const [, setLastSummary] = useLocalStorageState<SessionSummary | null>(
+    'seance-active/last-summary',
+    null,
+  )
+  const { logSession } = useSessionLog()
 
   const elapsedSeconds = useStopwatch(!isSessionComplete)
   const rest = useCountdown()
@@ -43,22 +63,65 @@ export const useActiveSession = (sessionId: string | undefined) => {
     const nextProgress = [...progress]
     nextProgress[currentExerciseIndex] += 1
     setProgress(nextProgress)
+
+    const nextSetLogsByExercise = setLogsByExercise.map((log, index) =>
+      index === currentExerciseIndex
+        ? [...log, { weight: currentExercise.isBodyweight ? 0 : weight, reps, rir: selectedRir }]
+        : log,
+    )
+    setSetLogsByExercise(nextSetLogsByExercise)
+
     setReps(DEFAULT_REPS)
     setSelectedRir(null)
 
-    const nextExerciseIndex = nextProgress.findIndex((count, index) => count < exercises[index].setCount)
+    const nextExerciseIndex = nextProgress.findIndex(
+      (count, index) => count < exercises[index].setCount,
+    )
 
     if (nextExerciseIndex === -1) {
       setIsSessionComplete(true)
+
+      const durationMinutes = Math.max(1, Math.round(elapsedSeconds / 60))
+      const completedAt = new Date().toISOString()
+
       setLastSummary({
         title: session.name,
         imageUrl: session.imageUrl,
-        durationMinutes: Math.max(1, Math.round(elapsedSeconds / 60)),
-        completedAt: new Date().toISOString(),
+        durationMinutes,
+        completedAt,
       })
+
+      const loggedExercises: ExerciseLogEntry[] = exercises
+        .map((exercise, index) => ({
+          libraryExerciseId: exercise.libraryExerciseId,
+          name: exercise.name,
+          thumbnailUrl: exercise.thumbnailUrl,
+          muscleGroup: exercise.muscleGroup,
+          sets: nextSetLogsByExercise[index] ?? [],
+        }))
+        .filter(
+          (exercise): exercise is ExerciseLogEntry =>
+            Boolean(exercise.muscleGroup) && exercise.sets.length > 0,
+        )
+
+      logSession({
+        id: `log-${Date.now()}`,
+        sessionName: session.name,
+        imageUrl: session.imageUrl,
+        durationMinutes,
+        completedAt,
+        exercises: loggedExercises,
+      })
+
       return
     }
 
+    const nextExercise = exercises[nextExerciseIndex]
+    setWeight(
+      nextExercise.libraryExerciseId === currentExercise.libraryExerciseId
+        ? weight
+        : DEFAULT_WEIGHT,
+    )
     rest.start(currentExercise.restSeconds)
     setCurrentExerciseIndex(nextExerciseIndex)
   }
@@ -74,6 +137,8 @@ export const useActiveSession = (sessionId: string | undefined) => {
     currentSetNumber,
     reps,
     setReps,
+    weight,
+    setWeight,
     selectedRir,
     selectRir: setSelectedRir,
     isResting: rest.isActive,

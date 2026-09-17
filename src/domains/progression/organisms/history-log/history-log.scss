@@ -1,0 +1,58 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.history-log {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.history-log__header {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3xs;
+}
+
+.history-log__title {
+  font-family: $font-family-heading;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-xl;
+  color: $color-text;
+}
+
+.history-log__subtitle {
+  margin: 0;
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+}
+
+.history-log__empty {
+  margin: 0;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}
+
+.history-log__xp-tag {
+  flex-shrink: 0;
+  color: $color-accent;
+  font-family: $font-family-heading;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-sm;
+}
+
+.history-log__chart-picker {
+  display: flex;
+  gap: $spacing-2xs;
+  overflow-x: auto;
+  margin-bottom: $spacing-sm;
+}
+
+.history-log__milestone {
+  margin-top: $spacing-md;
+}
+
+.history-log__milestone-icon {
+  flex-shrink: 0;
+  width: 1.1875rem;
+  height: 1.1875rem;
+  color: $color-accent;
+}

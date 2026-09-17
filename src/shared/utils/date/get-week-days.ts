@@ -1,3 +1,5 @@
+import { getStartOfWeek } from './get-start-of-week'
+
 export type WeekDay = {
   index: number
   date: Date
@@ -6,11 +8,7 @@ export type WeekDay = {
 }
 
 export const getWeekDays = (referenceDate: Date = new Date(), locale = 'fr-FR'): WeekDay[] => {
-  const startOfWeek = new Date(referenceDate)
-  const currentDay = startOfWeek.getDay()
-  const mondayOffset = currentDay === 0 ? -6 : 1 - currentDay
-  startOfWeek.setDate(startOfWeek.getDate() + mondayOffset)
-
+  const startOfWeek = getStartOfWeek(referenceDate)
   const formatter = new Intl.DateTimeFormat(locale, { weekday: 'narrow' })
 
   return Array.from({ length: 7 }, (_unused, index) => {

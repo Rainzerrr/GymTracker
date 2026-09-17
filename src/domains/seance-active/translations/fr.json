@@ -1,5 +1,6 @@
 {
   "setLabel": "Série {{current}} sur {{total}} · {{label}}",
+  "weight": "Poids (kg)",
   "reps": "Reps",
   "rir": "RIR",
   "rirFailure": "Échec",
@@ -15,6 +16,18 @@
     "levelLabel": "Niveau {{level}} — {{title}}",
     "xpFraction": "{{current}} / {{total}}",
     "sectionLabel": "Cette séance",
-    "backToHome": "Retour à l'accueil"
+    "backToHome": "Retour à l'accueil",
+    "highlights": {
+      "prTitle": "Nouveau record",
+      "prSubtitleWeighted": "{{name}} — {{value}} kg (1RM estimée)",
+      "prSubtitleBodyweight": "{{name}} — {{value}} reps",
+      "tierUpTitle": "Palier franchi",
+      "tierUpSubtitle": "{{name}} — passage au rang {{tier}}",
+      "streakTitle": "Streak en cours",
+      "streakSubtitle_one": "{{count}} jour consécutif",
+      "streakSubtitle_other": "{{count}} jours consécutifs",
+      "firstTitle": "Séance enregistrée",
+      "firstSubtitle": "Continue comme ça pour construire ta progression."
+    }
   }
 }

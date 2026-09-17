@@ -21,9 +21,9 @@ const bodyIcon = (
 
 export const ProgressSection = ({
   musclesUnderTarget,
-  lastExerciseName,
-  lastExerciseRankLabel,
-  lastExerciseThumbnailUrl,
+  lastExercise,
+  onVolumeClick,
+  onLastExerciseClick,
 }: ProgressSectionProps) => {
   const { t } = useTranslation('home')
   const volumeSubtitle = t('progressSection.volumeSubtitle', { count: musclesUnderTarget })
@@ -36,13 +36,17 @@ export const ProgressSection = ({
         title={t('progressSection.volumeTitle')}
         subtitle={volumeSubtitle}
         trailing={<ChevronIcon />}
+        onClick={onVolumeClick}
       />
-      <ListRow
-        leading={<Thumbnail src={lastExerciseThumbnailUrl} alt={lastExerciseName} />}
-        title={lastExerciseName}
-        subtitle={lastExerciseRankLabel}
-        trailing={<ChevronIcon />}
-      />
+      {lastExercise && (
+        <ListRow
+          leading={<Thumbnail src={lastExercise.thumbnailUrl} alt={lastExercise.name} />}
+          title={lastExercise.name}
+          subtitle={lastExercise.rankLabel}
+          trailing={<ChevronIcon />}
+          onClick={onLastExerciseClick}
+        />
+      )}
     </section>
   )
 }

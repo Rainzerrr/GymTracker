@@ -1,6 +1,8 @@
 import { HomePage } from '@domains/home/pages/home-page'
 import { ProfilPage } from '@domains/profil/pages/profil-page'
 import { ProgressionPage } from '@domains/progression/pages/progression-page'
+import { RankPage } from '@domains/progression/pages/rank-page'
+import { VolumePage } from '@domains/progression/pages/volume-page'
 import { ActiveSessionPage } from '@domains/seance-active/pages/active-session-page'
 import { SessionRecapPage } from '@domains/seance-active/pages/session-recap-page'
 import { ExerciseConfigPage } from '@domains/seances/pages/exercise-config-page'
@@ -21,6 +23,8 @@ export const appRouter = createBrowserRouter([
       { path: '/profil', element: <ProfilPage /> },
     ],
   },
+  { path: '/progression/volume', element: <VolumePage /> },
+  { path: '/progression/rangs', element: <RankPage /> },
   { path: '/seances/planning', element: <WeekPlanPage /> },
   { path: '/seances/exercices', element: <ExercisePickerPage /> },
   { path: '/seances/exercices/:libraryExerciseId/configurer', element: <ExerciseConfigPage /> },

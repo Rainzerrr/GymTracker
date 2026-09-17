@@ -1,0 +1,33 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.body-volume-map {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.body-volume-map__subtitle {
+  margin: -$spacing-sm 0 0;
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+}
+
+.body-volume-map__illustration {
+  display: flex;
+  justify-content: center;
+  padding: $spacing-xs 0;
+}
+
+.body-volume-map__legend {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-md;
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+}
+
+.body-volume-map__legend-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2xs;
+}

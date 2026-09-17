@@ -3,21 +3,22 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@shared/atoms/button'
 import { SectionLabel } from '@shared/atoms/section-label'
-import { useLocalStorageState } from '@shared/hooks/use-local-storage-state'
-import recapDemo from '../../data/session-recap-demo.json'
+import { useSessionRecap } from '../../hooks/use-session-recap'
 import { SessionHighlights } from '../../organisms/session-highlights'
 import type { SessionHighlight } from '../../organisms/session-highlights'
 import { SessionSummaryHero } from '../../organisms/session-summary-hero'
 import { XpProgress } from '../../organisms/xp-progress'
-import type { SessionSummary } from '../../types/session-summary'
 import './session-recap-page.scss'
 
-const highlights = recapDemo.highlights as SessionHighlight[]
+const PR_XP_BONUS = 30
+const TIER_UP_XP_BONUS = 50
 
 export const SessionRecapPage = () => {
   const navigate = useNavigate()
   const { t } = useTranslation('seanceActive')
-  const [summary] = useLocalStorageState<SessionSummary | null>('seance-active/last-summary', null)
+  const { t: tProgression } = useTranslation('progression')
+  const { summary, xpGained, level, levelTitle, currentXp, xpToNextLevel, highlights } =
+    useSessionRecap()
 
   useEffect(() => {
     if (!summary) {
@@ -31,6 +32,55 @@ export const SessionRecapPage = () => {
 
   const metaLabel = t('recap.meta', { duration: summary.durationMinutes })
 
+  const translatedHighlights: SessionHighlight[] = highlights.map((highlight, index) => {
+    if (highlight.kind === 'pr') {
+      return {
+        id: `pr-${index}`,
+        icon: 'star',
+        title: t('recap.highlights.prTitle'),
+        subtitle: highlight.isBodyweight
+          ? t('recap.highlights.prSubtitleBodyweight', {
+              name: highlight.exerciseName,
+              value: Math.round(highlight.value),
+            })
+          : t('recap.highlights.prSubtitleWeighted', {
+              name: highlight.exerciseName,
+              value: Math.round(highlight.value * 10) / 10,
+            }),
+        xpValue: PR_XP_BONUS,
+      }
+    }
+
+    if (highlight.kind === 'tierUp') {
+      return {
+        id: `tier-${index}`,
+        icon: 'up',
+        title: t('recap.highlights.tierUpTitle'),
+        subtitle: t('recap.highlights.tierUpSubtitle', {
+          name: highlight.exerciseName,
+          tier: tProgression(`tiers.${highlight.tier}`),
+        }),
+        xpValue: TIER_UP_XP_BONUS,
+      }
+    }
+
+    if (highlight.kind === 'streak') {
+      return {
+        id: 'streak',
+        icon: 'streak',
+        title: t('recap.highlights.streakTitle'),
+        subtitle: t('recap.highlights.streakSubtitle', { count: highlight.days }),
+      }
+    }
+
+    return {
+      id: 'first',
+      icon: 'star',
+      title: t('recap.highlights.firstTitle'),
+      subtitle: t('recap.highlights.firstSubtitle'),
+    }
+  })
+
   return (
     <div className="session-recap-page">
       <SessionSummaryHero
@@ -41,15 +91,20 @@ export const SessionRecapPage = () => {
       />
       <div className="session-recap-page__content">
         <XpProgress
-          xpGained={recapDemo.xp.gained}
-          level={recapDemo.xp.level}
-          levelTitle={recapDemo.xp.levelTitle}
-          currentXp={recapDemo.xp.currentXp}
-          xpToNextLevel={recapDemo.xp.xpToNextLevel}
+          xpGained={xpGained}
+          level={level}
+          levelTitle={levelTitle}
+          currentXp={currentXp}
+          xpToNextLevel={xpToNextLevel}
         />
         <SectionLabel label={t('recap.sectionLabel')} />
-        <SessionHighlights highlights={highlights} />
-        <Button label={t('recap.backToHome')} variant="accent" fullWidth onClick={() => navigate('/')} />
+        <SessionHighlights highlights={translatedHighlights} />
+        <Button
+          label={t('recap.backToHome')}
+          variant="accent"
+          fullWidth
+          onClick={() => navigate('/')}
+        />
       </div>
     </div>
   )

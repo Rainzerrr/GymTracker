@@ -1,0 +1,28 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.segmented-toggle {
+  display: flex;
+  border-radius: $radius-md;
+  background-color: $color-surface;
+  padding: $spacing-3xs;
+  gap: $spacing-3xs;
+}
+
+.segmented-toggle__option {
+  flex: 1;
+  border: none;
+  border-radius: $radius-sm;
+  background-color: transparent;
+  padding: $spacing-xs 0;
+  color: $color-text-muted;
+  font-family: $font-family-base;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+}
+
+.segmented-toggle__option--active {
+  background-color: $color-accent;
+  color: $color-accent-ink;
+  font-weight: $font-weight-semibold;
+}

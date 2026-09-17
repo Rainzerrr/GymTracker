@@ -16,6 +16,8 @@ export const ActiveSessionPage = () => {
     currentSetNumber,
     reps,
     setReps,
+    weight,
+    setWeight,
     selectedRir,
     selectRir,
     isResting,
@@ -45,7 +47,11 @@ export const ActiveSessionPage = () => {
 
   return (
     <div className="active-session-page">
-      <SessionHeader title={session.name} elapsedSeconds={elapsedSeconds} onBack={() => navigate('/')} />
+      <SessionHeader
+        title={session.name}
+        elapsedSeconds={elapsedSeconds}
+        onBack={() => navigate('/')}
+      />
       <ActiveExerciseCard
         name={currentExercise.name}
         photoUrl={currentExercise.thumbnailUrl}
@@ -54,6 +60,9 @@ export const ActiveSessionPage = () => {
         targetLabel={currentExercise.targetLabel}
         reps={reps}
         onRepsChange={setReps}
+        weight={weight}
+        onWeightChange={setWeight}
+        isBodyweight={currentExercise.isBodyweight}
         selectedRir={selectedRir}
         onSelectRir={selectRir}
         isResting={isResting}

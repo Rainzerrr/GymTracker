@@ -1,0 +1,30 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.tier-progress-bar {
+  display: block;
+  height: 3px;
+  border-radius: $radius-sm * 0.3;
+  background-color: $color-border-soft;
+  overflow: hidden;
+}
+
+.tier-progress-bar__fill {
+  display: block;
+  height: 100%;
+}
+
+.tier-progress-bar__fill--bronze {
+  background-color: $color-tier-bronze;
+}
+
+.tier-progress-bar__fill--argent {
+  background-color: $color-tier-argent;
+}
+
+.tier-progress-bar__fill--or {
+  background-color: $color-tier-or;
+}
+
+.tier-progress-bar__fill--platine {
+  background-color: $color-tier-platine;
+}

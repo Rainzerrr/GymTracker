@@ -1,0 +1,50 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.rank-avatar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.875rem;
+  height: 2.875rem;
+  border-radius: $radius-pill;
+  background-color: $color-surface;
+  color: $color-text-muted;
+}
+
+.rank-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: $radius-pill;
+  object-fit: cover;
+}
+
+.rank-avatar svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.rank-avatar--bronze {
+  box-shadow:
+    0 0 0 2px $color-background,
+    0 0 0 4px $color-tier-bronze;
+}
+
+.rank-avatar--argent {
+  box-shadow:
+    0 0 0 2px $color-background,
+    0 0 0 4px $color-tier-argent;
+}
+
+.rank-avatar--or {
+  box-shadow:
+    0 0 0 2px $color-background,
+    0 0 0 4px $color-tier-or;
+}
+
+.rank-avatar--platine {
+  box-shadow:
+    0 0 0 2px $color-background,
+    0 0 0 4px $color-tier-platine;
+}

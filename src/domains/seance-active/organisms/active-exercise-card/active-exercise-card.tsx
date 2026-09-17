@@ -12,6 +12,9 @@ export const ActiveExerciseCard = ({
   targetLabel,
   reps,
   onRepsChange,
+  weight,
+  onWeightChange,
+  isBodyweight,
   selectedRir,
   onSelectRir,
   isResting,
@@ -20,7 +23,11 @@ export const ActiveExerciseCard = ({
   onValidate,
 }: ActiveExerciseCardProps) => {
   const { t } = useTranslation('seanceActive')
-  const setSubtitle = t('setLabel', { current: currentSetNumber, total: totalSets, label: targetLabel })
+  const setSubtitle = t('setLabel', {
+    current: currentSetNumber,
+    total: totalSets,
+    label: targetLabel,
+  })
   const restProgressPercent = ((restTotalSeconds - restRemainingSeconds) / restTotalSeconds) * 100
 
   return (
@@ -33,6 +40,19 @@ export const ActiveExerciseCard = ({
       </div>
 
       <div className="active-exercise-card__field-row">
+        {!isBodyweight && (
+          <div className="active-exercise-card__field">
+            <span className="active-exercise-card__field-label">{t('weight')}</span>
+            <input
+              className="active-exercise-card__field-value"
+              type="number"
+              inputMode="decimal"
+              step={2.5}
+              value={weight}
+              onChange={(event) => onWeightChange(Number(event.target.value))}
+            />
+          </div>
+        )}
         <div className="active-exercise-card__field">
           <span className="active-exercise-card__field-label">{t('reps')}</span>
           <input
@@ -60,12 +80,20 @@ export const ActiveExerciseCard = ({
             <span>{t('restRemaining', { time: formatDurationClock(restRemainingSeconds) })}</span>
           </div>
           <div className="active-exercise-card__rest-bar">
-            <div className="active-exercise-card__rest-bar-fill" style={{ width: `${restProgressPercent}%` }} />
+            <div
+              className="active-exercise-card__rest-bar-fill"
+              style={{ width: `${restProgressPercent}%` }}
+            />
           </div>
         </div>
       )}
 
-      <button type="button" className="active-exercise-card__validate" onClick={onValidate} disabled={isResting}>
+      <button
+        type="button"
+        className="active-exercise-card__validate"
+        onClick={onValidate}
+        disabled={isResting}
+      >
         {isResting ? t('resting') : t('validate')}
       </button>
     </div>

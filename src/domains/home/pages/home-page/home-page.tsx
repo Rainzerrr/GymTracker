@@ -54,9 +54,9 @@ export const HomePage = () => {
         />
         <ProgressSection
           musclesUnderTarget={volumeSummary.musclesUnderTarget}
-          lastExerciseName={lastExercise.name}
-          lastExerciseRankLabel={lastExercise.rankLabel}
-          lastExerciseThumbnailUrl={lastExercise.thumbnailUrl}
+          lastExercise={lastExercise}
+          onVolumeClick={() => navigate('/progression/volume')}
+          onLastExerciseClick={() => navigate('/progression/rangs')}
         />
       </div>
     </div>

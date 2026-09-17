@@ -1,0 +1,21 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.status-dot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 0.5625rem;
+  height: 0.5625rem;
+  border-radius: $radius-sm * 0.4;
+}
+
+.status-dot--none {
+  background-color: $color-border-strong;
+}
+
+.status-dot--under {
+  background-color: $color-accent-soft;
+}
+
+.status-dot--target {
+  background-color: $color-accent;
+}
