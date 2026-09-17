@@ -1,0 +1,19 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.set-dots {
+  display: flex;
+  flex-shrink: 0;
+  gap: 0.3125rem;
+}
+
+.set-dots__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 1.4px solid $color-border-strong;
+  border-radius: 50%;
+}
+
+.set-dots__dot--filled {
+  background-color: $color-accent;
+  border-color: $color-accent;
+}

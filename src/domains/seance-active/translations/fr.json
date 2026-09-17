@@ -1,0 +1,20 @@
+{
+  "setLabel": "Série {{current}} sur {{total}} · {{label}}",
+  "reps": "Reps",
+  "rir": "RIR",
+  "rirFailure": "Échec",
+  "rest": "Repos",
+  "restRemaining": "{{time}} restant",
+  "validate": "Valider la série",
+  "resting": "Récupération…",
+  "recap": {
+    "badge": "Séance terminée",
+    "meta": "{{duration}} min · séance complète",
+    "xpGained": "+{{amount}} XP",
+    "xpLabel": "séance complète, rigueur RIR bonus incluse",
+    "levelLabel": "Niveau {{level}} — {{title}}",
+    "xpFraction": "{{current}} / {{total}}",
+    "sectionLabel": "Cette séance",
+    "backToHome": "Retour à l'accueil"
+  }
+}

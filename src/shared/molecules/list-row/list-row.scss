@@ -1,0 +1,38 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: $spacing-md 0;
+  border-top: 1px solid $color-border;
+  text-align: left;
+  font-family: $font-family-base;
+}
+
+.list-row__leading-group {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.list-row__text {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: $spacing-3xs;
+}
+
+.list-row__title {
+  color: $color-text;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+}
+
+.list-row__subtitle {
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+}

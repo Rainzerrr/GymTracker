@@ -1,0 +1,13 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background-color: $color-background;
+  color: $color-text;
+}
+
+.home-page__content {
+  padding: $spacing-md $spacing-lg $spacing-xl;
+}

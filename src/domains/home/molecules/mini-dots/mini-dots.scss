@@ -1,0 +1,18 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.mini-dots {
+  display: flex;
+  gap: 0.1875rem;
+  margin-top: $spacing-2xs;
+}
+
+.mini-dots__dot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 1px;
+  background-color: $color-border-medium;
+}
+
+.mini-dots__dot--on {
+  background-color: $color-accent;
+}

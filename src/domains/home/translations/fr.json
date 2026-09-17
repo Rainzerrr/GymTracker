@@ -1,0 +1,25 @@
+{
+  "cta": "Commencer la séance",
+  "nextWorkout": {
+    "meta": "~{{duration}} min · {{count}} exercices"
+  },
+  "restDay": {
+    "title": "Jour de repos",
+    "meta": "Profite de ta récupération, ou fais ta routine posture ci-dessous."
+  },
+  "todaySection": {
+    "label": "Cette semaine",
+    "streakTitle": "Streak musculation",
+    "streakSubtitle": "jours consécutifs",
+    "postureTitle": "Routine posture",
+    "postureNotValidated": "Pas encore validée ce soir",
+    "postureValidated": "Validée ce soir",
+    "validate": "Valider"
+  },
+  "progressSection": {
+    "label": "Progression",
+    "volumeTitle": "Répartition du volume",
+    "volumeSubtitle_one": "{{count}} muscle sous l'objectif",
+    "volumeSubtitle_other": "{{count}} muscles sous l'objectif"
+  }
+}

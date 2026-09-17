@@ -1,0 +1,37 @@
+{
+  "extends": ["stylelint-config-standard-scss"],
+  "plugins": ["stylelint-selector-bem-pattern"],
+  "rules": {
+    "scss/at-rule-no-unknown": true,
+    "max-nesting-depth": 0,
+    "selector-max-compound-selectors": 2,
+    "selector-class-pattern": null,
+    "property-no-vendor-prefix": null,
+    "color-no-hex": true,
+    "declaration-property-value-disallowed-list": {
+      "/^(color|background(-color)?|border(-color)?|fill|stroke)$/": ["/^#/", "/^rgb/", "/^hsl/"],
+      "/^font-family$/": ["/^['\"a-zA-Z]/"]
+    },
+    "plugin/selector-bem-pattern": {
+      "preset": "bem",
+      "componentName": "[a-z]([a-z0-9-]*[a-z0-9])?",
+      "componentSelectors": {
+        "initial": "^\\.{componentName}(?:__[a-z0-9-]+)?(?:--[a-z0-9-]+)?$"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.scss"],
+      "rules": {
+        "scss/dollar-variable-pattern": "^[a-z][a-z0-9-]*$"
+      }
+    },
+    {
+      "files": ["**/abstracts/_variables.scss"],
+      "rules": {
+        "color-no-hex": null
+      }
+    }
+  ]
+}

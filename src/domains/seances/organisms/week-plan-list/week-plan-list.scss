@@ -1,0 +1,26 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.week-plan-list__hint {
+  margin: 0 0 $spacing-3xs;
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+}
+
+.week-plan-list__placeholder {
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1.4px dashed $color-border-strong;
+  border-radius: $radius-md;
+}
+
+.week-plan-list__cycle-icon {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  color: $color-text-dim;
+}
+
+.week-plan-list__save {
+  margin-top: $spacing-md;
+}

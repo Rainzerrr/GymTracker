@@ -1,0 +1,20 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.filter-pill {
+  flex-shrink: 0;
+  border: none;
+  border-radius: $radius-pill;
+  background-color: $color-surface;
+  padding: $spacing-xs 0.875rem;
+  color: $color-text-muted;
+  font-family: $font-family-base;
+  font-size: $font-size-xs-plus;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.filter-pill--active {
+  background-color: $color-accent;
+  color: $color-accent-ink;
+  font-weight: $font-weight-semibold;
+}

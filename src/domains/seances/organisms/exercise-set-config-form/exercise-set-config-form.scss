@@ -1,0 +1,59 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.exercise-set-config-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  padding: 1.25rem;
+}
+
+.exercise-set-config-form__photo {
+  display: block;
+  width: calc(100% + 2.5rem);
+  height: 9.375rem;
+  margin: -1.25rem -1.25rem 0;
+  border-radius: $radius-xl $radius-xl 0 0;
+  object-fit: cover;
+}
+
+.exercise-set-config-form__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.exercise-set-config-form__name {
+  color: $color-text;
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+}
+
+.exercise-set-config-form__meta {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+}
+
+.exercise-set-config-form__field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.exercise-set-config-form__label {
+  color: $color-text-muted;
+  font-size: $font-size-2xs;
+}
+
+.exercise-set-config-form__field-row {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.exercise-set-config-form__rest-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+}

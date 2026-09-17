@@ -1,0 +1,32 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.625rem;
+}
+
+.stepper__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.375rem;
+  height: 2.375rem;
+  border: 1px solid $color-border-strong;
+  border-radius: 50%;
+  background-color: transparent;
+  color: $color-text;
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  cursor: pointer;
+}
+
+.stepper__value {
+  min-width: 2.125rem;
+  color: $color-text;
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl-plus;
+  font-weight: $font-weight-bold;
+  text-align: center;
+}

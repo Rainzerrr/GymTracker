@@ -1,0 +1,49 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.session-list__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-3xs;
+}
+
+.session-list__title {
+  color: $color-text;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+}
+
+.session-list__edit-toggle {
+  border: none;
+  background: none;
+  padding: 0;
+  color: $color-text-muted;
+  font-family: $font-family-base;
+  font-size: $font-size-sm;
+  cursor: pointer;
+}
+
+.session-list__subtitle {
+  margin: 0 0 $spacing-sm;
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+}
+
+.session-list__delete {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.625rem;
+  height: 1.625rem;
+  border: none;
+  border-radius: 50%;
+  background-color: $color-danger-wash;
+  cursor: pointer;
+}
+
+.session-list__delete svg {
+  width: 0.8125rem;
+  height: 0.8125rem;
+  color: $color-danger;
+}

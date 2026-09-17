@@ -1,0 +1,14 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.coming-soon {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.coming-soon__text {
+  color: $color-text-muted;
+  font-size: $font-size-base;
+}

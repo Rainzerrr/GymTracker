@@ -1,0 +1,10 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.active-session-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background-color: $color-background;
+  padding: $spacing-md $spacing-lg $spacing-xl;
+  gap: $spacing-lg;
+}

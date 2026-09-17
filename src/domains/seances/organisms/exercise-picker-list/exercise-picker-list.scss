@@ -1,0 +1,48 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.exercise-picker-list__search {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  border-radius: $radius-md;
+  background-color: $color-surface;
+  padding: $spacing-sm $spacing-md;
+}
+
+.exercise-picker-list__search svg {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  color: $color-text-dim;
+}
+
+.exercise-picker-list__search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: $color-text;
+  font-family: $font-family-base;
+  font-size: $font-size-md;
+}
+
+.exercise-picker-list__search input::placeholder {
+  color: $color-text-dim;
+}
+
+.exercise-picker-list__filters {
+  display: flex;
+  gap: $spacing-xs;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-top: $spacing-md;
+  padding-bottom: 0.125rem;
+}
+
+.exercise-picker-list__filters::-webkit-scrollbar {
+  display: none;
+}
+
+.exercise-picker-list__results {
+  margin-top: $spacing-xs;
+}

@@ -1,0 +1,36 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.tab-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid $color-border;
+  background-color: $color-background;
+  padding: 0.875rem 0.75rem calc(0.625rem + env(safe-area-inset-bottom));
+}
+
+.tab-bar__tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3125rem;
+  color: $color-text-dim;
+}
+
+.tab-bar__tab--active {
+  color: $color-accent;
+}
+
+.tab-bar__tab svg {
+  width: 1.3125rem;
+  height: 1.3125rem;
+}
+
+.tab-bar__tab span {
+  font-size: 0.6563rem;
+  font-weight: $font-weight-medium;
+}

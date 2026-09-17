@@ -1,0 +1,38 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.session-summary-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  border: 1px solid rgba($color-accent, 45%);
+  border-radius: $radius-pill;
+  background-color: $color-accent-wash;
+  padding: $spacing-3xs $spacing-sm;
+  color: $color-accent;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-2xs;
+  letter-spacing: 0.03em;
+}
+
+.session-summary-hero__badge svg {
+  width: 0.6875rem;
+  height: 0.6875rem;
+}
+
+.session-summary-hero__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.875rem;
+  height: 1.875rem;
+  border: none;
+  border-radius: 50%;
+  background-color: $color-scrim-strong;
+  color: $color-text;
+  cursor: pointer;
+}
+
+.session-summary-hero__close svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}

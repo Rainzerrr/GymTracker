@@ -1,0 +1,26 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.rir-selector {
+  display: flex;
+  gap: $spacing-xs;
+}
+
+.rir-selector__chip {
+  flex: 1;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-md;
+  background-color: transparent;
+  padding: 0.5625rem 0;
+  color: $color-text-muted;
+  font-family: $font-family-base;
+  font-size: $font-size-xs-plus;
+  text-align: center;
+  cursor: pointer;
+}
+
+.rir-selector__chip--selected {
+  border-color: $color-accent;
+  background-color: $color-accent;
+  color: $color-accent-ink;
+  font-weight: $font-weight-semibold;
+}

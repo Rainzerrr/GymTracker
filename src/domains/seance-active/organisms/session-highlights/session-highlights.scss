@@ -1,0 +1,9 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.session-highlights__xp-tag {
+  flex-shrink: 0;
+  color: $color-accent;
+  font-family: $font-family-heading;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+}

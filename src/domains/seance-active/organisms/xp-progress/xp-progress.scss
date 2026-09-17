@@ -1,0 +1,39 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.xp-progress {
+  text-align: center;
+}
+
+.xp-progress__xp-number {
+  color: $color-accent;
+  font-family: $font-family-heading;
+  font-size: $font-size-5xl;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+}
+
+.xp-progress__xp-label {
+  margin: $spacing-2xs 0 0;
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+}
+
+.xp-progress__level-row {
+  display: flex;
+  justify-content: space-between;
+  margin: $spacing-lg 0 $spacing-2xs;
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+}
+
+.xp-progress__level-bar {
+  height: 0.1875rem;
+  border-radius: 0.125rem;
+  background-color: $color-border-soft;
+  overflow: hidden;
+}
+
+.xp-progress__level-bar-fill {
+  height: 100%;
+  background-color: $color-accent;
+}

@@ -1,0 +1,8 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.section-label {
+  margin: $spacing-xl 0 $spacing-3xs;
+  color: $color-text-dim;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-regular;
+}

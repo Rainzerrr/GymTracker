@@ -1,0 +1,8 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.today-section__streak-count {
+  color: $color-text;
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl-plus;
+  font-weight: $font-weight-semibold;
+}

@@ -1,0 +1,33 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.rest-day-banner {
+  margin: $spacing-md $spacing-lg 0;
+  border-radius: $radius-xl;
+  background-color: $color-surface;
+  padding: $spacing-xl $spacing-lg;
+  text-align: center;
+}
+
+.rest-day-banner__date {
+  display: inline-block;
+  margin-bottom: $spacing-sm;
+  border-radius: $radius-pill;
+  background-color: $color-background;
+  padding: $spacing-3xs $spacing-xs;
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+}
+
+.rest-day-banner__title {
+  margin: 0;
+  color: $color-text;
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+}
+
+.rest-day-banner__meta {
+  margin: $spacing-2xs 0 0;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}

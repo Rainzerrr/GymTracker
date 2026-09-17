@@ -1,0 +1,22 @@
+[
+  { "id": "squat-barre-libre", "name": "Squat barre libre", "muscleGroup": "quadriceps", "equipment": "Barre", "thumbnailUrl": "/images/exercises/squat-barbell.jpg" },
+  { "id": "presse-a-cuisses", "name": "Presse à cuisses", "muscleGroup": "quadriceps", "equipment": "Machine", "thumbnailUrl": "/images/exercises/presse-cuisses.jpg" },
+  { "id": "leg-extension", "name": "Leg extension machine", "muscleGroup": "quadriceps", "equipment": "Machine", "thumbnailUrl": "/images/exercises/leg-extension.jpg" },
+  { "id": "solevele-terre-roumain", "name": "Soulevé de terre roumain", "muscleGroup": "ischios", "equipment": "Barre", "thumbnailUrl": "/images/exercises/solevele-terre-roumain.jpg" },
+  { "id": "leg-curl-allonge", "name": "Leg curl allongé", "muscleGroup": "ischios", "equipment": "Machine", "thumbnailUrl": "/images/exercises/leg-curl.jpg" },
+  { "id": "hip-thrust-barre", "name": "Hip thrust barre", "muscleGroup": "ischios", "equipment": "Barre", "thumbnailUrl": "/images/exercises/hip-thrust.jpg" },
+  { "id": "mollets-debout", "name": "Mollets debout machine", "muscleGroup": "ischios", "equipment": "Machine", "thumbnailUrl": "/images/exercises/mollets-debout.jpg" },
+  { "id": "tractions-supination", "name": "Tractions supination", "muscleGroup": "dos", "equipment": "Barre de traction", "thumbnailUrl": "/images/exercises/tractions-supination.jpg" },
+  { "id": "rowing-poulie-basse", "name": "Rowing poulie basse", "muscleGroup": "dos", "equipment": "Poulie", "thumbnailUrl": "/images/exercises/rowing-poulie-basse.jpg" },
+  { "id": "rowing-barre", "name": "Rowing barre", "muscleGroup": "dos", "equipment": "Barre", "thumbnailUrl": "/images/exercises/rowing-barre.jpg" },
+  { "id": "developpe-incline-halteres", "name": "Développé incliné haltères", "muscleGroup": "pectoraux", "equipment": "Haltères", "thumbnailUrl": "/images/exercises/developpe-incline-halteres.jpg" },
+  { "id": "developpe-couche-barre", "name": "Développé couché barre", "muscleGroup": "pectoraux", "equipment": "Barre", "thumbnailUrl": "/images/exercises/developpe-couche.jpg" },
+  { "id": "dips-lestes", "name": "Dips lestés", "muscleGroup": "pectoraux", "equipment": "Lest", "thumbnailUrl": "/images/exercises/dips-lestes.jpg" },
+  { "id": "elevations-laterales", "name": "Élévations latérales haltères", "muscleGroup": "epaules", "equipment": "Haltères", "thumbnailUrl": "/images/exercises/elevations-laterales.jpg" },
+  { "id": "developpe-militaire-barre", "name": "Développé militaire barre", "muscleGroup": "epaules", "equipment": "Barre", "thumbnailUrl": "/images/exercises/developpe-militaire.jpg" },
+  { "id": "face-pull-poulie", "name": "Face pull poulie", "muscleGroup": "epaules", "equipment": "Poulie", "thumbnailUrl": "/images/exercises/face-pull.jpg" },
+  { "id": "curl-barre", "name": "Curl barre", "muscleGroup": "bras", "equipment": "Barre", "thumbnailUrl": "/images/exercises/curl-barre.jpg" },
+  { "id": "extension-triceps-poulie", "name": "Extension triceps poulie", "muscleGroup": "bras", "equipment": "Poulie", "thumbnailUrl": "/images/exercises/extension-triceps.jpg" },
+  { "id": "planche", "name": "Planche", "muscleGroup": "abdos", "equipment": "Poids du corps", "thumbnailUrl": "/images/exercises/planche.jpg" },
+  { "id": "crunch-leste", "name": "Crunch lesté", "muscleGroup": "abdos", "equipment": "Lest", "thumbnailUrl": "/images/exercises/crunch-leste.jpg" }
+]

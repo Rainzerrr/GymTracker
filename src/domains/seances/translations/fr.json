@@ -1,0 +1,59 @@
+{
+  "list": {
+    "title": "Mes séances",
+    "subtitle_one": "{{count}} séance active dans ton cycle",
+    "subtitle_other": "{{count}} séances actives dans ton cycle",
+    "itemSubtitle_one": "{{count}} exercice",
+    "itemSubtitle_other": "{{count}} exercices",
+    "itemSubtitleWithFocus_one": "{{focus}} · {{count}} exercice",
+    "itemSubtitleWithFocus_other": "{{focus}} · {{count}} exercices",
+    "newSession": "+ Nouvelle séance",
+    "planWeek": "Planning de la semaine"
+  },
+  "builder": {
+    "headerTitle": "Modifier",
+    "namePlaceholder": "Nom de la séance",
+    "subtitle_one": "{{count}} exercice",
+    "subtitle_other": "{{count}} exercices",
+    "subtitleWithFocus_one": "{{focus}} · {{count}} exercice",
+    "subtitleWithFocus_other": "{{focus}} · {{count}} exercices",
+    "exercisesLabel": "Exercices",
+    "addExercise": "+ Ajouter un exercice",
+    "save": "Enregistrer la séance",
+    "supersetLink": "Lier en superset",
+    "supersetLinked": "Superset lié"
+  },
+  "picker": {
+    "headerTitle": "Ajouter un exercice",
+    "searchPlaceholder": "Rechercher parmi {{count}} exercices",
+    "subtitle": "{{muscle}} · {{equipment}}"
+  },
+  "config": {
+    "headerTitle": "Configurer",
+    "sets": "Séries",
+    "repsMin": "Reps min",
+    "repsMax": "Reps max",
+    "restLabel": "Repos entre les séries",
+    "restLabelValue": "repos {{value}}",
+    "submit": "Ajouter à la séance"
+  },
+  "weekPlan": {
+    "headerTitle": "Assigner les séances",
+    "hint": "Tape un jour pour faire défiler : repos · libre · tes séances",
+    "restTotal": "Repos total",
+    "free": "Libre",
+    "tapToAssign": "tap pour assigner une séance",
+    "tapToChange": "tap pour changer",
+    "save": "Enregistrer le planning"
+  },
+  "muscleGroups": {
+    "all": "Tous",
+    "quadriceps": "Quadriceps",
+    "ischios": "Ischios-fessiers",
+    "dos": "Dos",
+    "pectoraux": "Pectoraux",
+    "epaules": "Épaules",
+    "bras": "Bras",
+    "abdos": "Abdos"
+  }
+}

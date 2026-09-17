@@ -1,0 +1,25 @@
+{
+  "app": {
+    "name": "GymTracker"
+  },
+  "actions": {
+    "back": "Retour",
+    "close": "Fermer",
+    "validate": "Valider",
+    "decrease": "Diminuer",
+    "increase": "Augmenter",
+    "delete": "Supprimer",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "done": "Terminé"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "workouts": "Séances",
+    "progress": "Progression",
+    "profile": "Profil"
+  },
+  "comingSoon": {
+    "message": "Bientôt disponible"
+  }
+}

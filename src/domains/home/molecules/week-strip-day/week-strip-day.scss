@@ -1,0 +1,38 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.week-strip-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5625rem;
+}
+
+.week-strip-day__letter {
+  color: $color-text-dim;
+  font-size: $font-size-xs;
+}
+
+.week-strip-day__letter--today {
+  color: $color-text;
+  font-weight: $font-weight-semibold;
+}
+
+.week-strip-day__dot {
+  width: 0.5625rem;
+  height: 0.5625rem;
+  border: 1.4px solid $color-border-strong;
+  border-radius: 50%;
+}
+
+.week-strip-day__dot--done {
+  background-color: $color-text;
+  border-color: $color-text;
+}
+
+.week-strip-day__dot--rest {
+  border-style: dashed;
+}
+
+.week-strip-day__dot--today {
+  border-color: $color-accent;
+}

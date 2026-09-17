@@ -1,0 +1,16 @@
+@use 'shared/styles/abstracts/variables' as *;
+@use 'shared/styles/abstracts/mixins' as *;
+
+.page-template {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  padding: $spacing-lg;
+  gap: $spacing-lg;
+}
+
+@include breakpoint-up('md') {
+  .page-template {
+    padding: $spacing-xl;
+  }
+}

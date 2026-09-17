@@ -1,0 +1,8 @@
+.app-layout {
+  min-height: 100dvh;
+  padding-top: env(safe-area-inset-top);
+}
+
+.app-layout__content {
+  padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+}

@@ -1,0 +1,15 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.thumbnail {
+  display: block;
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: $radius-md;
+  object-fit: cover;
+}
+
+.thumbnail--placeholder {
+  border: 1.4px dashed $color-border-strong;
+  background-color: $color-surface;
+}

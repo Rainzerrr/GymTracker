@@ -1,0 +1,26 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.next-workout-card__date-chip {
+  border-radius: $radius-pill;
+  background-color: $color-scrim-soft;
+  padding: $spacing-3xs $spacing-xs;
+  color: $color-text;
+  font-size: $font-size-xs-plus;
+}
+
+.next-workout-card__streak-chip {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3xs;
+  border-radius: $radius-pill;
+  background-color: $color-scrim-soft;
+  padding: $spacing-3xs $spacing-xs;
+  color: $color-accent;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-sm;
+}
+
+.next-workout-card__streak-chip svg {
+  width: 0.8125rem;
+  height: 0.8125rem;
+}

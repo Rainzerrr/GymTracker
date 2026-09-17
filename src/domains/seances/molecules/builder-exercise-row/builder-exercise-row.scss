@@ -1,0 +1,60 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.builder-exercise-row {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm 0;
+}
+
+.builder-exercise-row:not(:first-child) {
+  border-top: 1px solid $color-border-soft;
+}
+
+.builder-exercise-row__handle {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  color: $color-border-strong;
+  cursor: grab;
+}
+
+.builder-exercise-row__body {
+  min-width: 0;
+  flex: 1;
+}
+
+.builder-exercise-row__name {
+  color: $color-text;
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+}
+
+.builder-exercise-row__target {
+  display: inline-block;
+  margin-top: 0.125rem;
+  border: none;
+  border-bottom: 1.4px dashed $color-border-strong;
+  background: transparent;
+  padding: 0;
+  color: $color-text-muted;
+  font-family: $font-family-base;
+  font-size: $font-size-xs-plus;
+}
+
+.builder-exercise-row__rest {
+  margin-top: 0.125rem;
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+}
+
+.builder-exercise-row__remove {
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: none;
+  background: none;
+  padding: 0;
+  color: $color-text-dim;
+  cursor: pointer;
+}

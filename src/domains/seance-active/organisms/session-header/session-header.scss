@@ -1,0 +1,41 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.session-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.session-header__left {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.session-header__back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  color: $color-text;
+  cursor: pointer;
+}
+
+.session-header__back svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.session-header__title {
+  color: $color-text;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+}
+
+.session-header__timer {
+  color: $color-text-muted;
+  font-family: $font-family-heading;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+}
