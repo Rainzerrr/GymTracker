@@ -15,6 +15,7 @@ body {
 
 #root {
   min-height: 100dvh;
+  padding-top: env(safe-area-inset-top);
 }
 
 h1,
