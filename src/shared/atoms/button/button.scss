@@ -33,6 +33,15 @@
   font-weight: $font-weight-medium;
 }
 
+.button--danger {
+  padding: 0.9375rem 0;
+  background-color: $color-danger-wash;
+  color: $color-danger;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  border-radius: $radius-lg;
+}
+
 .button--full-width {
   display: flex;
   width: 100%;

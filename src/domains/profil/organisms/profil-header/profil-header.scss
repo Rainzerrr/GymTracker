@@ -1,0 +1,45 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.profil-header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.profil-header__info {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: $spacing-3xs;
+}
+
+.profil-header__name {
+  align-self: flex-start;
+  color: $color-text;
+  font-family: $font-family-heading;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-2xl;
+  text-align: left;
+}
+
+.profil-header__name-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid $color-accent-soft;
+  background: transparent;
+  color: $color-text;
+  font-family: $font-family-heading;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-2xl;
+  padding: 0 0 $spacing-3xs;
+}
+
+.profil-header__name-input:focus {
+  outline: none;
+  border-bottom-color: $color-accent;
+}
+
+.profil-header__meta {
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+}

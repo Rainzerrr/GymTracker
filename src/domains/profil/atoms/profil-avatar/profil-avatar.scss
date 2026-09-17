@@ -1,0 +1,24 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.profil-avatar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: $radius-pill;
+  background-color: $color-surface;
+  color: $color-accent;
+  font-family: $font-family-heading;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-2xl;
+  box-shadow:
+    0 0 0 2px $color-background,
+    0 0 0 4px $color-accent-soft;
+}
+
+.profil-avatar svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}

@@ -1,0 +1,39 @@
+{
+  "header": {
+    "namePlaceholder": "Ajouter ton prénom",
+    "memberSince": "Membre depuis le {{date}}"
+  },
+  "stats": {
+    "label": "Ton activité",
+    "sessions": "Séances complétées",
+    "duration": "Temps d'entraînement",
+    "sets": "Séries réalisées",
+    "streak": "Streak actuelle",
+    "streakValue_one": "{{count}} jour",
+    "streakValue_other": "{{count}} jours"
+  },
+  "muscleSplit": {
+    "label": "Répartition musculaire",
+    "empty": "Termine une séance pour voir ta répartition musculaire apparaître ici.",
+    "setsCount_one": "{{count}} série",
+    "setsCount_other": "{{count}} séries"
+  },
+  "recentSessions": {
+    "label": "Séances récentes",
+    "empty": "Aucune séance complétée pour l'instant. Lance-toi !",
+    "meta": "{{duration}} min · {{count}} séries"
+  },
+  "shortcuts": {
+    "label": "Raccourcis",
+    "sessions": "Mes séances",
+    "planning": "Planning de la semaine",
+    "progression": "Progression"
+  },
+  "resetData": {
+    "label": "Données",
+    "trigger": "Réinitialiser mes données",
+    "warning": "Cette action supprime définitivement toutes tes séances, ton historique, ta progression et tes réglages. Elle est irréversible.",
+    "cancel": "Annuler",
+    "confirm": "Tout réinitialiser"
+  }
+}

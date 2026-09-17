@@ -1,4 +1,4 @@
-export type ButtonVariant = 'accent' | 'outline'
+export type ButtonVariant = 'accent' | 'outline' | 'danger'
 
 export type ButtonProps = {
   label: string
