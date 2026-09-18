@@ -3,6 +3,26 @@
 html {
   font-family: $font-family-base;
   font-size: 100%;
+  scrollbar-color: $color-border-strong $color-background;
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: $color-background;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: $radius-pill;
+  background-color: $color-border-strong;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: $color-text-dim;
 }
 
 body {

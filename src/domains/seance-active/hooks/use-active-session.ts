@@ -1,20 +1,20 @@
 import { useState } from 'react'
 import { getLibraryExercise } from '@domains/seances/hooks/use-exercise-library'
 import { useSessions } from '@domains/seances/hooks/use-sessions'
+import { isBodyweightEquipment } from '@domains/seances/utils/is-bodyweight-equipment'
 import { parseRestSeconds } from '@domains/seances/utils/parse-rest-seconds'
 import { parseSetCount } from '@domains/seances/utils/parse-set-count'
 import { useCountdown } from '@shared/hooks/use-countdown'
 import { useLocalStorageState } from '@shared/hooks/use-local-storage-state'
 import { useStopwatch } from '@shared/hooks/use-stopwatch'
 import { useSessionLog } from './use-session-log'
-import type { ExerciseLogEntry } from '../types/exercise-log-entry'
 import type { RirValue } from '../types/rir-value'
 import type { SessionSummary } from '../types/session-summary'
 import type { SetLogEntry } from '../types/set-log-entry'
+import { buildLoggedExercises } from '../utils/build-logged-exercises'
 
 const DEFAULT_REPS = 8
 const DEFAULT_WEIGHT = 20
-const BODYWEIGHT_EQUIPMENT = 'Poids du corps'
 
 export const useActiveSession = (sessionId: string | undefined) => {
   const { getSession } = useSessions()
@@ -28,7 +28,7 @@ export const useActiveSession = (sessionId: string | undefined) => {
       setCount: parseSetCount(exercise.targetLabel),
       restSeconds: parseRestSeconds(exercise.restLabel),
       muscleGroup: libraryExercise?.muscleGroup,
-      isBodyweight: libraryExercise?.equipment === BODYWEIGHT_EQUIPMENT,
+      isBodyweight: libraryExercise ? isBodyweightEquipment(libraryExercise.equipment) : false,
     }
   })
 
@@ -55,21 +55,51 @@ export const useActiveSession = (sessionId: string | undefined) => {
     ? Math.min((progress[currentExerciseIndex] ?? 0) + 1, currentExercise.setCount)
     : 1
 
-  const validateSet = () => {
+  const completeSession = (finalSetLogsByExercise: SetLogEntry[][]) => {
+    if (!session) {
+      return
+    }
+
+    setIsSessionComplete(true)
+
+    const durationMinutes = Math.max(1, Math.round(elapsedSeconds / 60))
+    const completedAt = new Date().toISOString()
+
+    setLastSummary({
+      title: session.name,
+      imageUrl: session.imageUrl,
+      durationMinutes,
+      completedAt,
+    })
+
+    const loggedExercises = buildLoggedExercises(exercises, finalSetLogsByExercise)
+
+    logSession({
+      id: `log-${Date.now()}`,
+      sessionName: session.name,
+      imageUrl: session.imageUrl,
+      durationMinutes,
+      completedAt,
+      exercises: loggedExercises,
+    })
+  }
+
+  const advance = (nextCompletedSets: number, logEntry: SetLogEntry | null, startRest: boolean) => {
     if (!session || !currentExercise) {
       return
     }
 
     const nextProgress = [...progress]
-    nextProgress[currentExerciseIndex] += 1
+    nextProgress[currentExerciseIndex] = nextCompletedSets
     setProgress(nextProgress)
 
-    const nextSetLogsByExercise = setLogsByExercise.map((log, index) =>
-      index === currentExerciseIndex
-        ? [...log, { weight: currentExercise.isBodyweight ? 0 : weight, reps, rir: selectedRir }]
-        : log,
-    )
-    setSetLogsByExercise(nextSetLogsByExercise)
+    const nextSetLogsByExercise = logEntry
+      ? setLogsByExercise.map((log, index) => (index === currentExerciseIndex ? [...log, logEntry] : log))
+      : setLogsByExercise
+
+    if (logEntry) {
+      setSetLogsByExercise(nextSetLogsByExercise)
+    }
 
     setReps(DEFAULT_REPS)
     setSelectedRir(null)
@@ -79,40 +109,7 @@ export const useActiveSession = (sessionId: string | undefined) => {
     )
 
     if (nextExerciseIndex === -1) {
-      setIsSessionComplete(true)
-
-      const durationMinutes = Math.max(1, Math.round(elapsedSeconds / 60))
-      const completedAt = new Date().toISOString()
-
-      setLastSummary({
-        title: session.name,
-        imageUrl: session.imageUrl,
-        durationMinutes,
-        completedAt,
-      })
-
-      const loggedExercises: ExerciseLogEntry[] = exercises
-        .map((exercise, index) => ({
-          libraryExerciseId: exercise.libraryExerciseId,
-          name: exercise.name,
-          thumbnailUrl: exercise.thumbnailUrl,
-          muscleGroup: exercise.muscleGroup,
-          sets: nextSetLogsByExercise[index] ?? [],
-        }))
-        .filter(
-          (exercise): exercise is ExerciseLogEntry =>
-            Boolean(exercise.muscleGroup) && exercise.sets.length > 0,
-        )
-
-      logSession({
-        id: `log-${Date.now()}`,
-        sessionName: session.name,
-        imageUrl: session.imageUrl,
-        durationMinutes,
-        completedAt,
-        exercises: loggedExercises,
-      })
-
+      completeSession(nextSetLogsByExercise)
       return
     }
 
@@ -122,8 +119,37 @@ export const useActiveSession = (sessionId: string | undefined) => {
         ? weight
         : DEFAULT_WEIGHT,
     )
-    rest.start(currentExercise.restSeconds)
+
+    if (startRest) {
+      rest.start(currentExercise.restSeconds)
+    }
+
     setCurrentExerciseIndex(nextExerciseIndex)
+  }
+
+  const validateSet = () => {
+    if (!currentExercise) {
+      return
+    }
+
+    const logEntry: SetLogEntry = { weight: currentExercise.isBodyweight ? 0 : weight, reps, rir: selectedRir }
+    advance((progress[currentExerciseIndex] ?? 0) + 1, logEntry, true)
+  }
+
+  const skipSet = () => {
+    if (!currentExercise) {
+      return
+    }
+
+    advance((progress[currentExerciseIndex] ?? 0) + 1, null, false)
+  }
+
+  const skipExercise = () => {
+    if (!currentExercise) {
+      return
+    }
+
+    advance(currentExercise.setCount, null, false)
   }
 
   return {
@@ -147,6 +173,8 @@ export const useActiveSession = (sessionId: string | undefined) => {
     elapsedSeconds,
     isSessionComplete,
     validateSet,
+    skipSet,
+    skipExercise,
     selectExercise: setCurrentExerciseIndex,
   }
 }

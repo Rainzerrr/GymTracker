@@ -4,6 +4,9 @@ export type ExerciseSetConfigFormProps = {
   photoUrl: string
   sets: number
   onSetsChange: (value: number) => void
+  allowMaxObjective: boolean
+  isMaxObjective: boolean
+  onMaxObjectiveChange: (value: boolean) => void
   repsMin: number
   onRepsMinChange: (value: number) => void
   repsMax: number

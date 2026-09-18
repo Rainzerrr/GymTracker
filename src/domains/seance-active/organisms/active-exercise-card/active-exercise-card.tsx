@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { Button } from '@shared/atoms/button'
 import { formatDurationClock } from '@shared/utils/date/format-duration-clock'
 import { RirSelector } from '../../molecules/rir-selector'
 import type { ActiveExerciseCardProps } from './active-exercise-card.types'
@@ -21,6 +22,8 @@ export const ActiveExerciseCard = ({
   restRemainingSeconds,
   restTotalSeconds,
   onValidate,
+  onSkipSet,
+  onSkipExercise,
 }: ActiveExerciseCardProps) => {
   const { t } = useTranslation('seanceActive')
   const setSubtitle = t('setLabel', {
@@ -72,6 +75,21 @@ export const ActiveExerciseCard = ({
       </div>
 
       <RirSelector value={selectedRir} onChange={onSelectRir} />
+
+      <div className="active-exercise-card__skip-row">
+        <div className="active-exercise-card__skip-item">
+          <Button label={t('skipSet')} variant="outline" fullWidth disabled={isResting} onClick={onSkipSet} />
+        </div>
+        <div className="active-exercise-card__skip-item">
+          <Button
+            label={t('skipExercise')}
+            variant="outline"
+            fullWidth
+            disabled={isResting}
+            onClick={onSkipExercise}
+          />
+        </div>
+      </div>
 
       {isResting && (
         <div className="active-exercise-card__rest">

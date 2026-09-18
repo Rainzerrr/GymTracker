@@ -5,6 +5,7 @@ import { BackHeader } from '@shared/molecules/back-header'
 import { PageTemplate } from '@shared/templates/page-template'
 import { useSessions } from '../../hooks/use-sessions'
 import { SessionBuilderForm } from '../../organisms/session-builder-form'
+import type { SessionExercise } from '../../types/session-exercise'
 import type { SessionDraft } from '../../types/workout-session'
 
 const EMPTY_DRAFT: SessionDraft = { name: '', focusLabel: '', imageUrl: '', exercises: [] }
@@ -60,6 +61,13 @@ export const SessionBuilderPage = () => {
     }))
   }
 
+  const handleReorderExercises = (exercises: SessionExercise[]) => {
+    setDraft((current) => ({
+      ...current,
+      exercises: exercises.map((exercise) => ({ ...exercise, linkedToNext: false })),
+    }))
+  }
+
   const handleAddExercise = () => {
     navigate('/seances/exercices', { state: { returnTo: sessionId, draft } })
   }
@@ -84,6 +92,7 @@ export const SessionBuilderPage = () => {
         onExerciseTargetChange={handleExerciseTargetChange}
         onExerciseRemove={handleExerciseRemove}
         onToggleSuperset={handleToggleSuperset}
+        onReorderExercises={handleReorderExercises}
         onAddExercise={handleAddExercise}
         onSave={handleSave}
       />

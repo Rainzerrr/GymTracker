@@ -16,6 +16,7 @@
   margin: -1.25rem -1.25rem 0;
   border-radius: $radius-xl $radius-xl 0 0;
   object-fit: cover;
+  object-position: top;
 }
 
 .active-exercise-card__header {
@@ -89,6 +90,15 @@
 .active-exercise-card__rest-bar-fill {
   height: 100%;
   background-color: $color-accent;
+}
+
+.active-exercise-card__skip-row {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.active-exercise-card__skip-item {
+  flex: 1;
 }
 
 .active-exercise-card__validate {

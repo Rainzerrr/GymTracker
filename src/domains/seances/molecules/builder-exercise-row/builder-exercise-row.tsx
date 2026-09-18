@@ -10,12 +10,24 @@ export const BuilderExerciseRow = ({
   restLabel,
   onTargetChange,
   onRemove,
+  rowRef,
+  onHandlePointerDown,
+  isDragging,
+  dragOffset,
 }: BuilderExerciseRowProps) => {
   const { t } = useTranslation('common')
+  const className = `builder-exercise-row ${isDragging ? 'builder-exercise-row--dragging' : ''}`
+  const style = isDragging ? { transform: `translateY(${dragOffset}px)` } : undefined
 
   return (
-    <div className="builder-exercise-row">
-      <svg className="builder-exercise-row__handle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <div ref={rowRef} className={className} style={style}>
+      <svg
+        className="builder-exercise-row__handle"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+        onPointerDown={onHandlePointerDown}
+      >
         <circle cx="8" cy="6" r="1.3" />
         <circle cx="8" cy="12" r="1.3" />
         <circle cx="8" cy="18" r="1.3" />

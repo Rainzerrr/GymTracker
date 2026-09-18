@@ -7,6 +7,8 @@
   "rest": "Repos",
   "restRemaining": "{{time}} restant",
   "validate": "Valider la série",
+  "skipSet": "Passer la série",
+  "skipExercise": "Passer l'exercice",
   "resting": "Récupération…",
   "recap": {
     "badge": "Séance terminée",

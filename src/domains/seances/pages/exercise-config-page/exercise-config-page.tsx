@@ -6,6 +6,7 @@ import { PageTemplate } from '@shared/templates/page-template'
 import { getLibraryExercise } from '../../hooks/use-exercise-library'
 import { ExerciseSetConfigForm } from '../../organisms/exercise-set-config-form'
 import type { SessionExercise } from '../../types/session-exercise'
+import { isBodyweightEquipment } from '../../utils/is-bodyweight-equipment'
 import type { SessionDraft } from '../../types/workout-session'
 
 type ConfigRelayState = { returnTo?: string; draft?: SessionDraft } | null
@@ -21,8 +22,10 @@ export const ExerciseConfigPage = () => {
   const relay = location.state as ConfigRelayState
   const libraryExercise = libraryExerciseId ? getLibraryExercise(libraryExerciseId) : undefined
   const isValid = Boolean(libraryExercise) && Boolean(relay?.returnTo)
+  const allowMaxObjective = libraryExercise ? isBodyweightEquipment(libraryExercise.equipment) : false
 
   const [sets, setSets] = useState(3)
+  const [isMaxObjective, setIsMaxObjective] = useState(false)
   const [repsMin, setRepsMin] = useState(10)
   const [repsMax, setRepsMax] = useState(12)
   const [restLabel, setRestLabel] = useState('90s')
@@ -45,7 +48,7 @@ export const ExerciseConfigPage = () => {
       libraryExerciseId: libraryExercise.id,
       name: libraryExercise.name,
       thumbnailUrl: libraryExercise.thumbnailUrl,
-      targetLabel: `${sets} × ${repsMin}-${repsMax}`,
+      targetLabel: isMaxObjective ? `${sets} × ${t('config.objectiveMaxLabel')}` : `${sets} × ${repsMin}-${repsMax}`,
       restLabel: t('config.restLabelValue', { value: restLabel }),
       linkedToNext: false,
     }
@@ -70,6 +73,9 @@ export const ExerciseConfigPage = () => {
         photoUrl={libraryExercise.thumbnailUrl}
         sets={sets}
         onSetsChange={setSets}
+        allowMaxObjective={allowMaxObjective}
+        isMaxObjective={isMaxObjective}
+        onMaxObjectiveChange={setIsMaxObjective}
         repsMin={repsMin}
         onRepsMinChange={setRepsMin}
         repsMax={repsMax}

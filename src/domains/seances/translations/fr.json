@@ -21,7 +21,8 @@
     "addExercise": "+ Ajouter un exercice",
     "save": "Enregistrer la séance",
     "supersetLink": "Lier en superset",
-    "supersetLinked": "Superset lié"
+    "supersetLinked": "Superset lié",
+    "supersetGroupLabel": "Superset · {{count}} exercices"
   },
   "picker": {
     "headerTitle": "Ajouter un exercice",
@@ -31,6 +32,11 @@
   "config": {
     "headerTitle": "Configurer",
     "sets": "Séries",
+    "objective": "Objectif",
+    "objectiveRange": "Plage de reps",
+    "objectiveMax": "Max",
+    "objectiveMaxHint": "Fais un maximum de répétitions à chaque série.",
+    "objectiveMaxLabel": "Max",
     "repsMin": "Reps min",
     "repsMax": "Reps max",
     "restLabel": "Repos entre les séries",

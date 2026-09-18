@@ -17,4 +17,6 @@ export type ActiveExerciseCardProps = {
   restRemainingSeconds: number
   restTotalSeconds: number
   onValidate: () => void
+  onSkipSet: () => void
+  onSkipExercise: () => void
 }

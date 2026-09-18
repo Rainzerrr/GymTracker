@@ -16,6 +16,7 @@
   margin: -1.25rem -1.25rem 0;
   border-radius: $radius-xl $radius-xl 0 0;
   object-fit: cover;
+  object-position: top;
 }
 
 .exercise-set-config-form__header {
@@ -52,8 +53,15 @@
   gap: $spacing-sm;
 }
 
-.exercise-set-config-form__rest-options {
+.exercise-set-config-form__rest-options,
+.exercise-set-config-form__objective-options {
   display: flex;
   flex-wrap: wrap;
   gap: $spacing-xs;
+}
+
+.exercise-set-config-form__hint {
+  margin: 0;
+  color: $color-text-muted;
+  font-size: $font-size-xs;
 }

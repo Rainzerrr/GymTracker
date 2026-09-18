@@ -26,6 +26,8 @@ export const ActiveSessionPage = () => {
     elapsedSeconds,
     isSessionComplete,
     validateSet,
+    skipSet,
+    skipExercise,
     selectExercise,
   } = useActiveSession(sessionId)
 
@@ -69,6 +71,8 @@ export const ActiveSessionPage = () => {
         restRemainingSeconds={restRemainingSeconds}
         restTotalSeconds={restTotalSeconds}
         onValidate={validateSet}
+        onSkipSet={skipSet}
+        onSkipExercise={skipExercise}
       />
       <ExerciseQueue exercises={exercises} onSelect={selectExercise} />
     </div>

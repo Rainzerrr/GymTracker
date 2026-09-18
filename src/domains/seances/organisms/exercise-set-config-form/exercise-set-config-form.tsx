@@ -14,6 +14,9 @@ export const ExerciseSetConfigForm = ({
   photoUrl,
   sets,
   onSetsChange,
+  allowMaxObjective,
+  isMaxObjective,
+  onMaxObjectiveChange,
   repsMin,
   onRepsMinChange,
   repsMax,
@@ -38,10 +41,32 @@ export const ExerciseSetConfigForm = ({
         <Stepper value={sets} onChange={onSetsChange} />
       </div>
 
-      <div className="exercise-set-config-form__field-row">
-        <NumberField label={t('config.repsMin')} value={repsMin} onChange={onRepsMinChange} />
-        <NumberField label={t('config.repsMax')} value={repsMax} onChange={onRepsMaxChange} />
-      </div>
+      {allowMaxObjective && (
+        <div className="exercise-set-config-form__field-group">
+          <span className="exercise-set-config-form__label">{t('config.objective')}</span>
+          <div className="exercise-set-config-form__objective-options">
+            <FilterPill
+              label={t('config.objectiveRange')}
+              active={!isMaxObjective}
+              onClick={() => onMaxObjectiveChange(false)}
+            />
+            <FilterPill
+              label={t('config.objectiveMax')}
+              active={isMaxObjective}
+              onClick={() => onMaxObjectiveChange(true)}
+            />
+          </div>
+        </div>
+      )}
+
+      {isMaxObjective ? (
+        <p className="exercise-set-config-form__hint">{t('config.objectiveMaxHint')}</p>
+      ) : (
+        <div className="exercise-set-config-form__field-row">
+          <NumberField label={t('config.repsMin')} value={repsMin} onChange={onRepsMinChange} />
+          <NumberField label={t('config.repsMax')} value={repsMax} onChange={onRepsMaxChange} />
+        </div>
+      )}
 
       <div className="exercise-set-config-form__field-group">
         <span className="exercise-set-config-form__label">{t('config.restLabel')}</span>

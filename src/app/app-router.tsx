@@ -12,23 +12,29 @@ import { SessionBuilderPage } from '@domains/seances/pages/session-builder-page'
 import { WeekPlanPage } from '@domains/seances/pages/week-plan-page'
 import { createBrowserRouter } from 'react-router-dom'
 import { AppLayout } from './layout/app-layout'
+import { RootLayout } from './layout/root-layout'
 
 export const appRouter = createBrowserRouter([
   {
-    element: <AppLayout />,
+    element: <RootLayout />,
     children: [
-      { path: '/', element: <HomePage /> },
-      { path: '/seances', element: <SeancesPage /> },
-      { path: '/progression', element: <ProgressionPage /> },
-      { path: '/profil', element: <ProfilPage /> },
+      {
+        element: <AppLayout />,
+        children: [
+          { path: '/', element: <HomePage /> },
+          { path: '/seances', element: <SeancesPage /> },
+          { path: '/progression', element: <ProgressionPage /> },
+          { path: '/profil', element: <ProfilPage /> },
+        ],
+      },
+      { path: '/progression/volume', element: <VolumePage /> },
+      { path: '/progression/rangs', element: <RankPage /> },
+      { path: '/seances/planning', element: <WeekPlanPage /> },
+      { path: '/seances/exercices', element: <ExercisePickerPage /> },
+      { path: '/seances/exercices/:libraryExerciseId/configurer', element: <ExerciseConfigPage /> },
+      { path: '/seances/:sessionId', element: <SessionBuilderPage /> },
+      { path: '/seance-active/:sessionId', element: <ActiveSessionPage /> },
+      { path: '/seance-recap', element: <SessionRecapPage /> },
     ],
   },
-  { path: '/progression/volume', element: <VolumePage /> },
-  { path: '/progression/rangs', element: <RankPage /> },
-  { path: '/seances/planning', element: <WeekPlanPage /> },
-  { path: '/seances/exercices', element: <ExercisePickerPage /> },
-  { path: '/seances/exercices/:libraryExerciseId/configurer', element: <ExerciseConfigPage /> },
-  { path: '/seances/:sessionId', element: <SessionBuilderPage /> },
-  { path: '/seance-active/:sessionId', element: <ActiveSessionPage /> },
-  { path: '/seance-recap', element: <SessionRecapPage /> },
 ])

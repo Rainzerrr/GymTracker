@@ -19,6 +19,36 @@
   font-size: $font-size-xs-plus;
 }
 
+.session-builder-form__group {
+  padding: $spacing-2xs 0;
+}
+
+.session-builder-form__group:not(:first-child) {
+  border-top: 1px solid $color-border-soft;
+}
+
+.session-builder-form__group--superset {
+  margin: $spacing-2xs 0;
+  border: 1px solid $color-accent-soft;
+  border-radius: $radius-lg;
+  padding: $spacing-2xs $spacing-sm;
+  background-color: $color-accent-wash;
+}
+
+.session-builder-form__group--superset:not(:first-child) {
+  border-top: 1px solid $color-accent-soft;
+}
+
+.session-builder-form__group-label {
+  display: block;
+  padding: $spacing-2xs 0 0;
+  color: $color-accent;
+  font-size: $font-size-2xs;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .session-builder-form__actions {
   display: flex;
   flex-direction: column;
