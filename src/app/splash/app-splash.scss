@@ -1,0 +1,157 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.app-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-md;
+  background-color: $color-background;
+  opacity: 1;
+  transition: opacity 0.38s ease, transform 0.38s ease;
+}
+
+.app-splash--exiting {
+  opacity: 0;
+  transform: scale(1.03);
+  pointer-events: none;
+}
+
+.app-splash__mark {
+  width: 5.5rem;
+  height: 5.5rem;
+  fill: $color-accent;
+}
+
+.app-splash__wordmark {
+  margin: 0;
+  color: $color-text;
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  letter-spacing: -0.01em;
+}
+
+.app-splash__tagline {
+  margin: -0.5rem 0 0;
+  color: $color-accent;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.app-splash__progress {
+  width: 6rem;
+  height: 0.1875rem;
+  overflow: hidden;
+  border-radius: $radius-pill;
+  background-color: $color-border-medium;
+}
+
+.app-splash__progress-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: $radius-pill;
+  background-color: $color-accent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .app-splash__plate,
+  .app-splash__collar {
+    opacity: 0;
+    animation: app-splash-plate 0.5s ease forwards;
+  }
+
+  .app-splash__plate--left,
+  .app-splash__collar--left {
+    animation-name: app-splash-plate-left;
+  }
+
+  .app-splash__plate--right,
+  .app-splash__collar--right {
+    animation-name: app-splash-plate-right;
+  }
+
+  .app-splash__bar-shape {
+    opacity: 0;
+    transform-origin: center;
+    animation: app-splash-bar-shape 0.45s ease 0.18s forwards;
+  }
+
+  .app-splash__wordmark {
+    opacity: 0;
+    animation: app-splash-rise 0.5s ease 0.35s forwards;
+  }
+
+  .app-splash__tagline {
+    opacity: 0;
+    animation: app-splash-rise 0.5s ease 0.5s forwards;
+  }
+
+  .app-splash__progress-fill {
+    animation: app-splash-progress 1.1s ease 0.1s forwards;
+  }
+}
+
+@keyframes app-splash-plate-left {
+  from {
+    opacity: 0;
+    transform: translateX(-1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes app-splash-plate-right {
+  from {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes app-splash-bar-shape {
+  from {
+    opacity: 0;
+    transform: scaleX(0.4);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes app-splash-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.625rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes app-splash-progress {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
