@@ -1,11 +1,11 @@
 import { buildExercisePerformanceIndex } from '@domains/progression/utils/build-exercise-performance-index'
 import { computeE1rm } from '@domains/progression/utils/compute-e1rm'
-import { computeLevel } from '@domains/progression/utils/compute-level'
 import {
   computeImprovementScore,
   computeRankFromScore,
 } from '@domains/progression/utils/compute-rank'
 import { computeSessionXp } from '@domains/progression/utils/compute-session-xp'
+import { usePlayerLevel } from '@domains/progression/hooks/use-player-level'
 import { TIERS } from '@domains/progression/types/tier'
 import type { Tier } from '@domains/progression/types/tier'
 import { getLibraryExercise } from '@domains/seances/hooks/use-exercise-library'
@@ -25,6 +25,7 @@ const STREAK_HIGHLIGHT_MIN_DAYS = 2
 export const useSessionRecap = () => {
   const [summary] = useLocalStorageState<SessionSummary | null>('seance-active/last-summary', null)
   const { sessionLog } = useSessionLog()
+  const { level, levelTitle, currentXp, xpToNextLevel } = usePlayerLevel()
 
   const sortedLog = [...sessionLog].sort(
     (a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime(),
@@ -35,20 +36,15 @@ export const useSessionRecap = () => {
     return {
       summary,
       xpGained: 0,
-      level: 1,
-      levelTitle: '',
-      currentXp: 0,
-      xpToNextLevel: 1,
+      level,
+      levelTitle,
+      currentXp,
+      xpToNextLevel,
       highlights: [] as SessionRecapHighlightFact[],
     }
   }
 
   const xpGained = computeSessionXp(lastEntry.exercises)
-  const lifetimeXp = sessionLog.reduce(
-    (total, session) => total + computeSessionXp(session.exercises),
-    0,
-  )
-  const { level, levelTitle, currentXp, xpToNextLevel } = computeLevel(lifetimeXp)
 
   const priorLog = sessionLog.filter((session) => session.id !== lastEntry.id)
   const priorIndex = buildExercisePerformanceIndex(priorLog)
