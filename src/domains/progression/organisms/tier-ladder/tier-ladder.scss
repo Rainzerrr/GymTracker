@@ -1,0 +1,123 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.tier-ladder {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tier-ladder::before {
+  content: '';
+  position: absolute;
+  top: 1.375rem;
+  bottom: 1.375rem;
+  left: 1.9rem;
+  width: 2px;
+  background-color: $color-border-strong;
+  z-index: 0;
+}
+
+.tier-ladder__step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-2xs $spacing-2xs;
+  border-radius: $radius-lg;
+  transition: background-color 0.2s ease;
+}
+
+.tier-ladder__badge {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: $radius-pill;
+  color: $color-accent-ink;
+}
+
+.tier-ladder__badge svg {
+  width: 1.0625rem;
+  height: 1.0625rem;
+}
+
+.tier-ladder__badge--bronze {
+  background-color: $color-tier-bronze;
+}
+
+.tier-ladder__badge--argent {
+  background-color: $color-tier-argent;
+}
+
+.tier-ladder__badge--or {
+  background-color: $color-tier-or;
+}
+
+.tier-ladder__badge--platine {
+  background-color: $color-tier-platine;
+}
+
+.tier-ladder__label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.tier-ladder__name {
+  color: $color-text-soft;
+  font-family: $font-family-heading;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+}
+
+.tier-ladder__status {
+  color: $color-text-muted;
+  font-size: $font-size-2xs;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tier-ladder__step--locked {
+  opacity: 0.4;
+}
+
+.tier-ladder__step--current {
+  padding: $spacing-sm;
+  background-color: $color-surface;
+  border: 1px solid $color-border-strong;
+}
+
+.tier-ladder__step--current .tier-ladder__badge {
+  box-shadow:
+    0 0 0 3px $color-background,
+    0 0 0 5px $color-accent,
+    0 0 16px 4px $color-accent-soft;
+  animation: tier-ladder-pulse 2.2s ease-in-out infinite;
+}
+
+.tier-ladder__step--current .tier-ladder__name {
+  color: $color-text;
+}
+
+.tier-ladder__step--current .tier-ladder__status {
+  color: $color-accent;
+  font-weight: $font-weight-semibold;
+}
+
+@keyframes tier-ladder-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}

@@ -27,6 +27,7 @@ export const RankPage = () => {
         onTabChange={setActiveTab}
         exercises={exercises}
         muscles={translatedMuscles}
+        onItemClick={(item) => navigate(`/progression/rangs/${activeTab}/${item.id}`)}
       />
     </PageTemplate>
   )

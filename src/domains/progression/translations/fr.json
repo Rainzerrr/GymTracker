@@ -36,6 +36,17 @@
     "toggle": {
       "exercises": "Exercices",
       "muscles": "Muscles"
+    },
+    "detail": {
+      "currentTier": "Palier actuel",
+      "progressHint": "{{percent}}% avant le palier suivant",
+      "maxed": "Rang maximum atteint",
+      "ladderTitle": "Tous les paliers",
+      "ladderStatus": {
+        "achieved": "Franchi",
+        "current": "Actuel",
+        "locked": "À débloquer"
+      }
     }
   },
   "tiers": {

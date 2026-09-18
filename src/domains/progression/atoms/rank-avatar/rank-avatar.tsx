@@ -9,9 +9,9 @@ const dumbbellIcon = (
   </svg>
 )
 
-export const RankAvatar = ({ tier, photoUrl, label }: RankAvatarProps) => {
+export const RankAvatar = ({ tier, photoUrl, label, size = 'md' }: RankAvatarProps) => {
   return (
-    <span className={`rank-avatar rank-avatar--${tier}`}>
+    <span className={`rank-avatar rank-avatar--${tier} rank-avatar--${size}`}>
       {photoUrl ? <img src={photoUrl} alt={label} /> : dumbbellIcon}
     </span>
   )

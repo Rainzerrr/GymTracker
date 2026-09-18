@@ -1,0 +1,78 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.rank-detail-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-2xs;
+  padding: $spacing-xl $spacing-lg;
+  overflow: hidden;
+  border-radius: $radius-xl;
+  background-color: $color-surface;
+  text-align: center;
+}
+
+.rank-detail-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.rank-detail-hero--bronze::before {
+  background-image: radial-gradient(circle at 50% -10%, $color-tier-bronze, transparent 65%);
+}
+
+.rank-detail-hero--argent::before {
+  background-image: radial-gradient(circle at 50% -10%, $color-tier-argent, transparent 65%);
+}
+
+.rank-detail-hero--or::before {
+  background-image: radial-gradient(circle at 50% -10%, $color-tier-or, transparent 65%);
+}
+
+.rank-detail-hero--platine::before {
+  background-image: radial-gradient(circle at 50% -10%, $color-tier-platine, transparent 65%);
+}
+
+.rank-detail-hero__eyebrow {
+  margin: $spacing-sm 0 0;
+  color: $color-text-muted;
+  font-size: $font-size-2xs;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.rank-detail-hero__tier {
+  margin: 0;
+  color: $color-text;
+  font-family: $font-family-heading;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  letter-spacing: -0.01em;
+}
+
+.rank-detail-hero__progress {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2xs;
+  width: 100%;
+  max-width: 16rem;
+  margin-top: $spacing-xs;
+}
+
+.rank-detail-hero__hint {
+  margin: 0;
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+}
+
+.rank-detail-hero__maxed {
+  margin: $spacing-xs 0 0;
+  color: $color-accent;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+}

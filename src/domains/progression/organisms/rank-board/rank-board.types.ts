@@ -7,4 +7,5 @@ export type RankBoardProps = {
   onTabChange: (tab: RankBoardTab) => void
   exercises: RankedItem[]
   muscles: RankedItem[]
+  onItemClick: (item: RankedItem) => void
 }

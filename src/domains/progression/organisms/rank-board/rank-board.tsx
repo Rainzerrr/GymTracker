@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { ChevronIcon } from '@shared/atoms/chevron-icon'
 import { ListRow } from '@shared/molecules/list-row'
 import { RankAvatar } from '../../atoms/rank-avatar'
 import { TierCountPill } from '../../atoms/tier-count-pill'
@@ -10,7 +11,7 @@ import { sortByTier } from '../../utils/sort-by-tier'
 import type { RankBoardProps } from './rank-board.types'
 import './rank-board.scss'
 
-export const RankBoard = ({ activeTab, onTabChange, exercises, muscles }: RankBoardProps) => {
+export const RankBoard = ({ activeTab, onTabChange, exercises, muscles, onItemClick }: RankBoardProps) => {
   const { t } = useTranslation('progression')
 
   const items = sortByTier(activeTab === 'exercises' ? exercises : muscles)
@@ -50,6 +51,8 @@ export const RankBoard = ({ activeTab, onTabChange, exercises, muscles }: RankBo
               title={item.name}
               subtitle={`${t(`tiers.${item.tier}`)} ${getSubLevelRoman(item.subLevel)}`}
               meta={<TierProgressBar tier={item.tier} progressPercent={item.progressPercent} />}
+              trailing={<ChevronIcon />}
+              onClick={() => onItemClick(item)}
             />
           ))}
         </div>
