@@ -1,7 +1,10 @@
 {
   "cta": "Commencer la séance",
+  "viewSessionCta": "Voir la séance",
   "nextWorkout": {
-    "meta": "~{{duration}} min · {{count}} exercices"
+    "meta": "~{{duration}} min · {{count}} exercices",
+    "completedBadge": "Terminé",
+    "missedBadge": "Manqué"
   },
   "restDay": {
     "title": "Jour de repos",

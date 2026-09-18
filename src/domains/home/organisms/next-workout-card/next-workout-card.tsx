@@ -10,6 +10,7 @@ export const NextWorkoutCard = ({
   imageUrl,
   dateLabel,
   streakCount,
+  status,
 }: NextWorkoutCardProps) => {
   const { t } = useTranslation('home')
   const metaLabel = t('nextWorkout.meta', { duration: durationMinutes, count: exerciseCount })
@@ -21,7 +22,38 @@ export const NextWorkoutCard = ({
       title={title}
       meta={metaLabel}
       heightRem={13.125}
-      topLeft={<span className="next-workout-card__date-chip">{dateLabel}</span>}
+      topLeft={
+        <span className="next-workout-card__top-left">
+          <span className="next-workout-card__date-chip">{dateLabel}</span>
+          {status === 'done' && (
+            <span className="next-workout-card__done-badge">
+              <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <path
+                  d="M12 25 L20 33 L37 14"
+                  stroke="currentColor"
+                  strokeWidth={4.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              {t('nextWorkout.completedBadge')}
+            </span>
+          )}
+          {status === 'missed' && (
+            <span className="next-workout-card__missed-badge">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M6 6l12 12M18 6L6 18"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                  strokeLinecap="round"
+                />
+              </svg>
+              {t('nextWorkout.missedBadge')}
+            </span>
+          )}
+        </span>
+      }
       topRight={
         <span className="next-workout-card__streak-chip">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">

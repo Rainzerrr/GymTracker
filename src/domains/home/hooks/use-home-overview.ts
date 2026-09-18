@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useSessionLog } from '@domains/seance-active/hooks/use-session-log'
 import { useSessions } from '@domains/seances/hooks/use-sessions'
 import { useWeekPlan } from '@domains/seances/hooks/use-week-plan'
@@ -20,6 +21,8 @@ const ESTIMATED_MINUTES_PER_EXERCISE = 12
 export const useHomeOverview = () => {
   const today = new Date()
   const todayIso = today.toISOString().slice(0, 10)
+  const todayMidnight = new Date(today)
+  todayMidnight.setHours(0, 0, 0, 0)
   const todayWeekDays = getWeekDays(today)
   const todayIndex = todayWeekDays.find((day) => day.isToday)?.index ?? 0
 
@@ -31,6 +34,7 @@ export const useHomeOverview = () => {
     `home/posture-routine-validated/${todayIso}`,
     false,
   )
+  const [selectedDayIndex, setSelectedDayIndex] = useState(todayIndex)
 
   const completedDates = sessionLog.map((entry) => entry.completedAt)
   const { current: streakCurrent } = computeStreaks(completedDates)
@@ -41,20 +45,26 @@ export const useHomeOverview = () => {
       (entry) => new Date(entry.completedAt).toDateString() === day.date.toDateString(),
     )
     const assignment = getAssignment(day.index)
+    const isTrainingDay = assignment !== 'rest' && assignment !== 'free'
+    const isPastDay = day.date.getTime() < todayMidnight.getTime()
+
     const status: WeekDayStatus = hasCompletedSession
       ? 'done'
-      : assignment === 'rest'
+      : !isTrainingDay
         ? 'rest'
-        : 'none'
+        : isPastDay
+          ? 'missed'
+          : 'scheduled'
 
     return { ...day, status }
   })
 
-  const todayAssignment = getAssignment(todayIndex)
-  const todaySession =
-    todayAssignment === 'rest' || todayAssignment === 'free'
+  const selectedDay = weekDays.find((day) => day.index === selectedDayIndex) ?? weekDays[todayIndex]
+  const selectedDayAssignment = getAssignment(selectedDay.index)
+  const selectedSession =
+    selectedDayAssignment === 'rest' || selectedDayAssignment === 'free'
       ? undefined
-      : sessions.find((session) => session.id === todayAssignment)
+      : sessions.find((session) => session.id === selectedDayAssignment)
 
   const sortedLog = [...sessionLog].sort(
     (a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime(),
@@ -79,15 +89,20 @@ export const useHomeOverview = () => {
     : undefined
 
   return {
-    todayLabel: getTodayLabel(today),
-    isRestDay: !todaySession,
-    todaySessionId: todaySession?.id,
-    todaySession: todaySession
+    selectedDayLabel: getTodayLabel(selectedDay.date),
+    selectedDayDateIso: selectedDay.date.toISOString(),
+    selectedDayStatus: selectedDay.status,
+    isSelectedDayToday: selectedDay.isToday,
+    selectedDayIndex: selectedDay.index,
+    selectDay: setSelectedDayIndex,
+    isRestDay: !selectedSession,
+    selectedSessionId: selectedSession?.id,
+    selectedSession: selectedSession
       ? {
-          title: todaySession.name,
-          imageUrl: todaySession.imageUrl,
-          exerciseCount: todaySession.exercises.length,
-          durationMinutes: todaySession.exercises.length * ESTIMATED_MINUTES_PER_EXERCISE,
+          title: selectedSession.name,
+          imageUrl: selectedSession.imageUrl,
+          exerciseCount: selectedSession.exercises.length,
+          durationMinutes: selectedSession.exercises.length * ESTIMATED_MINUTES_PER_EXERCISE,
         }
       : undefined,
     streak: { current: streakCurrent, trend: streakTrend },

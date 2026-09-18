@@ -5,6 +5,13 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5625rem;
+  border-radius: $radius-md;
+  padding: $spacing-2xs $spacing-3xs;
+  transition: background-color 0.15s ease;
+}
+
+.week-strip-day--selected {
+  background-color: $color-surface;
 }
 
 .week-strip-day__letter {
@@ -25,8 +32,16 @@
 }
 
 .week-strip-day__dot--done {
-  background-color: $color-text;
-  border-color: $color-text;
+  background-color: $color-accent;
+  border-color: $color-accent;
+}
+
+.week-strip-day__dot--scheduled {
+  border-color: $color-accent;
+}
+
+.week-strip-day__dot--missed {
+  border-color: $color-danger;
 }
 
 .week-strip-day__dot--rest {
@@ -34,5 +49,6 @@
 }
 
 .week-strip-day__dot--today {
-  border-color: $color-accent;
+  outline: 1.4px solid $color-accent;
+  outline-offset: 1.5px;
 }

@@ -1,1 +1,1 @@
-export type WeekDayStatus = 'done' | 'rest' | 'none'
+export type WeekDayStatus = 'done' | 'missed' | 'scheduled' | 'rest'

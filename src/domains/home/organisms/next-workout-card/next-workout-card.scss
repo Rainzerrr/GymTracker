@@ -1,11 +1,55 @@
 @use 'shared/styles/abstracts/variables' as *;
 
+.next-workout-card__top-left {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2xs;
+}
+
 .next-workout-card__date-chip {
   border-radius: $radius-pill;
   background-color: $color-scrim-soft;
   padding: $spacing-3xs $spacing-xs;
   color: $color-text;
   font-size: $font-size-xs-plus;
+}
+
+.next-workout-card__done-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  border: 1px solid rgba($color-accent, 45%);
+  border-radius: $radius-pill;
+  background-color: $color-accent-wash;
+  padding: $spacing-3xs $spacing-xs;
+  color: $color-accent;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-2xs;
+  letter-spacing: 0.03em;
+}
+
+.next-workout-card__done-badge svg {
+  width: 0.6875rem;
+  height: 0.6875rem;
+}
+
+.next-workout-card__missed-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  border: 1px solid rgba($color-danger, 45%);
+  border-radius: $radius-pill;
+  background-color: $color-danger-wash;
+  padding: $spacing-3xs $spacing-xs;
+  color: $color-danger;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-2xs;
+  letter-spacing: 0.03em;
+}
+
+.next-workout-card__missed-badge svg {
+  width: 0.6875rem;
+  height: 0.6875rem;
 }
 
 .next-workout-card__streak-chip {

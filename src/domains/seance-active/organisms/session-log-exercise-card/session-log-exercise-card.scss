@@ -1,0 +1,39 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.session-log-exercise-card {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  padding: 1.25rem;
+}
+
+.session-log-exercise-card__header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.session-log-exercise-card__name {
+  color: $color-text;
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+}
+
+.session-log-exercise-card__set {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.session-log-exercise-card__set-label {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+}
+
+.session-log-exercise-card__set-fields {
+  display: flex;
+  gap: $spacing-sm;
+}

@@ -13,10 +13,15 @@ export const HomePage = () => {
   const { t } = useTranslation('home')
   const navigate = useNavigate()
   const {
-    todayLabel,
+    selectedDayLabel,
+    selectedDayDateIso,
+    selectedDayStatus,
+    isSelectedDayToday,
+    selectedDayIndex,
+    selectDay,
     isRestDay,
-    todaySessionId,
-    todaySession,
+    selectedSessionId,
+    selectedSession,
     streak,
     volumeSummary,
     lastExercise,
@@ -25,27 +30,45 @@ export const HomePage = () => {
     validatePosture,
   } = useHomeOverview()
 
-  const handleStartClick = () => navigate(`/seance-active/${todaySessionId}`)
+  const canStartSelectedSession = isSelectedDayToday && selectedDayStatus === 'scheduled'
+
+  const handlePrimaryAction = () => {
+    if (!selectedSessionId) {
+      return
+    }
+
+    navigate(
+      canStartSelectedSession
+        ? `/seance-active/${selectedSessionId}`
+        : `/seance-log/${selectedSessionId}?date=${encodeURIComponent(selectedDayDateIso)}`,
+    )
+  }
 
   return (
     <div className="home-page">
-      {isRestDay || !todaySession ? (
-        <RestDayBanner dateLabel={todayLabel} />
+      {isRestDay || !selectedSession ? (
+        <RestDayBanner dateLabel={selectedDayLabel} />
       ) : (
         <NextWorkoutCard
-          title={todaySession.title}
-          durationMinutes={todaySession.durationMinutes}
-          exerciseCount={todaySession.exerciseCount}
-          imageUrl={todaySession.imageUrl}
-          dateLabel={todayLabel}
+          title={selectedSession.title}
+          durationMinutes={selectedSession.durationMinutes}
+          exerciseCount={selectedSession.exerciseCount}
+          imageUrl={selectedSession.imageUrl}
+          dateLabel={selectedDayLabel}
           streakCount={streak.current}
+          status={selectedDayStatus}
         />
       )}
       <div className="home-page__content">
-        {!isRestDay && todaySession && (
-          <Button label={t('cta')} variant="accent" fullWidth onClick={handleStartClick} />
+        {!isRestDay && (
+          <Button
+            label={canStartSelectedSession ? t('cta') : t('viewSessionCta')}
+            variant="accent"
+            fullWidth
+            onClick={handlePrimaryAction}
+          />
         )}
-        <WeekStrip days={weekDays} />
+        <WeekStrip days={weekDays} selectedIndex={selectedDayIndex} onSelectDay={selectDay} />
         <TodaySection
           streakCurrent={streak.current}
           streakTrend={streak.trend}

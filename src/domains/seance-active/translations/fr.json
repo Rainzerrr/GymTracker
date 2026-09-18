@@ -10,6 +10,10 @@
   "skipSet": "Passer la série",
   "skipExercise": "Passer l'exercice",
   "resting": "Récupération…",
+  "log": {
+    "setLabel": "Série {{number}}",
+    "save": "Enregistrer"
+  },
   "recap": {
     "badge": "Séance terminée",
     "meta": "{{duration}} min · séance complète",

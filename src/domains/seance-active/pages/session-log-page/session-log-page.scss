@@ -1,0 +1,7 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.session-log-page__list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}

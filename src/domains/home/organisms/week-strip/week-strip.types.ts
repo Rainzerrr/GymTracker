@@ -9,4 +9,6 @@ export type WeekStripDayData = {
 
 export type WeekStripProps = {
   days: WeekStripDayData[]
+  selectedIndex: number
+  onSelectDay: (index: number) => void
 }

@@ -4,4 +4,6 @@ export type WeekStripDayProps = {
   initial: string
   status: WeekDayStatus
   isToday: boolean
+  isSelected: boolean
+  onClick: () => void
 }

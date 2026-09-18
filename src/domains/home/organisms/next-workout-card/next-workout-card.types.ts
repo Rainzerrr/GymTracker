@@ -1,3 +1,5 @@
+import type { WeekDayStatus } from '../../types/week-day-status'
+
 export type NextWorkoutCardProps = {
   title: string
   durationMinutes: number
@@ -5,4 +7,5 @@ export type NextWorkoutCardProps = {
   imageUrl: string
   dateLabel: string
   streakCount: number
+  status: WeekDayStatus
 }
