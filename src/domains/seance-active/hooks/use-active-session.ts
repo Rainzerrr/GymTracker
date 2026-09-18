@@ -1,9 +1,5 @@
 import { useState } from 'react'
-import { getLibraryExercise } from '@domains/seances/hooks/use-exercise-library'
 import { useSessions } from '@domains/seances/hooks/use-sessions'
-import { isBodyweightEquipment } from '@domains/seances/utils/is-bodyweight-equipment'
-import { parseRestSeconds } from '@domains/seances/utils/parse-rest-seconds'
-import { parseSetCount } from '@domains/seances/utils/parse-set-count'
 import { useCountdown } from '@shared/hooks/use-countdown'
 import { useLocalStorageState } from '@shared/hooks/use-local-storage-state'
 import { useStopwatch } from '@shared/hooks/use-stopwatch'
@@ -12,25 +8,19 @@ import type { RirValue } from '../types/rir-value'
 import type { SessionSummary } from '../types/session-summary'
 import type { SetLogEntry } from '../types/set-log-entry'
 import { buildLoggedExercises } from '../utils/build-logged-exercises'
+import { deriveActiveExercises } from '../utils/derive-active-exercises'
+import { buildGroups, resolveNextStep } from '../utils/superset-progression'
 
 const DEFAULT_REPS = 8
 const DEFAULT_WEIGHT = 20
+const createLogId = () => `log-${Date.now()}`
 
 export const useActiveSession = (sessionId: string | undefined) => {
   const { getSession } = useSessions()
   const session = sessionId ? getSession(sessionId) : undefined
 
-  const exercises = (session?.exercises ?? []).map((exercise) => {
-    const libraryExercise = getLibraryExercise(exercise.libraryExerciseId)
-
-    return {
-      ...exercise,
-      setCount: parseSetCount(exercise.targetLabel),
-      restSeconds: parseRestSeconds(exercise.restLabel),
-      muscleGroup: libraryExercise?.muscleGroup,
-      isBodyweight: libraryExercise ? isBodyweightEquipment(libraryExercise.equipment) : false,
-    }
-  })
+  const exercises = deriveActiveExercises(session?.exercises ?? [])
+  const groups = buildGroups(exercises.map((exercise) => exercise.linkedToNext))
 
   const [progress, setProgress] = useState<number[]>(() => exercises.map(() => 0))
   const [setLogsByExercise, setSetLogsByExercise] = useState<SetLogEntry[][]>(() =>
@@ -54,6 +44,7 @@ export const useActiveSession = (sessionId: string | undefined) => {
   const currentSetNumber = currentExercise
     ? Math.min((progress[currentExerciseIndex] ?? 0) + 1, currentExercise.setCount)
     : 1
+  const currentGroup = groups.find((group) => group.includes(currentExerciseIndex)) ?? [currentExerciseIndex]
 
   const completeSession = (finalSetLogsByExercise: SetLogEntry[][]) => {
     if (!session) {
@@ -75,7 +66,7 @@ export const useActiveSession = (sessionId: string | undefined) => {
     const loggedExercises = buildLoggedExercises(exercises, finalSetLogsByExercise)
 
     logSession({
-      id: `log-${Date.now()}`,
+      id: createLogId(),
       sessionName: session.name,
       imageUrl: session.imageUrl,
       durationMinutes,
@@ -84,7 +75,7 @@ export const useActiveSession = (sessionId: string | undefined) => {
     })
   }
 
-  const advance = (nextCompletedSets: number, logEntry: SetLogEntry | null, startRest: boolean) => {
+  const advance = (nextCompletedSets: number, logEntry: SetLogEntry | null, allowRest: boolean) => {
     if (!session || !currentExercise) {
       return
     }
@@ -104,8 +95,12 @@ export const useActiveSession = (sessionId: string | undefined) => {
     setReps(DEFAULT_REPS)
     setSelectedRir(null)
 
-    const nextExerciseIndex = nextProgress.findIndex(
-      (count, index) => count < exercises[index].setCount,
+    const { nextExerciseIndex, shouldRest } = resolveNextStep(
+      currentGroup,
+      currentExerciseIndex,
+      nextProgress,
+      exercises.map((exercise) => exercise.setCount),
+      allowRest,
     )
 
     if (nextExerciseIndex === -1) {
@@ -114,13 +109,9 @@ export const useActiveSession = (sessionId: string | undefined) => {
     }
 
     const nextExercise = exercises[nextExerciseIndex]
-    setWeight(
-      nextExercise.libraryExerciseId === currentExercise.libraryExerciseId
-        ? weight
-        : DEFAULT_WEIGHT,
-    )
+    setWeight(nextExercise.libraryExerciseId === currentExercise.libraryExerciseId ? weight : DEFAULT_WEIGHT)
 
-    if (startRest) {
+    if (shouldRest) {
       rest.start(currentExercise.restSeconds)
     }
 
@@ -161,6 +152,8 @@ export const useActiveSession = (sessionId: string | undefined) => {
     })),
     currentExercise,
     currentSetNumber,
+    supersetSize: currentGroup.length,
+    supersetPosition: currentGroup.indexOf(currentExerciseIndex) + 1,
     reps,
     setReps,
     weight,

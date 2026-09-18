@@ -8,6 +8,7 @@ export const WeekStrip = ({ days, selectedIndex, onSelectDay }: WeekStripProps) 
       {days.map((day) => (
         <WeekStripDay
           key={day.index}
+          date={day.date}
           initial={day.initial}
           status={day.status}
           isToday={day.isToday}

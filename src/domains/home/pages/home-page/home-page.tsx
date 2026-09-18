@@ -31,6 +31,7 @@ export const HomePage = () => {
   } = useHomeOverview()
 
   const canStartSelectedSession = isSelectedDayToday && selectedDayStatus === 'scheduled'
+  const canViewSelectedSession = selectedDayStatus === 'done' || selectedDayStatus === 'missed'
 
   const handlePrimaryAction = () => {
     if (!selectedSessionId) {
@@ -60,7 +61,7 @@ export const HomePage = () => {
         />
       )}
       <div className="home-page__content">
-        {!isRestDay && (
+        {(canStartSelectedSession || canViewSelectedSession) && (
           <Button
             label={canStartSelectedSession ? t('cta') : t('viewSessionCta')}
             variant="accent"

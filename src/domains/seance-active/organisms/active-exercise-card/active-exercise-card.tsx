@@ -11,6 +11,8 @@ export const ActiveExerciseCard = ({
   currentSetNumber,
   totalSets,
   targetLabel,
+  supersetSize,
+  supersetPosition,
   reps,
   onRepsChange,
   weight,
@@ -38,6 +40,11 @@ export const ActiveExerciseCard = ({
       <img className="active-exercise-card__photo" src={photoUrl} alt={name} />
 
       <div className="active-exercise-card__header">
+        {supersetSize > 1 && (
+          <span className="active-exercise-card__superset-badge">
+            {t('supersetBadge', { position: supersetPosition, size: supersetSize })}
+          </span>
+        )}
         <span className="active-exercise-card__name">{name}</span>
         <span className="active-exercise-card__set">{setSubtitle}</span>
       </div>
@@ -51,8 +58,9 @@ export const ActiveExerciseCard = ({
               type="number"
               inputMode="decimal"
               step={2.5}
+              min={0}
               value={weight}
-              onChange={(event) => onWeightChange(Number(event.target.value))}
+              onChange={(event) => onWeightChange(Math.max(0, Number(event.target.value)))}
             />
           </div>
         )}
@@ -62,8 +70,9 @@ export const ActiveExerciseCard = ({
             className="active-exercise-card__field-value"
             type="number"
             inputMode="numeric"
+            min={0}
             value={reps}
-            onChange={(event) => onRepsChange(Number(event.target.value))}
+            onChange={(event) => onRepsChange(Math.max(0, Number(event.target.value)))}
           />
         </div>
         <div className="active-exercise-card__field">

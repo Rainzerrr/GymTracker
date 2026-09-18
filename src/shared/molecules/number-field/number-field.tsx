@@ -9,8 +9,9 @@ export const NumberField = ({ label, value, onChange }: NumberFieldProps) => {
         className="number-field__value"
         type="number"
         inputMode="numeric"
+        min={0}
         value={value}
-        onChange={(event) => onChange(Number(event.target.value))}
+        onChange={(event) => onChange(Math.max(0, Number(event.target.value)))}
       />
     </div>
   )

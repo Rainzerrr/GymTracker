@@ -20,7 +20,7 @@ export const useVolumeDistribution = () => {
     })
     .forEach((entry) => {
       entry.exercises.forEach((exercise) => {
-        const sets = exercise.sets.length
+        const sets = exercise.sets.filter((set) => set.reps > 0).length
         setsByMuscle.set(exercise.muscleGroup, (setsByMuscle.get(exercise.muscleGroup) ?? 0) + sets)
       })
     })

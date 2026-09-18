@@ -18,6 +18,10 @@ const computeRirBonus = (rir: SetLogEntry['rir']): number => {
 export const computeSessionXp = (exercises: ExerciseLogEntry[]): number => {
   return exercises.reduce((sessionTotal, exercise) => {
     const exerciseXp = exercise.sets.reduce((setTotal, set) => {
+      if (set.reps <= 0) {
+        return setTotal
+      }
+
       const volume = set.weight > 0 ? set.weight * set.reps : set.reps * 3
 
       return setTotal + BASE_XP_PER_SET + Math.round(volume / 10) + computeRirBonus(set.rir)

@@ -10,6 +10,7 @@
   "skipSet": "Passer la série",
   "skipExercise": "Passer l'exercice",
   "resting": "Récupération…",
+  "supersetBadge": "Superset · {{position}}/{{size}}",
   "log": {
     "setLabel": "Série {{number}}",
     "save": "Enregistrer"

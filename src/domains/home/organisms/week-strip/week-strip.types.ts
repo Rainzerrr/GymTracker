@@ -2,6 +2,7 @@ import type { WeekDayStatus } from '../../types/week-day-status'
 
 export type WeekStripDayData = {
   index: number
+  date: Date
   initial: string
   isToday: boolean
   status: WeekDayStatus

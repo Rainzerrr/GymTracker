@@ -15,8 +15,13 @@ export const useSessionLogEditor = (sessionId: string | undefined, dateIso: stri
   const { getEntryForDate, upsertSessionLogForDate } = useSessionLog()
 
   const session = sessionId ? getSession(sessionId) : undefined
-  const date = dateIso ? new Date(dateIso) : new Date()
+  const parsedDate = dateIso ? new Date(dateIso) : new Date()
+  const date = Number.isNaN(parsedDate.getTime()) ? new Date() : parsedDate
   const existingEntry = getEntryForDate(date)
+
+  const todayMidnight = new Date()
+  todayMidnight.setHours(0, 0, 0, 0)
+  const isFutureDate = date.getTime() > todayMidnight.getTime()
 
   const exerciseTemplates = (session?.exercises ?? []).map((exercise) => {
     const libraryExercise = getLibraryExercise(exercise.libraryExerciseId)
@@ -54,7 +59,7 @@ export const useSessionLogEditor = (sessionId: string | undefined, dateIso: stri
   }
 
   const save = () => {
-    if (!session) {
+    if (!session || isFutureDate) {
       return
     }
 
@@ -71,6 +76,7 @@ export const useSessionLogEditor = (sessionId: string | undefined, dateIso: stri
 
   return {
     session,
+    isFutureDate,
     exercises: exerciseTemplates.map((exercise, index) => ({
       ...exercise,
       sets: setsByExercise[index],

@@ -18,7 +18,7 @@ export const ProfilRecentSessions = ({ entries }: ProfilRecentSessionsProps) => 
         <div>
           {entries.map((entry) => {
             const totalSets = entry.exercises.reduce(
-              (total, exercise) => total + exercise.sets.length,
+              (total, exercise) => total + exercise.sets.filter((set) => set.reps > 0).length,
               0,
             )
 
@@ -30,10 +30,9 @@ export const ProfilRecentSessions = ({ entries }: ProfilRecentSessionsProps) => 
                 subtitle={formatShortDateLabel(entry.completedAt)}
                 trailing={
                   <span className="profil-recent-sessions__meta">
-                    {t('recentSessions.meta', {
-                      duration: entry.durationMinutes,
-                      count: totalSets,
-                    })}
+                    {totalSets > 0
+                      ? t('recentSessions.meta', { duration: entry.durationMinutes, count: totalSets })
+                      : t('recentSessions.noSets')}
                   </span>
                 }
               />

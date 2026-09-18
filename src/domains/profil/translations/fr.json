@@ -21,7 +21,8 @@
   "recentSessions": {
     "label": "Séances récentes",
     "empty": "Aucune séance complétée pour l'instant. Lance-toi !",
-    "meta": "{{duration}} min · {{count}} séries"
+    "meta": "{{duration}} min · {{count}} séries",
+    "noSets": "Aucune série enregistrée"
   },
   "shortcuts": {
     "label": "Raccourcis",

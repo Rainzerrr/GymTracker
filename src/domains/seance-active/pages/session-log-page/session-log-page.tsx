@@ -14,15 +14,15 @@ export const SessionLogPage = () => {
   const dateIso = searchParams.get('date') ?? undefined
   const navigate = useNavigate()
   const { t } = useTranslation('seanceActive')
-  const { session, exercises, updateSet, save } = useSessionLogEditor(sessionId, dateIso)
+  const { session, isFutureDate, exercises, updateSet, save } = useSessionLogEditor(sessionId, dateIso)
 
   useEffect(() => {
-    if (!session) {
+    if (!session || isFutureDate) {
       navigate('/', { replace: true })
     }
-  }, [session, navigate])
+  }, [session, isFutureDate, navigate])
 
-  if (!session) {
+  if (!session || isFutureDate) {
     return null
   }
 

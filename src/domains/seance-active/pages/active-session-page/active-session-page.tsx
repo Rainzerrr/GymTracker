@@ -14,6 +14,8 @@ export const ActiveSessionPage = () => {
     exercises,
     currentExercise,
     currentSetNumber,
+    supersetSize,
+    supersetPosition,
     reps,
     setReps,
     weight,
@@ -60,6 +62,8 @@ export const ActiveSessionPage = () => {
         currentSetNumber={currentSetNumber}
         totalSets={currentExercise.setCount}
         targetLabel={currentExercise.targetLabel}
+        supersetSize={supersetSize}
+        supersetPosition={supersetPosition}
         reps={reps}
         onRepsChange={setReps}
         weight={weight}

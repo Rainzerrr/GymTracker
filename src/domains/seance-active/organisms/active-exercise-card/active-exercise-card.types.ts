@@ -6,6 +6,8 @@ export type ActiveExerciseCardProps = {
   currentSetNumber: number
   totalSets: number
   targetLabel: string
+  supersetSize: number
+  supersetPosition: number
   reps: number
   onRepsChange: (value: number) => void
   weight: number

@@ -1,6 +1,14 @@
 {
   "cta": "Commencer la séance",
   "viewSessionCta": "Voir la séance",
+  "weekStrip": {
+    "status": {
+      "done": "Terminé",
+      "missed": "Manqué",
+      "scheduled": "Prévu",
+      "rest": "Repos"
+    }
+  },
   "nextWorkout": {
     "meta": "~{{duration}} min · {{count}} exercices",
     "completedBadge": "Terminé",

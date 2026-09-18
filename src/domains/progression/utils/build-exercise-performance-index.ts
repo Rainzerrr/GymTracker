@@ -26,11 +26,13 @@ export const buildExercisePerformanceIndex = (
 
   chronological.forEach((session) => {
     session.exercises.forEach((exercise) => {
-      if (exercise.sets.length === 0) {
+      const validSets = exercise.sets.filter((set) => set.reps > 0)
+
+      if (validSets.length === 0) {
         return
       }
 
-      const bestValue = Math.max(...exercise.sets.map((set) => computeE1rm(set.weight, set.reps)))
+      const bestValue = Math.max(...validSets.map((set) => computeE1rm(set.weight, set.reps)))
       const point: ExercisePerformancePoint = { completedAt: session.completedAt, value: bestValue }
       const existing = index.get(exercise.libraryExerciseId)
 
