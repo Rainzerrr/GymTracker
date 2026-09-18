@@ -32,9 +32,5 @@
     "volumeTitle": "Répartition du volume",
     "volumeSubtitle_one": "{{count}} muscle sous l'objectif",
     "volumeSubtitle_other": "{{count}} muscles sous l'objectif"
-  },
-  "playerLevel": {
-    "levelLabel": "Niveau {{level}} — {{title}}",
-    "xpFraction": "{{current}} / {{total}} XP"
   }
 }

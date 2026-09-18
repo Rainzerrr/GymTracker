@@ -1,10 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { usePlayerLevel } from '@domains/progression/hooks/use-player-level'
 import { Button } from '@shared/atoms/button'
 import { useHomeOverview } from '../../hooks/use-home-overview'
 import { NextWorkoutCard } from '../../organisms/next-workout-card'
-import { PlayerLevelBar } from '../../organisms/player-level-bar'
 import { ProgressSection } from '../../organisms/progress-section'
 import { RestDayBanner } from '../../organisms/rest-day-banner'
 import { TodaySection } from '../../organisms/today-section'
@@ -31,7 +29,6 @@ export const HomePage = () => {
     postureValidated,
     validatePosture,
   } = useHomeOverview()
-  const { level, levelTitle, currentXp, xpToNextLevel } = usePlayerLevel()
 
   const canStartSelectedSession = isSelectedDayToday && selectedDayStatus === 'scheduled'
   const canViewSelectedSession = selectedDayStatus === 'done' || selectedDayStatus === 'missed'
@@ -64,12 +61,6 @@ export const HomePage = () => {
         />
       )}
       <div className="home-page__content">
-        <PlayerLevelBar
-          level={level}
-          levelTitle={levelTitle}
-          currentXp={currentXp}
-          xpToNextLevel={xpToNextLevel}
-        />
         {(canStartSelectedSession || canViewSelectedSession) && (
           <Button
             label={canStartSelectedSession ? t('cta') : t('viewSessionCta')}
