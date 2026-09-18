@@ -23,3 +23,9 @@
   color: $color-text-muted;
   font-size: $font-size-sm;
 }
+
+.rank-board__list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}

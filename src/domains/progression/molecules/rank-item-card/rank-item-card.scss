@@ -1,0 +1,64 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.rank-item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-3xs;
+  width: 100%;
+  padding: $spacing-lg $spacing-md;
+  border: none;
+  border-radius: $radius-xl;
+  background-color: $color-surface;
+  color: inherit;
+  text-align: center;
+  font-family: $font-family-base;
+}
+
+.rank-item-card__name {
+  margin-top: $spacing-2xs;
+  color: $color-text;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+}
+
+.rank-item-card__tier {
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.rank-item-card--bronze .rank-item-card__tier {
+  color: $color-tier-bronze;
+}
+
+.rank-item-card--argent .rank-item-card__tier {
+  color: $color-tier-argent;
+}
+
+.rank-item-card--or .rank-item-card__tier {
+  color: $color-tier-or;
+}
+
+.rank-item-card--platine .rank-item-card__tier {
+  color: $color-tier-platine;
+}
+
+.rank-item-card__progress {
+  display: block;
+  width: 100%;
+  max-width: 14rem;
+  margin-top: $spacing-xs;
+}
+
+.rank-item-card__hint {
+  margin-top: $spacing-3xs;
+  color: $color-text-muted;
+  font-size: $font-size-2xs;
+}
+
+.rank-item-card__hint--maxed {
+  color: $color-accent;
+  font-weight: $font-weight-semibold;
+}

@@ -7,6 +7,12 @@ export type RankedItemRecord = {
   progressPercent: number
 }
 
+export type NextRankTarget = {
+  value: number
+  remaining: number
+  unit: 'kg' | 'reps'
+}
+
 export type RankedItem = {
   id: string
   name: string
@@ -14,6 +20,7 @@ export type RankedItem = {
   subLevel: TierSubLevel
   progressPercent: number
   photoUrl?: string
+  nextRankTarget?: NextRankTarget | null
 }
 
 export type TierCount = {

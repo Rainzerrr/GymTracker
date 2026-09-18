@@ -1,12 +1,8 @@
 import { useTranslation } from 'react-i18next'
-import { ChevronIcon } from '@shared/atoms/chevron-icon'
-import { ListRow } from '@shared/molecules/list-row'
-import { RankAvatar } from '../../atoms/rank-avatar'
 import { TierCountPill } from '../../atoms/tier-count-pill'
-import { TierProgressBar } from '../../atoms/tier-progress-bar'
+import { RankItemCard } from '../../molecules/rank-item-card'
 import { SegmentedToggle } from '../../molecules/segmented-toggle'
 import { countByTier } from '../../utils/count-by-tier'
-import { getSubLevelRoman } from '../../utils/get-sub-level-roman'
 import { sortByTier } from '../../utils/sort-by-tier'
 import type { RankBoardProps } from './rank-board.types'
 import './rank-board.scss'
@@ -43,17 +39,9 @@ export const RankBoard = ({ activeTab, onTabChange, exercises, muscles, onItemCl
       {items.length === 0 ? (
         <p className="rank-board__empty">{t('rank.empty')}</p>
       ) : (
-        <div>
+        <div className="rank-board__list">
           {items.map((item) => (
-            <ListRow
-              key={item.id}
-              leading={<RankAvatar tier={item.tier} photoUrl={item.photoUrl} label={item.name} />}
-              title={item.name}
-              subtitle={`${t(`tiers.${item.tier}`)} ${getSubLevelRoman(item.subLevel)}`}
-              meta={<TierProgressBar tier={item.tier} progressPercent={item.progressPercent} />}
-              trailing={<ChevronIcon />}
-              onClick={() => onItemClick(item)}
-            />
+            <RankItemCard key={item.id} item={item} onClick={() => onItemClick(item)} />
           ))}
         </div>
       )}

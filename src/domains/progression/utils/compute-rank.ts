@@ -38,3 +38,32 @@ export const computeRankFromScore = (score: number): RankResult => {
 
   return { tier: TIERS[tierIndex], subLevel, progressPercent }
 }
+
+const STEP_SPAN = TIER_SPAN / 3
+
+export type NextRankTargetValue = {
+  value: number
+  remaining: number
+}
+
+/**
+ * The performance value (baseline-relative) needed to cross into the next
+ * sub-level, so the UI can show how much weight/reps are still missing.
+ * Returns null once the ladder is maxed out or the baseline can't be scaled.
+ */
+export const computeNextRankTargetValue = (
+  baseline: number,
+  best: number,
+  score: number,
+): NextRankTargetValue | null => {
+  const clamped = Math.max(0, Math.min(100, score))
+
+  if (clamped >= 100 || baseline <= 0) {
+    return null
+  }
+
+  const nextStepScore = Math.min(100, (Math.floor(clamped / STEP_SPAN) + 1) * STEP_SPAN)
+  const value = baseline * (1 + nextStepScore / 100)
+
+  return { value, remaining: Math.max(0, value - best) }
+}
