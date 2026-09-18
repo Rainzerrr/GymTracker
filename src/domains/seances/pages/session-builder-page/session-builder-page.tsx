@@ -7,6 +7,7 @@ import { useSessions } from '../../hooks/use-sessions'
 import { SessionBuilderForm } from '../../organisms/session-builder-form'
 import type { SessionExercise } from '../../types/session-exercise'
 import type { SessionDraft } from '../../types/workout-session'
+import { generateSessionName } from '../../utils/generate-session-name'
 
 const EMPTY_DRAFT: SessionDraft = { name: '', focusLabel: '', imageUrl: '', exercises: [] }
 
@@ -15,14 +16,18 @@ export const SessionBuilderPage = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const { t } = useTranslation('seances')
-  const { getSession, createSession, updateSession } = useSessions()
+  const { sessions, getSession, createSession, updateSession } = useSessions()
 
   const isNew = sessionId === 'nouvelle'
   const existingSession = !isNew ? getSession(sessionId!) : undefined
+  const otherSessions = sessions.filter((session) => session.id !== sessionId)
 
   const [draft, setDraft] = useState<SessionDraft>(() => {
     const relayedDraft = (location.state as { draft?: SessionDraft } | null)?.draft
-    if (relayedDraft) return relayedDraft
+    if (relayedDraft) {
+      const generated = generateSessionName(relayedDraft.exercises, otherSessions)
+      return generated ? { ...relayedDraft, ...generated } : relayedDraft
+    }
     if (existingSession) {
       const { name, focusLabel, imageUrl, exercises } = existingSession
       return { name, focusLabel, imageUrl, exercises }
@@ -46,10 +51,11 @@ export const SessionBuilderPage = () => {
   }
 
   const handleExerciseRemove = (exerciseId: string) => {
-    setDraft((current) => ({
-      ...current,
-      exercises: current.exercises.filter((exercise) => exercise.id !== exerciseId),
-    }))
+    setDraft((current) => {
+      const exercises = current.exercises.filter((exercise) => exercise.id !== exerciseId)
+      const generated = generateSessionName(exercises, otherSessions)
+      return { ...current, ...generated, exercises }
+    })
   }
 
   const handleToggleSuperset = (exerciseId: string) => {
