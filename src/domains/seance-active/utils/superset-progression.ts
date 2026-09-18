@@ -17,7 +17,7 @@ const findNextInGroup = (
   currentExerciseIndex: number,
   nextProgress: number[],
   setCounts: number[],
-): { index: number; isNewRound: boolean } | null => {
+): { index: number } | null => {
   const currentPosition = group.indexOf(currentExerciseIndex)
 
   for (let offset = 1; offset <= group.length; offset += 1) {
@@ -25,7 +25,7 @@ const findNextInGroup = (
     const candidateIndex = group[candidatePosition]
 
     if (nextProgress[candidateIndex] < setCounts[candidateIndex]) {
-      return { index: candidateIndex, isNewRound: candidatePosition <= currentPosition }
+      return { index: candidateIndex }
     }
   }
 
@@ -37,15 +37,8 @@ export const resolveNextStep = (
   currentExerciseIndex: number,
   nextProgress: number[],
   setCounts: number[],
-  allowRest: boolean,
-): { nextExerciseIndex: number; shouldRest: boolean } => {
+): number => {
   const groupMatch = findNextInGroup(currentGroup, currentExerciseIndex, nextProgress, setCounts)
-  const nextExerciseIndex = groupMatch
-    ? groupMatch.index
-    : nextProgress.findIndex((count, index) => count < setCounts[index])
 
-  return {
-    nextExerciseIndex,
-    shouldRest: allowRest && (groupMatch ? groupMatch.isNewRound : true),
-  }
+  return groupMatch ? groupMatch.index : nextProgress.findIndex((count, index) => count < setCounts[index])
 }

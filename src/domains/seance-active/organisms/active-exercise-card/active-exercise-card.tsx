@@ -24,6 +24,8 @@ export const ActiveExerciseCard = ({
   isResting,
   restRemainingSeconds,
   restTotalSeconds,
+  onStartRest,
+  onStopRest,
   onValidate,
   onSkipSet,
   onSkipExercise,
@@ -36,7 +38,9 @@ export const ActiveExerciseCard = ({
     total: totalSets,
     label: targetLabel,
   })
-  const restProgressPercent = ((restTotalSeconds - restRemainingSeconds) / restTotalSeconds) * 100
+  const restProgressPercent = isResting
+    ? ((restTotalSeconds - restRemainingSeconds) / restTotalSeconds) * 100
+    : 0
 
   return (
     <div className="active-exercise-card">
@@ -99,28 +103,32 @@ export const ActiveExerciseCard = ({
         </div>
       </div>
 
-      {isResting && (
-        <div className="active-exercise-card__rest">
-          <div className="active-exercise-card__rest-row">
-            <span>{t('rest')}</span>
-            <span>{t('restRemaining', { time: formatDurationClock(restRemainingSeconds) })}</span>
-          </div>
-          <div className="active-exercise-card__rest-bar">
-            <div
-              className="active-exercise-card__rest-bar-fill"
-              style={{ width: `${restProgressPercent}%` }}
-            />
-          </div>
+      <div className="active-exercise-card__rest">
+        <div className="active-exercise-card__rest-row">
+          <span>{t('rest')}</span>
+          <span>
+            {isResting
+              ? t('restRemaining', { time: formatDurationClock(restRemainingSeconds) })
+              : formatDurationClock(restTotalSeconds)}
+          </span>
+          <button
+            type="button"
+            className="active-exercise-card__rest-toggle"
+            onClick={isResting ? onStopRest : onStartRest}
+          >
+            {isResting ? t('restStop') : t('restStart')}
+          </button>
         </div>
-      )}
+        <div className="active-exercise-card__rest-bar">
+          <div
+            className="active-exercise-card__rest-bar-fill"
+            style={{ width: `${restProgressPercent}%` }}
+          />
+        </div>
+      </div>
 
-      <button
-        type="button"
-        className="active-exercise-card__validate"
-        onClick={onValidate}
-        disabled={isResting}
-      >
-        {isResting ? t('resting') : t('validate')}
+      <button type="button" className="active-exercise-card__validate" onClick={onValidate}>
+        {t('validate')}
       </button>
     </div>
   )

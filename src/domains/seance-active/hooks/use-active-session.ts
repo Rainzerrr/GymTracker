@@ -75,7 +75,7 @@ export const useActiveSession = (sessionId: string | undefined) => {
     })
   }
 
-  const advance = (nextCompletedSets: number, logEntry: SetLogEntry | null, allowRest: boolean) => {
+  const advance = (nextCompletedSets: number, logEntry: SetLogEntry | null) => {
     if (!session || !currentExercise) {
       return
     }
@@ -95,12 +95,11 @@ export const useActiveSession = (sessionId: string | undefined) => {
     setReps(DEFAULT_REPS)
     setSelectedRir(null)
 
-    const { nextExerciseIndex, shouldRest } = resolveNextStep(
+    const nextExerciseIndex = resolveNextStep(
       currentGroup,
       currentExerciseIndex,
       nextProgress,
       exercises.map((exercise) => exercise.setCount),
-      allowRest,
     )
 
     if (nextExerciseIndex === -1) {
@@ -111,10 +110,6 @@ export const useActiveSession = (sessionId: string | undefined) => {
     const nextExercise = exercises[nextExerciseIndex]
     setWeight(nextExercise.libraryExerciseId === currentExercise.libraryExerciseId ? weight : DEFAULT_WEIGHT)
 
-    if (shouldRest) {
-      rest.start(currentExercise.restSeconds)
-    }
-
     setCurrentExerciseIndex(nextExerciseIndex)
   }
 
@@ -124,7 +119,7 @@ export const useActiveSession = (sessionId: string | undefined) => {
     }
 
     const logEntry: SetLogEntry = { weight: currentExercise.isBodyweight ? 0 : weight, reps, rir: selectedRir }
-    advance((progress[currentExerciseIndex] ?? 0) + 1, logEntry, true)
+    advance((progress[currentExerciseIndex] ?? 0) + 1, logEntry)
   }
 
   const skipSet = () => {
@@ -132,8 +127,7 @@ export const useActiveSession = (sessionId: string | undefined) => {
       return
     }
 
-    rest.stop()
-    advance((progress[currentExerciseIndex] ?? 0) + 1, null, false)
+    advance((progress[currentExerciseIndex] ?? 0) + 1, null)
   }
 
   const skipExercise = () => {
@@ -141,15 +135,14 @@ export const useActiveSession = (sessionId: string | undefined) => {
       return
     }
 
-    rest.stop()
-    advance(currentExercise.setCount, null, false)
+    advance(currentExercise.setCount, null)
   }
 
   return {
     session,
     exercises: exercises.map((exercise, index) => ({
       ...exercise,
-      completedSets: progress[index] ?? 0,
+      completedSets: setLogsByExercise[index]?.length ?? 0,
       isActive: index === currentExerciseIndex,
     })),
     currentExercise,
@@ -164,7 +157,9 @@ export const useActiveSession = (sessionId: string | undefined) => {
     selectRir: setSelectedRir,
     isResting: rest.isActive,
     restRemainingSeconds: rest.remainingSeconds,
-    restTotalSeconds: currentExercise?.restSeconds ?? 0,
+    restTotalSeconds: rest.isActive ? rest.totalSeconds : (currentExercise?.restSeconds ?? 0),
+    startRest: () => rest.start(currentExercise?.restSeconds ?? 0),
+    stopRest: rest.stop,
     elapsedSeconds,
     isSessionComplete,
     validateSet,

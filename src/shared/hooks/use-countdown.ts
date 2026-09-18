@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 export const useCountdown = () => {
   const [remainingSeconds, setRemainingSeconds] = useState(0)
+  const [totalSeconds, setTotalSeconds] = useState(0)
   const [hasStarted, setHasStarted] = useState(false)
   const isActive = hasStarted && remainingSeconds > 0
 
@@ -15,6 +16,7 @@ export const useCountdown = () => {
 
   const start = (seconds: number) => {
     setRemainingSeconds(seconds)
+    setTotalSeconds(seconds)
     setHasStarted(true)
   }
 
@@ -22,5 +24,5 @@ export const useCountdown = () => {
     setRemainingSeconds(0)
   }
 
-  return { remainingSeconds, isActive, start, stop }
+  return { remainingSeconds, totalSeconds, isActive, start, stop }
 }

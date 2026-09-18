@@ -25,6 +25,8 @@ export const ActiveSessionPage = () => {
     isResting,
     restRemainingSeconds,
     restTotalSeconds,
+    startRest,
+    stopRest,
     elapsedSeconds,
     isSessionComplete,
     validateSet,
@@ -74,6 +76,8 @@ export const ActiveSessionPage = () => {
         isResting={isResting}
         restRemainingSeconds={restRemainingSeconds}
         restTotalSeconds={restTotalSeconds}
+        onStartRest={startRest}
+        onStopRest={stopRest}
         onValidate={validateSet}
         onSkipSet={skipSet}
         onSkipExercise={skipExercise}

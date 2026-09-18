@@ -90,9 +90,21 @@
 
 .active-exercise-card__rest-row {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   color: $color-text-muted;
   font-size: $font-size-xs-plus;
+}
+
+.active-exercise-card__rest-toggle {
+  border: 1px solid $color-border-medium;
+  border-radius: $radius-md;
+  background: none;
+  padding: 0.25rem 0.75rem;
+  color: $color-text;
+  font-family: $font-family-base;
+  font-size: $font-size-xs-plus;
+  cursor: pointer;
 }
 
 .active-exercise-card__rest-bar {

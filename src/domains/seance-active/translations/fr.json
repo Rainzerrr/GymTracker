@@ -9,7 +9,8 @@
   "validate": "Valider la série",
   "skipSet": "Passer la série",
   "skipExercise": "Passer l'exercice",
-  "resting": "Récupération…",
+  "restStart": "Lancer",
+  "restStop": "Arrêter",
   "supersetBadge": "Superset · {{position}}/{{size}}",
   "log": {
     "setLabel": "Série {{number}}",

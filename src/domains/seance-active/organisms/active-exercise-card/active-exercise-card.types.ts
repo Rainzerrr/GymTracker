@@ -18,6 +18,8 @@ export type ActiveExerciseCardProps = {
   isResting: boolean
   restRemainingSeconds: number
   restTotalSeconds: number
+  onStartRest: () => void
+  onStopRest: () => void
   onValidate: () => void
   onSkipSet: () => void
   onSkipExercise: () => void
