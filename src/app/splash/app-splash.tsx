@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import './app-splash.scss'
 
-const EXIT_DELAY_MS = 1200
-const FINISH_DELAY_MS = 1550
+const EXIT_DELAY_MS = 1500
+const FINISH_DELAY_MS = 1880
 
 type AppSplashProps = {
   onFinish: () => void
