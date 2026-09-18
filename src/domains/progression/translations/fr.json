@@ -45,6 +45,8 @@
       "currentTier": "Palier actuel",
       "stepStatus": "Palier {{current}} / {{total}}",
       "progressHint": "{{percent}}% avant le palier suivant",
+      "targetWeighted": "Vise {{value}} kg pour passer au palier suivant (1RM estimée)",
+      "targetBodyweight": "Vise {{value}} reps pour passer au palier suivant",
       "maxed": "Rang maximum atteint",
       "ladderTitle": "Tous les paliers",
       "ladderStatus": {

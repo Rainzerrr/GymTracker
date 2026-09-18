@@ -25,7 +25,16 @@ export const RankDetailHero = ({ item, stepNumber, totalSteps }: RankDetailHeroP
       ) : (
         <div className="rank-detail-hero__progress">
           <TierProgressBar tier={item.tier} progressPercent={item.progressPercent} />
-          <p className="rank-detail-hero__hint">{t('rank.detail.progressHint', { percent: item.progressPercent })}</p>
+          <p className="rank-detail-hero__hint">
+            {item.nextRankTarget
+              ? t(
+                  item.nextRankTarget.unit === 'kg'
+                    ? 'rank.detail.targetWeighted'
+                    : 'rank.detail.targetBodyweight',
+                  { value: item.nextRankTarget.value },
+                )
+              : t('rank.detail.progressHint', { percent: item.progressPercent })}
+          </p>
         </div>
       )}
     </section>
