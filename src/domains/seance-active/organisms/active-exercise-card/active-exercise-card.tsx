@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '@shared/atoms/button'
+import { useNumberInputField } from '@shared/hooks/use-number-input-field'
 import { formatDurationClock } from '@shared/utils/date/format-duration-clock'
 import { RirSelector } from '../../molecules/rir-selector'
 import type { ActiveExerciseCardProps } from './active-exercise-card.types'
@@ -28,6 +29,8 @@ export const ActiveExerciseCard = ({
   onSkipExercise,
 }: ActiveExerciseCardProps) => {
   const { t } = useTranslation('seanceActive')
+  const weightField = useNumberInputField(weight, onWeightChange)
+  const repsField = useNumberInputField(reps, onRepsChange)
   const setSubtitle = t('setLabel', {
     current: currentSetNumber,
     total: totalSets,
@@ -59,8 +62,9 @@ export const ActiveExerciseCard = ({
               inputMode="decimal"
               step={2.5}
               min={0}
-              value={weight}
-              onChange={(event) => onWeightChange(Math.max(0, Number(event.target.value)))}
+              value={weightField.rawValue}
+              onChange={weightField.handleChange}
+              onBlur={weightField.handleBlur}
             />
           </div>
         )}
@@ -71,8 +75,9 @@ export const ActiveExerciseCard = ({
             type="number"
             inputMode="numeric"
             min={0}
-            value={reps}
-            onChange={(event) => onRepsChange(Math.max(0, Number(event.target.value)))}
+            value={repsField.rawValue}
+            onChange={repsField.handleChange}
+            onBlur={repsField.handleBlur}
           />
         </div>
         <div className="active-exercise-card__field">
