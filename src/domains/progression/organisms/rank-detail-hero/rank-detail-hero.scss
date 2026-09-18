@@ -55,6 +55,36 @@
   letter-spacing: -0.01em;
 }
 
+.rank-detail-hero--or .rank-detail-hero__tier {
+  color: $color-tier-or;
+}
+
+.rank-detail-hero--platine .rank-detail-hero__tier {
+  background-image: linear-gradient(
+    90deg,
+    $color-tier-platine,
+    color-mix(in srgb, $color-tier-platine 55%, white 45%),
+    $color-tier-platine
+  );
+  background-size: 220% auto;
+  background-clip: text;
+  color: transparent;
+  animation: rank-detail-hero-shimmer 3.5s linear infinite;
+}
+
+.rank-detail-hero__step-pill {
+  display: inline-flex;
+  align-items: center;
+  margin-top: $spacing-3xs;
+  padding: $spacing-3xs $spacing-sm;
+  border-radius: $radius-pill;
+  background-color: $color-surface-strong;
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.03em;
+}
+
 .rank-detail-hero__progress {
   display: flex;
   flex-direction: column;
@@ -75,4 +105,10 @@
   color: $color-accent;
   font-size: $font-size-sm;
   font-weight: $font-weight-semibold;
+}
+
+@keyframes rank-detail-hero-shimmer {
+  to {
+    background-position: -220% center;
+  }
 }

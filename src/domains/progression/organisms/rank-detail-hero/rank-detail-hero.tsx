@@ -5,7 +5,7 @@ import { getSubLevelRoman } from '../../utils/get-sub-level-roman'
 import type { RankDetailHeroProps } from './rank-detail-hero.types'
 import './rank-detail-hero.scss'
 
-export const RankDetailHero = ({ item }: RankDetailHeroProps) => {
+export const RankDetailHero = ({ item, stepNumber, totalSteps }: RankDetailHeroProps) => {
   const { t } = useTranslation('progression')
   const isMaxed = item.tier === 'platine' && item.subLevel === 3 && item.progressPercent >= 100
 
@@ -16,6 +16,9 @@ export const RankDetailHero = ({ item }: RankDetailHeroProps) => {
       <h1 className="rank-detail-hero__tier">
         {t(`tiers.${item.tier}`)} {getSubLevelRoman(item.subLevel)}
       </h1>
+      <span className="rank-detail-hero__step-pill">
+        {t('rank.detail.stepStatus', { current: stepNumber, total: totalSteps })}
+      </span>
 
       {isMaxed ? (
         <p className="rank-detail-hero__maxed">{t('rank.detail.maxed')}</p>

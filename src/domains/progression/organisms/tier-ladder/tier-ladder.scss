@@ -4,20 +4,29 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: $spacing-sm;
+  align-items: center;
+  gap: $spacing-lg;
   margin: 0;
-  padding: 0;
+  padding: $spacing-sm 0;
   list-style: none;
 }
 
 .tier-ladder::before {
   content: '';
   position: absolute;
-  top: 1.375rem;
-  bottom: 1.375rem;
-  left: 1.9rem;
+  top: 2rem;
+  bottom: 2rem;
+  left: 50%;
   width: 2px;
-  background-color: $color-border-strong;
+  background-image: linear-gradient(
+    to bottom,
+    $color-tier-platine,
+    $color-tier-or,
+    $color-tier-argent,
+    $color-tier-bronze
+  );
+  opacity: 0.22;
+  transform: translateX(-50%);
   z-index: 0;
 }
 
@@ -25,55 +34,38 @@
   position: relative;
   z-index: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: $spacing-md;
-  padding: $spacing-2xs $spacing-2xs;
+  gap: $spacing-3xs;
+  width: 100%;
+  max-width: 15rem;
+  padding: $spacing-sm $spacing-md;
   border-radius: $radius-lg;
+  text-align: center;
   transition: background-color 0.2s ease;
 }
 
 .tier-ladder__badge {
+  position: relative;
   display: flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: $radius-pill;
   color: $color-accent-ink;
 }
 
 .tier-ladder__badge svg {
-  width: 1.0625rem;
-  height: 1.0625rem;
-}
-
-.tier-ladder__badge--bronze {
-  background-color: $color-tier-bronze;
-}
-
-.tier-ladder__badge--argent {
-  background-color: $color-tier-argent;
-}
-
-.tier-ladder__badge--or {
-  background-color: $color-tier-or;
-}
-
-.tier-ladder__badge--platine {
-  background-color: $color-tier-platine;
-}
-
-.tier-ladder__label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
+  position: relative;
+  z-index: 1;
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
 .tier-ladder__name {
+  margin-top: $spacing-2xs;
   color: $color-text-soft;
   font-family: $font-family-heading;
-  font-size: $font-size-md;
+  font-size: $font-size-lg;
   font-weight: $font-weight-semibold;
 }
 
@@ -81,7 +73,7 @@
   color: $color-text-muted;
   font-size: $font-size-2xs;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
 }
 
 .tier-ladder__step--locked {
@@ -89,17 +81,9 @@
 }
 
 .tier-ladder__step--current {
-  padding: $spacing-sm;
+  padding: $spacing-md;
   background-color: $color-surface;
   border: 1px solid $color-border-strong;
-}
-
-.tier-ladder__step--current .tier-ladder__badge {
-  box-shadow:
-    0 0 0 3px $color-background,
-    0 0 0 5px $color-accent,
-    0 0 16px 4px $color-accent-soft;
-  animation: tier-ladder-pulse 2.2s ease-in-out infinite;
 }
 
 .tier-ladder__step--current .tier-ladder__name {
@@ -111,6 +95,126 @@
   font-weight: $font-weight-semibold;
 }
 
+.tier-ladder__step--current .tier-ladder__badge {
+  animation: tier-ladder-pulse 2.2s ease-in-out infinite;
+}
+
+// Bronze — entry-level: a plain, flat ring. No shine yet.
+.tier-ladder__badge--bronze {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: $radius-pill;
+  background-color: $color-tier-bronze;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
+}
+
+// Argent — a step up: layered ring and a soft sheen.
+.tier-ladder__badge--argent {
+  width: 3.0625rem;
+  height: 3.0625rem;
+  border-radius: $radius-pill;
+  background-image: linear-gradient(
+    155deg,
+    color-mix(in srgb, $color-tier-argent 70%, white 25%),
+    $color-tier-argent 72%
+  );
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 18%),
+    0 0 0 3px rgb(168 173 180 / 12%),
+    0 0 12px 1px rgb(168 173 180 / 30%);
+}
+
+// Or — metallic gradient, glow and a rotating aura behind the badge.
+.tier-ladder__badge--or {
+  width: 3.375rem;
+  height: 3.375rem;
+  border-radius: $radius-pill;
+  background-image: linear-gradient(
+    155deg,
+    color-mix(in srgb, $color-tier-or 72%, white 28%),
+    $color-tier-or 74%
+  );
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 24%),
+    0 0 0 3px rgb(201 162 75 / 16%),
+    0 0 18px 2px rgb(201 162 75 / 40%);
+
+  --tier-ladder-aura: #{$color-tier-or};
+}
+
+// Platine — the most ornate: bigger badge, layered rings, sparkle accent
+// and a slowly spinning aura, to make the top of the ladder feel earned.
+.tier-ladder__badge--platine {
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: $radius-pill;
+  background-image: linear-gradient(
+    155deg,
+    color-mix(in srgb, $color-tier-platine 74%, white 32%),
+    $color-tier-platine 76%
+  );
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 30%),
+    0 0 0 3px rgb(143 184 190 / 20%),
+    0 0 0 5px rgb(143 184 190 / 10%),
+    0 0 24px 4px rgb(143 184 190 / 50%);
+
+  --tier-ladder-aura: #{$color-tier-platine};
+}
+
+.tier-ladder__badge--or::before,
+.tier-ladder__badge--platine::before {
+  content: '';
+  position: absolute;
+  inset: -0.45rem;
+  z-index: 0;
+  border-radius: $radius-pill;
+  background-image: conic-gradient(from 0deg, transparent, var(--tier-ladder-aura), transparent 40%);
+  opacity: 0.45;
+}
+
+.tier-ladder__badge--platine::before {
+  animation: tier-ladder-aura-spin 5s linear infinite;
+}
+
+.tier-ladder__badge--or::after,
+.tier-ladder__badge--platine::after {
+  content: '';
+  position: absolute;
+  top: -0.1rem;
+  right: -0.1rem;
+  z-index: 2;
+  width: 0.6rem;
+  height: 0.6rem;
+  background-color: $color-text;
+  clip-path: polygon(50% 0%, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0% 50%, 39% 35%);
+}
+
+.tier-ladder__badge--platine::after {
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: $color-tier-platine;
+}
+
+// The name itself carries the escalation once a tier is achieved: gold
+// gets a warm tint, platine gets an animated metallic shimmer.
+.tier-ladder__step--tier-or:not(.tier-ladder__step--locked) .tier-ladder__name {
+  color: $color-tier-or;
+}
+
+.tier-ladder__step--tier-platine:not(.tier-ladder__step--locked) .tier-ladder__name {
+  background-image: linear-gradient(
+    90deg,
+    $color-tier-platine,
+    color-mix(in srgb, $color-tier-platine 55%, white 45%),
+    $color-tier-platine
+  );
+  background-size: 220% auto;
+  background-clip: text;
+  color: transparent;
+  animation: tier-ladder-shimmer 3.5s linear infinite;
+}
+
 @keyframes tier-ladder-pulse {
   0%,
   100% {
@@ -119,5 +223,17 @@
 
   50% {
     transform: scale(1.08);
+  }
+}
+
+@keyframes tier-ladder-aura-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tier-ladder-shimmer {
+  to {
+    background-position: -220% center;
   }
 }

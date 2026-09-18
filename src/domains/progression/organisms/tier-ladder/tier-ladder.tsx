@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getSubLevelRoman } from '../../utils/get-sub-level-roman'
 import type { TierLadderProps } from './tier-ladder.types'
@@ -23,12 +23,47 @@ const flameIcon = (
   </svg>
 )
 
+const REVEAL_DELAY_MS = 600
+const SCROLL_UP_DURATION_MS = 900
+
+const easeInOutQuad = (t: number) => (t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2)
+
 export const TierLadder = ({ steps }: TierLadderProps) => {
   const { t } = useTranslation('progression')
   const currentRef = useRef<HTMLLIElement>(null)
 
+  useLayoutEffect(() => {
+    currentRef.current?.scrollIntoView({ behavior: 'auto', block: 'center' })
+  }, [])
+
   useEffect(() => {
-    currentRef.current?.scrollIntoView({ block: 'center' })
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (prefersReducedMotion) {
+      return
+    }
+
+    let frame = 0
+
+    // A fixed-length glide back to the top, regardless of how tall the
+    // ladder is — the native smooth scroll stretches out on long pages.
+    const animateScrollToTop = (startY: number, startTime: number) => (now: number) => {
+      const progress = Math.min(1, (now - startTime) / SCROLL_UP_DURATION_MS)
+      window.scrollTo(0, startY * (1 - easeInOutQuad(progress)))
+
+      if (progress < 1) {
+        frame = requestAnimationFrame(animateScrollToTop(startY, startTime))
+      }
+    }
+
+    const timeout = window.setTimeout(() => {
+      frame = requestAnimationFrame((now) => animateScrollToTop(window.scrollY, now)(now))
+    }, REVEAL_DELAY_MS)
+
+    return () => {
+      window.clearTimeout(timeout)
+      cancelAnimationFrame(frame)
+    }
   }, [])
 
   return (
@@ -37,19 +72,17 @@ export const TierLadder = ({ steps }: TierLadderProps) => {
         <li
           key={`${step.tier}-${step.subLevel}`}
           ref={step.status === 'current' ? currentRef : undefined}
-          className={`tier-ladder__step tier-ladder__step--${step.status}`}
+          className={`tier-ladder__step tier-ladder__step--${step.status} tier-ladder__step--tier-${step.tier}`}
         >
           <span className={`tier-ladder__badge tier-ladder__badge--${step.tier}`}>
             {step.status === 'achieved' && checkIcon}
             {step.status === 'locked' && lockIcon}
             {step.status === 'current' && flameIcon}
           </span>
-          <span className="tier-ladder__label">
-            <span className="tier-ladder__name">
-              {t(`tiers.${step.tier}`)} {getSubLevelRoman(step.subLevel)}
-            </span>
-            <span className="tier-ladder__status">{t(`rank.detail.ladderStatus.${step.status}`)}</span>
+          <span className="tier-ladder__name">
+            {t(`tiers.${step.tier}`)} {getSubLevelRoman(step.subLevel)}
           </span>
+          <span className="tier-ladder__status">{t(`rank.detail.ladderStatus.${step.status}`)}</span>
         </li>
       ))}
     </ol>

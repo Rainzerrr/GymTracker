@@ -37,11 +37,13 @@ export const RankDetailPage = () => {
   }
 
   const ladder = buildTierLadder(item.tier, item.subLevel)
+  const currentStepIndex = ladder.findIndex((step) => step.status === 'current')
+  const stepNumber = ladder.length - currentStepIndex
 
   return (
     <PageTemplate>
       <BackHeader title={item.name} onBack={() => navigate('/progression/rangs')} />
-      <RankDetailHero item={item} />
+      <RankDetailHero item={item} stepNumber={stepNumber} totalSteps={ladder.length} />
       <SectionLabel label={t('rank.detail.ladderTitle')} />
       <TierLadder steps={ladder} />
     </PageTemplate>
