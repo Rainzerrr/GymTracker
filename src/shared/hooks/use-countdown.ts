@@ -18,5 +18,9 @@ export const useCountdown = () => {
     setHasStarted(true)
   }
 
-  return { remainingSeconds, isActive, start }
+  const stop = () => {
+    setRemainingSeconds(0)
+  }
+
+  return { remainingSeconds, isActive, start, stop }
 }

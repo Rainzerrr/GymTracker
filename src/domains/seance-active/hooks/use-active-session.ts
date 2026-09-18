@@ -132,6 +132,7 @@ export const useActiveSession = (sessionId: string | undefined) => {
       return
     }
 
+    rest.stop()
     advance((progress[currentExerciseIndex] ?? 0) + 1, null, false)
   }
 
@@ -140,6 +141,7 @@ export const useActiveSession = (sessionId: string | undefined) => {
       return
     }
 
+    rest.stop()
     advance(currentExercise.setCount, null, false)
   }
 

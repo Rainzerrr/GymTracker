@@ -87,16 +87,10 @@ export const ActiveExerciseCard = ({
 
       <div className="active-exercise-card__skip-row">
         <div className="active-exercise-card__skip-item">
-          <Button label={t('skipSet')} variant="outline" fullWidth disabled={isResting} onClick={onSkipSet} />
+          <Button label={t('skipSet')} variant="outline" fullWidth onClick={onSkipSet} />
         </div>
         <div className="active-exercise-card__skip-item">
-          <Button
-            label={t('skipExercise')}
-            variant="outline"
-            fullWidth
-            disabled={isResting}
-            onClick={onSkipExercise}
-          />
+          <Button label={t('skipExercise')} variant="outline" fullWidth onClick={onSkipExercise} />
         </div>
       </div>
 
