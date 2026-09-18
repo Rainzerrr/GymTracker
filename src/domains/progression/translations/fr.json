@@ -87,7 +87,8 @@
     },
     "board": {
       "remainingWeighted": "+{{value}} kg avant le rang suivant",
-      "remainingBodyweight": "+{{value}} reps avant le rang suivant"
+      "remainingBodyweight": "+{{value}} reps avant le rang suivant",
+      "remainingSeconds": "+{{value}} s avant le rang suivant"
     },
     "detail": {
       "currentTier": "Palier actuel",
@@ -101,7 +102,10 @@
         "achieved": "Franchi",
         "current": "Actuel",
         "locked": "À débloquer"
-      }
+      },
+      "targetPerHand": "Vise {{value}} kg au total ({{perHand}} kg par haltère) pour passer au palier suivant (1RM estimée)",
+      "targetWithBodyweight": "Vise {{value}} kg, poids de corps inclus, pour passer au palier suivant (1RM estimée)",
+      "targetSeconds": "Vise {{value}} s pour passer au palier suivant"
     }
   },
   "tiers": {

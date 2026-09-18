@@ -1,9 +1,7 @@
 import { buildExercisePerformanceIndex } from '@domains/progression/utils/build-exercise-performance-index'
 import { computeE1rm } from '@domains/progression/utils/compute-e1rm'
-import {
-  computeImprovementScore,
-  computeRankFromScore,
-} from '@domains/progression/utils/compute-rank'
+import { computeExerciseRank } from '@domains/progression/utils/compute-rank'
+import { useBodyWeight } from '@domains/profil/hooks/use-body-weight'
 import { computeSessionXp } from '@domains/progression/utils/compute-session-xp'
 import { usePlayerLevel } from '@domains/progression/hooks/use-player-level'
 import { TIERS } from '@domains/progression/types/tier'
@@ -26,6 +24,7 @@ export const useSessionRecap = () => {
   const [summary] = useLocalStorageState<SessionSummary | null>('seance-active/last-summary', null)
   const { sessionLog } = useSessionLog()
   const { level, levelTitle, currentXp, xpToNextLevel } = usePlayerLevel()
+  const { bodyWeightKg } = useBodyWeight()
 
   const sortedLog = [...sessionLog].sort(
     (a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime(),
@@ -75,13 +74,20 @@ export const useSessionRecap = () => {
       })
     }
 
-    const priorRank = computeRankFromScore(
-      computeImprovementScore(prior.points.map((point) => point.value)),
+    const priorRank = computeExerciseRank(
+      exercise.libraryExerciseId,
+      prior.points.map((point) => point.bestSet),
+      bodyWeightKg,
     )
-    const afterPerf = fullIndex.get(exercise.libraryExerciseId)
-    const afterRank = computeRankFromScore(
-      computeImprovementScore((afterPerf?.points ?? []).map((point) => point.value)),
+    const afterRank = computeExerciseRank(
+      exercise.libraryExerciseId,
+      (fullIndex.get(exercise.libraryExerciseId)?.points ?? []).map((point) => point.bestSet),
+      bodyWeightKg,
     )
+
+    if (!priorRank || !afterRank) {
+      return
+    }
 
     if (TIERS.indexOf(afterRank.tier) > TIERS.indexOf(priorRank.tier)) {
       highlights.push({ kind: 'tierUp', exerciseName: exercise.name, tier: afterRank.tier })

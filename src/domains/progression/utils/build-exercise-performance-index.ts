@@ -5,6 +5,8 @@ import { computeE1rm } from './compute-e1rm'
 export type ExercisePerformancePoint = {
   completedAt: string
   value: number
+  // Meilleure série de la séance, pour calculer le rang selon les standards de force
+  bestSet: { weight: number; reps: number }
 }
 
 export type ExercisePerformance = {
@@ -32,8 +34,16 @@ export const buildExercisePerformanceIndex = (
         return
       }
 
-      const bestValue = Math.max(...validSets.map((set) => computeE1rm(set.weight, set.reps)))
-      const point: ExercisePerformancePoint = { completedAt: session.completedAt, value: bestValue }
+      const bestSet = validSets.reduce((currentBest, set) =>
+        computeE1rm(set.weight, set.reps) > computeE1rm(currentBest.weight, currentBest.reps)
+          ? set
+          : currentBest,
+      )
+      const point: ExercisePerformancePoint = {
+        completedAt: session.completedAt,
+        value: computeE1rm(bestSet.weight, bestSet.reps),
+        bestSet: { weight: bestSet.weight, reps: bestSet.reps },
+      }
       const existing = index.get(exercise.libraryExerciseId)
 
       if (existing) {

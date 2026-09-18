@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { RankAvatar } from '../../atoms/rank-avatar'
 import { TierProgressBar } from '../../atoms/tier-progress-bar'
+import { getNextTargetHintKey } from '../../utils/get-next-target-copy'
 import { getSubLevelRoman } from '../../utils/get-sub-level-roman'
 import type { RankDetailHeroProps } from './rank-detail-hero.types'
 import './rank-detail-hero.scss'
@@ -27,12 +28,10 @@ export const RankDetailHero = ({ item, stepNumber, totalSteps }: RankDetailHeroP
           <TierProgressBar tier={item.tier} progressPercent={item.progressPercent} />
           <p className="rank-detail-hero__hint">
             {item.nextRankTarget
-              ? t(
-                  item.nextRankTarget.unit === 'kg'
-                    ? 'rank.detail.targetWeighted'
-                    : 'rank.detail.targetBodyweight',
-                  { value: item.nextRankTarget.value },
-                )
+              ? t(getNextTargetHintKey(item.nextRankTarget), {
+                  value: item.nextRankTarget.value,
+                  perHand: item.nextRankTarget.perHand,
+                })
               : t('rank.detail.progressHint', { percent: item.progressPercent })}
           </p>
         </div>

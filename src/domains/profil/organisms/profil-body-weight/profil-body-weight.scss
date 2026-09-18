@@ -1,0 +1,12 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.profil-body-weight {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.profil-body-weight__hint {
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+}

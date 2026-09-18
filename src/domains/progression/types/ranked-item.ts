@@ -10,7 +10,11 @@ export type RankedItemRecord = {
 export type NextRankTarget = {
   value: number
   remaining: number
-  unit: 'kg' | 'reps'
+  unit: 'kg' | 'reps' | 'seconds'
+  // Pour les exercices à deux haltères : charge à tenir dans chaque main
+  perHand?: number
+  // Charge totale qui inclut le poids de corps (tractions lestées, dips, pompes…)
+  includesBodyweight?: boolean
 }
 
 export type RankedItem = {

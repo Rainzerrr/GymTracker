@@ -12,6 +12,11 @@
     "streakValue_one": "{{count}} jour",
     "streakValue_other": "{{count}} jours"
   },
+  "bodyWeight": {
+    "label": "Poids de corps",
+    "field": "Poids (kg)",
+    "hint": "Sert à calibrer tes rangs : les seuils de force sont mis à l'échelle de ton poids, et tractions, dips ou pompes comptent ton poids de corps."
+  },
   "muscleSplit": {
     "label": "Répartition musculaire",
     "empty": "Termine une séance pour voir ta répartition musculaire apparaître ici.",

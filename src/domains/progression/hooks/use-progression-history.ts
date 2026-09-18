@@ -2,7 +2,8 @@ import { useSessionLog } from '@domains/seance-active/hooks/use-session-log'
 import { getLibraryExercise } from '@domains/seances/hooks/use-exercise-library'
 import { formatShortDateLabel } from '@shared/utils/date/format-date-label'
 import { buildExercisePerformanceIndex } from '../utils/build-exercise-performance-index'
-import { computeImprovementScore, computeRankFromScore } from '../utils/compute-rank'
+import { useBodyWeight } from '@domains/profil/hooks/use-body-weight'
+import { computeExerciseRank, rankFromScore } from '../utils/compute-rank'
 import { computeSessionXp } from '../utils/compute-session-xp'
 import { getTierLabel } from '../utils/get-tier-label'
 import { TIERS } from '../types/tier'
@@ -16,6 +17,7 @@ const MIN_POINTS_FOR_CHART = 2
 
 export const useProgressionHistory = () => {
   const { sessionLog } = useSessionLog()
+  const { bodyWeightKg } = useBodyWeight()
 
   const totalSessionsCount = sessionLog.length
 
@@ -36,13 +38,15 @@ export const useProgressionHistory = () => {
     .filter((performance) => performance.points.length >= MIN_POINTS_FOR_CHART)
     .map((performance) => {
       const values = performance.points.map((point) => point.value)
-      const rank = computeRankFromScore(computeImprovementScore(values))
+      const bestSets = performance.points.map((point) => point.bestSet)
+      const rank =
+        computeExerciseRank(performance.exerciseId, bestSets, bodyWeightKg) ?? rankFromScore(0)
       const isBodyweight =
         getLibraryExercise(performance.exerciseId)?.equipment === 'Poids du corps'
 
-      const priorValues = values.slice(0, -1)
+      const priorSets = bestSets.slice(0, -1)
       const priorRank =
-        priorValues.length > 0 ? computeRankFromScore(computeImprovementScore(priorValues)) : null
+        priorSets.length > 0 ? computeExerciseRank(performance.exerciseId, priorSets, bodyWeightKg) : null
       const hasTieredUp =
         priorRank !== null && TIERS.indexOf(rank.tier) > TIERS.indexOf(priorRank.tier)
 

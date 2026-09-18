@@ -3,10 +3,8 @@ import { useSessionLog } from '@domains/seance-active/hooks/use-session-log'
 import { useSessions } from '@domains/seances/hooks/use-sessions'
 import { useWeekPlan } from '@domains/seances/hooks/use-week-plan'
 import { buildExercisePerformanceIndex } from '@domains/progression/utils/build-exercise-performance-index'
-import {
-  computeImprovementScore,
-  computeRankFromScore,
-} from '@domains/progression/utils/compute-rank'
+import { computeExerciseRank, rankFromScore } from '@domains/progression/utils/compute-rank'
+import { useBodyWeight } from '@domains/profil/hooks/use-body-weight'
 import { getSubLevelRoman } from '@domains/progression/utils/get-sub-level-roman'
 import { getTierLabel } from '@domains/progression/utils/get-tier-label'
 import { useVolumeDistribution } from '@domains/progression/hooks/use-volume-distribution'
@@ -29,6 +27,7 @@ export const useHomeOverview = () => {
   const { sessions } = useSessions()
   const { getAssignment } = useWeekPlan()
   const { sessionLog } = useSessionLog()
+  const { bodyWeightKg } = useBodyWeight()
   const { musclesUnderTarget } = useVolumeDistribution()
   const [postureValidated, setPostureValidated] = useLocalStorageState(
     `home/posture-routine-validated/${todayIso}`,
@@ -79,9 +78,12 @@ export const useHomeOverview = () => {
         thumbnailUrl: lastExerciseEntry.thumbnailUrl,
         rankLabel: (() => {
           const performance = performanceIndex.get(lastExerciseEntry.libraryExerciseId)
-          const rank = computeRankFromScore(
-            computeImprovementScore((performance?.points ?? []).map((p) => p.value)),
-          )
+          const rank =
+            computeExerciseRank(
+              lastExerciseEntry.libraryExerciseId,
+              (performance?.points ?? []).map((point) => point.bestSet),
+              bodyWeightKg,
+            ) ?? rankFromScore(0)
 
           return `${getTierLabel(rank.tier)} ${getSubLevelRoman(rank.subLevel)}`
         })(),

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { RankAvatar } from '../../atoms/rank-avatar'
 import { TierProgressBar } from '../../atoms/tier-progress-bar'
+import { getNextTargetRemainingKey } from '../../utils/get-next-target-copy'
 import { getSubLevelRoman } from '../../utils/get-sub-level-roman'
 import type { RankItemCardProps } from './rank-item-card.types'
 import './rank-item-card.scss'
@@ -26,12 +27,9 @@ export const RankItemCard = ({ item, onClick }: RankItemCardProps) => {
       ) : (
         item.nextRankTarget && (
           <span className="rank-item-card__hint">
-            {t(
-              item.nextRankTarget.unit === 'kg'
-                ? 'rank.board.remainingWeighted'
-                : 'rank.board.remainingBodyweight',
-              { value: item.nextRankTarget.remaining },
-            )}
+            {t(getNextTargetRemainingKey(item.nextRankTarget), {
+              value: item.nextRankTarget.remaining,
+            })}
           </span>
         )
       )}
