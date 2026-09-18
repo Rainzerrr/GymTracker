@@ -1,0 +1,163 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.muscle-detail-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.muscle-detail-sheet__hero {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.muscle-detail-sheet__figures {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-xs;
+}
+
+.muscle-detail-sheet__value {
+  font-family: $font-family-heading;
+  font-size: $font-size-5xl;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+}
+
+.muscle-detail-sheet__target {
+  color: $color-text-muted;
+  font-size: $font-size-md;
+}
+
+.muscle-detail-sheet__bar {
+  height: 0.375rem;
+  border-radius: $radius-pill;
+  background-color: $color-border-strong;
+  overflow: hidden;
+}
+
+.muscle-detail-sheet__bar-fill {
+  height: 100%;
+  border-radius: $radius-pill;
+  background-color: $color-accent;
+  transition: width 0.3s ease;
+}
+
+.muscle-detail-sheet__bar-fill--low {
+  opacity: 0.45;
+}
+
+.muscle-detail-sheet__bar-fill--medium {
+  opacity: 0.65;
+}
+
+.muscle-detail-sheet__bar-fill--high {
+  opacity: 0.85;
+}
+
+.muscle-detail-sheet__status {
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}
+
+.muscle-detail-sheet__status--target {
+  color: $color-accent;
+}
+
+.muscle-detail-sheet__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-sm;
+}
+
+.muscle-detail-sheet__split-item {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3xs;
+  border: 1px solid $color-border-medium;
+  border-radius: $radius-lg;
+  background-color: $color-surface-strong;
+  padding: $spacing-sm $spacing-md;
+}
+
+.muscle-detail-sheet__split-value {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+}
+
+.muscle-detail-sheet__split-label {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+}
+
+.muscle-detail-sheet__section-title {
+  margin: 0 0 $spacing-2xs;
+  color: $color-text-dim;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-regular;
+}
+
+.muscle-detail-sheet__empty {
+  margin: 0;
+  padding: $spacing-md 0;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}
+
+.muscle-detail-sheet__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.muscle-detail-sheet__row {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm 0;
+  border-top: 1px solid $color-border;
+}
+
+.muscle-detail-sheet__row-text {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: $spacing-3xs;
+}
+
+.muscle-detail-sheet__row-name {
+  overflow: hidden;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.muscle-detail-sheet__row-sets {
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+}
+
+.muscle-detail-sheet__tag {
+  flex-shrink: 0;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-pill;
+  padding: 0.125rem $spacing-xs;
+  color: $color-text-muted;
+  font-size: $font-size-2xs;
+}
+
+.muscle-detail-sheet__tag--direct {
+  border-color: transparent;
+  background-color: $color-accent-wash;
+  color: $color-accent;
+}
+
+.muscle-detail-sheet__note {
+  margin: 0;
+  color: $color-text-dim;
+  font-size: $font-size-xs;
+}

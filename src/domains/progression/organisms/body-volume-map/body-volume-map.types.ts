@@ -1,16 +1,21 @@
-import type { MuscleGroup } from '@domains/seances/types/muscle-group'
-import type { VolumeStatus } from '../../types/volume-status'
+import type { Muscle } from '@domains/seances/types/muscle'
+import type { MuscleVolume } from '../../types/volume-status'
 
 export type BodyView = 'front' | 'back'
 
-export type MuscleVolumeDisplay = {
-  muscleGroup: MuscleGroup
+export type MuscleVolumeDisplay = MuscleVolume & {
   label: string
-  status: VolumeStatus
+}
+
+export type MuscleRegionDisplay = {
+  label: string
+  muscles: MuscleVolumeDisplay[]
 }
 
 export type BodyVolumeMapProps = {
   bodyView: BodyView
   onBodyViewChange: (view: BodyView) => void
-  muscles: MuscleVolumeDisplay[]
+  regions: MuscleRegionDisplay[]
+  selectedMuscle: Muscle | null
+  onSelectMuscle: (muscle: Muscle) => void
 }

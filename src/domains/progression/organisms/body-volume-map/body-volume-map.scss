@@ -20,14 +20,21 @@
 
 .body-volume-map__legend {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: $spacing-md;
+  gap: $spacing-sm;
   color: $color-text-muted;
   font-size: $font-size-xs;
 }
 
-.body-volume-map__legend-item {
+.body-volume-map__legend-scale {
   display: flex;
   align-items: center;
-  gap: $spacing-2xs;
+  gap: $spacing-3xs;
+}
+
+.body-volume-map__row-trailing {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
 }

@@ -16,10 +16,27 @@
   fill: $color-border-strong;
 }
 
-.body-figure__zone--under {
-  fill: $color-accent-soft;
+.body-figure__zone--low {
+  fill: $color-volume-low;
+}
+
+.body-figure__zone--medium {
+  fill: $color-volume-medium;
+}
+
+.body-figure__zone--high {
+  fill: $color-volume-high;
 }
 
 .body-figure__zone--target {
   fill: $color-accent;
+}
+
+.body-figure__zone--selectable {
+  cursor: pointer;
+}
+
+.body-figure__zone--selected {
+  stroke: $color-text;
+  stroke-width: 6;
 }

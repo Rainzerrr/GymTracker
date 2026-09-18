@@ -1,9 +1,12 @@
 import { useSessionLog } from '@domains/seance-active/hooks/use-session-log'
-import { MUSCLE_GROUPS } from '@domains/seances/types/muscle-group'
+import { getLibraryExercise } from '@domains/seances/hooks/use-exercise-library'
+import type { Muscle } from '@domains/seances/types/muscle'
 import { getStartOfWeek } from '@shared/utils/date/get-start-of-week'
-import type { MuscleVolume, VolumeStatus } from '../types/volume-status'
+import { INDIRECT_SET_WEIGHT, MUSCLE_REGIONS, WEEKLY_TARGET_SETS } from '../data/muscle-config'
+import type { MuscleContribution, MuscleVolume } from '../types/volume-status'
+import { getVolumeStatus } from '../utils/get-volume-status'
 
-const WEEKLY_TARGET_SETS = 10
+const MUSCLES: Muscle[] = MUSCLE_REGIONS.flatMap(({ muscles }) => muscles)
 
 export const useVolumeDistribution = () => {
   const { sessionLog } = useSessionLog()
@@ -12,7 +15,27 @@ export const useVolumeDistribution = () => {
   const endOfWeek = new Date(startOfWeek)
   endOfWeek.setDate(endOfWeek.getDate() + 7)
 
-  const setsByMuscle = new Map<string, number>()
+  const contributionsByMuscle = new Map<Muscle, Map<string, MuscleContribution>>()
+
+  const addContribution = (
+    muscle: Muscle,
+    exercise: { libraryExerciseId: string; name: string; thumbnailUrl: string },
+    sets: number,
+    isDirect: boolean,
+  ) => {
+    const contributions = contributionsByMuscle.get(muscle) ?? new Map<string, MuscleContribution>()
+    const existing = contributions.get(exercise.libraryExerciseId)
+
+    contributions.set(exercise.libraryExerciseId, {
+      exerciseId: exercise.libraryExerciseId,
+      name: exercise.name,
+      thumbnailUrl: exercise.thumbnailUrl,
+      sets: (existing?.sets ?? 0) + sets,
+      isDirect,
+    })
+    contributionsByMuscle.set(muscle, contributions)
+  }
+
   sessionLog
     .filter((entry) => {
       const completedAt = new Date(entry.completedAt)
@@ -21,19 +44,46 @@ export const useVolumeDistribution = () => {
     .forEach((entry) => {
       entry.exercises.forEach((exercise) => {
         const sets = exercise.sets.filter((set) => set.reps > 0).length
-        setsByMuscle.set(exercise.muscleGroup, (setsByMuscle.get(exercise.muscleGroup) ?? 0) + sets)
+        const libraryExercise = getLibraryExercise(exercise.libraryExerciseId)
+
+        if (sets === 0 || !libraryExercise) {
+          return
+        }
+
+        libraryExercise.primaryMuscles.forEach((muscle) =>
+          addContribution(muscle, exercise, sets, true),
+        )
+        libraryExercise.secondaryMuscles.forEach((muscle) =>
+          addContribution(muscle, exercise, sets, false),
+        )
       })
     })
 
-  const muscleVolumes: MuscleVolume[] = MUSCLE_GROUPS.map((muscleGroup) => {
-    const sets = setsByMuscle.get(muscleGroup) ?? 0
-    const status: VolumeStatus =
-      sets === 0 ? 'none' : sets < WEEKLY_TARGET_SETS ? 'under' : 'target'
+  const muscleVolumes: MuscleVolume[] = MUSCLES.map((muscle) => {
+    const contributions = [...(contributionsByMuscle.get(muscle)?.values() ?? [])].sort(
+      (a, b) => Number(b.isDirect) - Number(a.isDirect) || b.sets - a.sets,
+    )
+    const directSets = contributions.filter((c) => c.isDirect).reduce((sum, c) => sum + c.sets, 0)
+    const indirectSets = contributions
+      .filter((c) => !c.isDirect)
+      .reduce((sum, c) => sum + c.sets, 0)
+    const effectiveSets = directSets + indirectSets * INDIRECT_SET_WEIGHT
+    const targetSets = WEEKLY_TARGET_SETS[muscle]
 
-    return { muscleGroup, status }
+    return {
+      muscle,
+      status: getVolumeStatus(effectiveSets, targetSets),
+      directSets,
+      indirectSets,
+      effectiveSets,
+      targetSets,
+      contributions,
+    }
   })
 
-  const musclesUnderTarget = muscleVolumes.filter((muscle) => muscle.status === 'under').length
+  const musclesUnderTarget = muscleVolumes.filter(
+    ({ status }) => status !== 'none' && status !== 'target',
+  ).length
 
   return { muscleVolumes, musclesUnderTarget }
 }

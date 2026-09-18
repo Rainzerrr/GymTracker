@@ -25,8 +25,56 @@
     },
     "legend": {
       "none": "Non travaillé",
-      "under": "En dessous",
-      "target": "Dans la cible"
+      "target": "Objectif atteint"
+    },
+    "status": {
+      "none": "Non travaillé",
+      "low": "Volume faible",
+      "medium": "En progression",
+      "high": "Presque à l'objectif",
+      "target": "Objectif atteint"
+    },
+    "regions": {
+      "chest": "Poitrine",
+      "shoulders": "Épaules",
+      "back": "Dos",
+      "arms": "Bras",
+      "core": "Tronc",
+      "legs": "Jambes"
+    },
+    "muscles": {
+      "pectoraux": "Pectoraux",
+      "delto_anterieur": "Deltoïde antérieur",
+      "delto_lateral": "Deltoïde latéral",
+      "delto_posterieur": "Deltoïde postérieur",
+      "trapezes": "Trapèzes",
+      "dorsaux": "Grand dorsal",
+      "haut_dos": "Haut du dos",
+      "lombaires": "Lombaires",
+      "biceps": "Biceps",
+      "triceps": "Triceps",
+      "avant_bras": "Avant-bras",
+      "abdos": "Abdominaux",
+      "obliques": "Obliques",
+      "quadriceps": "Quadriceps",
+      "ischios": "Ischio-jambiers",
+      "fessiers": "Fessiers",
+      "adducteurs": "Adducteurs",
+      "mollets": "Mollets"
+    },
+    "listSets": "{{sets}} / {{target}}",
+    "detail": {
+      "eyebrow": "Cette semaine",
+      "target": "/ {{target}} séries",
+      "direct": "Séries directes",
+      "indirect": "Séries indirectes",
+      "exercises": "Exercices",
+      "empty": "Aucune série sur ce muscle cette semaine.",
+      "sets_one": "{{count}} série",
+      "sets_other": "{{count}} séries",
+      "tagDirect": "Direct",
+      "tagIndirect": "Indirect",
+      "note": "Une série indirecte compte pour {{weight}} série."
     }
   },
   "rank": {

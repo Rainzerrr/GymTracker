@@ -12,8 +12,16 @@
   background-color: $color-border-strong;
 }
 
-.status-dot--under {
-  background-color: $color-accent-soft;
+.status-dot--low {
+  background-color: $color-volume-low;
+}
+
+.status-dot--medium {
+  background-color: $color-volume-medium;
+}
+
+.status-dot--high {
+  background-color: $color-volume-high;
 }
 
 .status-dot--target {

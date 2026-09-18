@@ -5,7 +5,9 @@
     "muscleGroup": "quadriceps",
     "movement": "legs",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/squat-barbell.jpg"
+    "thumbnailUrl": "/images/exercises/squat-barbell.jpg",
+    "primaryMuscles": ["quadriceps", "fessiers"],
+    "secondaryMuscles": ["adducteurs", "lombaires"]
   },
   {
     "id": "presse-a-cuisses",
@@ -13,7 +15,9 @@
     "muscleGroup": "quadriceps",
     "movement": "legs",
     "equipment": "Machine",
-    "thumbnailUrl": "/images/exercises/presse-cuisses.jpg"
+    "thumbnailUrl": "/images/exercises/presse-cuisses.jpg",
+    "primaryMuscles": ["quadriceps"],
+    "secondaryMuscles": ["fessiers", "adducteurs"]
   },
   {
     "id": "leg-extension",
@@ -21,7 +25,9 @@
     "muscleGroup": "quadriceps",
     "movement": "legs",
     "equipment": "Machine",
-    "thumbnailUrl": "/images/exercises/leg-extension.jpg"
+    "thumbnailUrl": "/images/exercises/leg-extension.jpg",
+    "primaryMuscles": ["quadriceps"],
+    "secondaryMuscles": []
   },
   {
     "id": "solevele-terre-roumain",
@@ -29,7 +35,9 @@
     "muscleGroup": "ischios",
     "movement": "legs",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/solevele-terre-roumain.jpg"
+    "thumbnailUrl": "/images/exercises/solevele-terre-roumain.jpg",
+    "primaryMuscles": ["ischios", "fessiers"],
+    "secondaryMuscles": ["lombaires", "avant_bras", "trapezes"]
   },
   {
     "id": "leg-curl-allonge",
@@ -37,7 +45,9 @@
     "muscleGroup": "ischios",
     "movement": "legs",
     "equipment": "Machine",
-    "thumbnailUrl": "/images/exercises/leg-curl.jpg"
+    "thumbnailUrl": "/images/exercises/leg-curl.jpg",
+    "primaryMuscles": ["ischios"],
+    "secondaryMuscles": ["mollets"]
   },
   {
     "id": "hip-thrust-barre",
@@ -45,7 +55,9 @@
     "muscleGroup": "ischios",
     "movement": "legs",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/hip-thrust.jpg"
+    "thumbnailUrl": "/images/exercises/hip-thrust.jpg",
+    "primaryMuscles": ["fessiers"],
+    "secondaryMuscles": ["ischios", "adducteurs"]
   },
   {
     "id": "mollets-debout",
@@ -53,7 +65,9 @@
     "muscleGroup": "ischios",
     "movement": "legs",
     "equipment": "Machine",
-    "thumbnailUrl": "/images/exercises/mollets-debout.jpg"
+    "thumbnailUrl": "/images/exercises/mollets-debout.jpg",
+    "primaryMuscles": ["mollets"],
+    "secondaryMuscles": []
   },
   {
     "id": "tractions-supination",
@@ -61,7 +75,9 @@
     "muscleGroup": "dos",
     "movement": "pull",
     "equipment": "Barre de traction",
-    "thumbnailUrl": "/images/exercises/tractions-supination.jpg"
+    "thumbnailUrl": "/images/exercises/tractions-supination.jpg",
+    "primaryMuscles": ["dorsaux", "biceps"],
+    "secondaryMuscles": ["haut_dos", "avant_bras"]
   },
   {
     "id": "rowing-poulie-basse",
@@ -69,7 +85,9 @@
     "muscleGroup": "dos",
     "movement": "pull",
     "equipment": "Poulie",
-    "thumbnailUrl": "/images/exercises/rowing-poulie-basse.jpg"
+    "thumbnailUrl": "/images/exercises/rowing-poulie-basse.jpg",
+    "primaryMuscles": ["dorsaux", "haut_dos"],
+    "secondaryMuscles": ["biceps", "delto_posterieur", "lombaires"]
   },
   {
     "id": "rowing-barre",
@@ -77,7 +95,9 @@
     "muscleGroup": "dos",
     "movement": "pull",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/rowing-barre.jpg"
+    "thumbnailUrl": "/images/exercises/rowing-barre.jpg",
+    "primaryMuscles": ["dorsaux", "haut_dos"],
+    "secondaryMuscles": ["biceps", "delto_posterieur", "lombaires", "avant_bras"]
   },
   {
     "id": "developpe-incline-halteres",
@@ -85,7 +105,9 @@
     "muscleGroup": "pectoraux",
     "movement": "push",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/developpe-incline-halteres.jpg"
+    "thumbnailUrl": "/images/exercises/developpe-incline-halteres.jpg",
+    "primaryMuscles": ["pectoraux", "delto_anterieur"],
+    "secondaryMuscles": ["triceps"]
   },
   {
     "id": "developpe-couche-barre",
@@ -93,7 +115,9 @@
     "muscleGroup": "pectoraux",
     "movement": "push",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/developpe-couche.jpg"
+    "thumbnailUrl": "/images/exercises/developpe-couche.jpg",
+    "primaryMuscles": ["pectoraux"],
+    "secondaryMuscles": ["delto_anterieur", "triceps"]
   },
   {
     "id": "dips-lestes",
@@ -101,7 +125,9 @@
     "muscleGroup": "pectoraux",
     "movement": "push",
     "equipment": "Lest",
-    "thumbnailUrl": "/images/exercises/dips-lestes.jpg"
+    "thumbnailUrl": "/images/exercises/dips-lestes.jpg",
+    "primaryMuscles": ["pectoraux", "triceps"],
+    "secondaryMuscles": ["delto_anterieur"]
   },
   {
     "id": "elevations-laterales",
@@ -109,7 +135,9 @@
     "muscleGroup": "epaules",
     "movement": "push",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/elevations-laterales.jpg"
+    "thumbnailUrl": "/images/exercises/elevations-laterales.jpg",
+    "primaryMuscles": ["delto_lateral"],
+    "secondaryMuscles": ["trapezes"]
   },
   {
     "id": "developpe-militaire-barre",
@@ -117,7 +145,9 @@
     "muscleGroup": "epaules",
     "movement": "push",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/developpe-militaire.jpg"
+    "thumbnailUrl": "/images/exercises/developpe-militaire.jpg",
+    "primaryMuscles": ["delto_anterieur", "delto_lateral"],
+    "secondaryMuscles": ["triceps", "trapezes"]
   },
   {
     "id": "face-pull-poulie",
@@ -125,7 +155,9 @@
     "muscleGroup": "epaules",
     "movement": "push",
     "equipment": "Poulie",
-    "thumbnailUrl": "/images/exercises/face-pull.jpg"
+    "thumbnailUrl": "/images/exercises/face-pull.jpg",
+    "primaryMuscles": ["delto_posterieur", "haut_dos"],
+    "secondaryMuscles": ["trapezes"]
   },
   {
     "id": "curl-barre",
@@ -133,7 +165,9 @@
     "muscleGroup": "bras",
     "movement": "pull",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/curl-barre.jpg"
+    "thumbnailUrl": "/images/exercises/curl-barre.jpg",
+    "primaryMuscles": ["biceps"],
+    "secondaryMuscles": ["avant_bras"]
   },
   {
     "id": "extension-triceps-poulie",
@@ -141,7 +175,9 @@
     "muscleGroup": "bras",
     "movement": "push",
     "equipment": "Poulie",
-    "thumbnailUrl": "/images/exercises/extension-triceps.jpg"
+    "thumbnailUrl": "/images/exercises/extension-triceps.jpg",
+    "primaryMuscles": ["triceps"],
+    "secondaryMuscles": []
   },
   {
     "id": "planche",
@@ -149,7 +185,9 @@
     "muscleGroup": "abdos",
     "movement": "core",
     "equipment": "Poids du corps",
-    "thumbnailUrl": "/images/exercises/planche.jpg"
+    "thumbnailUrl": "/images/exercises/planche.jpg",
+    "primaryMuscles": ["abdos"],
+    "secondaryMuscles": ["obliques", "lombaires", "delto_anterieur"]
   },
   {
     "id": "crunch-leste",
@@ -157,7 +195,9 @@
     "muscleGroup": "abdos",
     "movement": "core",
     "equipment": "Lest",
-    "thumbnailUrl": "/images/exercises/crunch-leste.jpg"
+    "thumbnailUrl": "/images/exercises/crunch-leste.jpg",
+    "primaryMuscles": ["abdos"],
+    "secondaryMuscles": ["obliques"]
   },
   {
     "id": "squat-gobelet",
@@ -165,7 +205,9 @@
     "muscleGroup": "quadriceps",
     "movement": "legs",
     "equipment": "Kettlebell",
-    "thumbnailUrl": "/images/exercises/squat-gobelet.jpg"
+    "thumbnailUrl": "/images/exercises/squat-gobelet.jpg",
+    "primaryMuscles": ["quadriceps"],
+    "secondaryMuscles": ["fessiers", "abdos"]
   },
   {
     "id": "squat-avant-barre",
@@ -173,7 +215,9 @@
     "muscleGroup": "quadriceps",
     "movement": "legs",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/squat-avant-barre.jpg"
+    "thumbnailUrl": "/images/exercises/squat-avant-barre.jpg",
+    "primaryMuscles": ["quadriceps"],
+    "secondaryMuscles": ["fessiers", "abdos", "haut_dos"]
   },
   {
     "id": "fentes-halteres",
@@ -181,7 +225,9 @@
     "muscleGroup": "quadriceps",
     "movement": "legs",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/fentes-halteres.jpg"
+    "thumbnailUrl": "/images/exercises/fentes-halteres.jpg",
+    "primaryMuscles": ["quadriceps", "fessiers"],
+    "secondaryMuscles": ["ischios", "adducteurs"]
   },
   {
     "id": "fentes-bulgares",
@@ -189,7 +235,9 @@
     "muscleGroup": "quadriceps",
     "movement": "legs",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/fentes-bulgares.jpg"
+    "thumbnailUrl": "/images/exercises/fentes-bulgares.jpg",
+    "primaryMuscles": ["quadriceps", "fessiers"],
+    "secondaryMuscles": ["adducteurs", "ischios"]
   },
   {
     "id": "squat-hack-machine",
@@ -197,7 +245,9 @@
     "muscleGroup": "quadriceps",
     "movement": "legs",
     "equipment": "Machine",
-    "thumbnailUrl": "/images/exercises/squat-hack-machine.jpg"
+    "thumbnailUrl": "/images/exercises/squat-hack-machine.jpg",
+    "primaryMuscles": ["quadriceps"],
+    "secondaryMuscles": ["fessiers"]
   },
   {
     "id": "step-up-banc",
@@ -205,7 +255,9 @@
     "muscleGroup": "quadriceps",
     "movement": "legs",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/step-up-banc.jpg"
+    "thumbnailUrl": "/images/exercises/step-up-banc.jpg",
+    "primaryMuscles": ["quadriceps", "fessiers"],
+    "secondaryMuscles": ["mollets"]
   },
   {
     "id": "squat-poids-du-corps",
@@ -213,7 +265,9 @@
     "muscleGroup": "quadriceps",
     "movement": "legs",
     "equipment": "Poids du corps",
-    "thumbnailUrl": "/images/exercises/squat-poids-du-corps.jpg"
+    "thumbnailUrl": "/images/exercises/squat-poids-du-corps.jpg",
+    "primaryMuscles": ["quadriceps"],
+    "secondaryMuscles": ["fessiers"]
   },
   {
     "id": "squat-sumo-haltere",
@@ -221,7 +275,9 @@
     "muscleGroup": "quadriceps",
     "movement": "legs",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/squat-sumo-haltere.jpg"
+    "thumbnailUrl": "/images/exercises/squat-sumo-haltere.jpg",
+    "primaryMuscles": ["quadriceps", "adducteurs", "fessiers"],
+    "secondaryMuscles": []
   },
   {
     "id": "chaise-murale",
@@ -229,7 +285,9 @@
     "muscleGroup": "quadriceps",
     "movement": "legs",
     "equipment": "Poids du corps",
-    "thumbnailUrl": "/images/exercises/chaise-murale.jpg"
+    "thumbnailUrl": "/images/exercises/chaise-murale.jpg",
+    "primaryMuscles": ["quadriceps"],
+    "secondaryMuscles": ["fessiers"]
   },
   {
     "id": "squat-smith-machine",
@@ -237,7 +295,9 @@
     "muscleGroup": "quadriceps",
     "movement": "legs",
     "equipment": "Machine",
-    "thumbnailUrl": "/images/exercises/squat-smith-machine.jpg"
+    "thumbnailUrl": "/images/exercises/squat-smith-machine.jpg",
+    "primaryMuscles": ["quadriceps", "fessiers"],
+    "secondaryMuscles": ["adducteurs"]
   },
   {
     "id": "fente-arriere-halteres",
@@ -245,7 +305,9 @@
     "muscleGroup": "quadriceps",
     "movement": "legs",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/fente-arriere-halteres.jpg"
+    "thumbnailUrl": "/images/exercises/fente-arriere-halteres.jpg",
+    "primaryMuscles": ["fessiers", "quadriceps"],
+    "secondaryMuscles": ["ischios", "adducteurs"]
   },
   {
     "id": "souleve-terre-jambes-tendues",
@@ -253,7 +315,9 @@
     "muscleGroup": "ischios",
     "movement": "legs",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/souleve-terre-jambes-tendues.jpg"
+    "thumbnailUrl": "/images/exercises/souleve-terre-jambes-tendues.jpg",
+    "primaryMuscles": ["ischios", "fessiers"],
+    "secondaryMuscles": ["lombaires", "avant_bras"]
   },
   {
     "id": "leg-curl-assis-machine",
@@ -261,7 +325,9 @@
     "muscleGroup": "ischios",
     "movement": "legs",
     "equipment": "Machine",
-    "thumbnailUrl": "/images/exercises/leg-curl-assis-machine.jpg"
+    "thumbnailUrl": "/images/exercises/leg-curl-assis-machine.jpg",
+    "primaryMuscles": ["ischios"],
+    "secondaryMuscles": ["mollets"]
   },
   {
     "id": "good-morning-barre",
@@ -269,7 +335,9 @@
     "muscleGroup": "ischios",
     "movement": "legs",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/good-morning-barre.jpg"
+    "thumbnailUrl": "/images/exercises/good-morning-barre.jpg",
+    "primaryMuscles": ["ischios", "lombaires"],
+    "secondaryMuscles": ["fessiers"]
   },
   {
     "id": "pont-fessier-halteres",
@@ -277,7 +345,9 @@
     "muscleGroup": "ischios",
     "movement": "legs",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/pont-fessier-halteres.jpg"
+    "thumbnailUrl": "/images/exercises/pont-fessier-halteres.jpg",
+    "primaryMuscles": ["fessiers"],
+    "secondaryMuscles": ["ischios"]
   },
   {
     "id": "mollets-assis-machine",
@@ -285,7 +355,9 @@
     "muscleGroup": "ischios",
     "movement": "legs",
     "equipment": "Machine",
-    "thumbnailUrl": "/images/exercises/mollets-assis-machine.jpg"
+    "thumbnailUrl": "/images/exercises/mollets-assis-machine.jpg",
+    "primaryMuscles": ["mollets"],
+    "secondaryMuscles": []
   },
   {
     "id": "kick-back-poulie",
@@ -293,7 +365,9 @@
     "muscleGroup": "ischios",
     "movement": "legs",
     "equipment": "Poulie",
-    "thumbnailUrl": "/images/exercises/kick-back-poulie.jpg"
+    "thumbnailUrl": "/images/exercises/kick-back-poulie.jpg",
+    "primaryMuscles": ["fessiers"],
+    "secondaryMuscles": ["ischios"]
   },
   {
     "id": "leg-curl-debout-poulie",
@@ -301,7 +375,9 @@
     "muscleGroup": "ischios",
     "movement": "legs",
     "equipment": "Poulie",
-    "thumbnailUrl": "/images/exercises/leg-curl-debout-poulie.jpg"
+    "thumbnailUrl": "/images/exercises/leg-curl-debout-poulie.jpg",
+    "primaryMuscles": ["ischios"],
+    "secondaryMuscles": []
   },
   {
     "id": "souleve-terre-unilateral-haltere",
@@ -309,7 +385,9 @@
     "muscleGroup": "ischios",
     "movement": "legs",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/souleve-terre-unilateral-haltere.jpg"
+    "thumbnailUrl": "/images/exercises/souleve-terre-unilateral-haltere.jpg",
+    "primaryMuscles": ["ischios", "fessiers"],
+    "secondaryMuscles": ["lombaires", "abdos"]
   },
   {
     "id": "tirage-vertical-poulie",
@@ -317,7 +395,9 @@
     "muscleGroup": "dos",
     "movement": "pull",
     "equipment": "Poulie",
-    "thumbnailUrl": "/images/exercises/tirage-vertical-poulie.jpg"
+    "thumbnailUrl": "/images/exercises/tirage-vertical-poulie.jpg",
+    "primaryMuscles": ["dorsaux"],
+    "secondaryMuscles": ["biceps", "haut_dos"]
   },
   {
     "id": "tirage-horizontal-machine",
@@ -325,7 +405,9 @@
     "muscleGroup": "dos",
     "movement": "pull",
     "equipment": "Machine",
-    "thumbnailUrl": "/images/exercises/tirage-horizontal-machine.jpg"
+    "thumbnailUrl": "/images/exercises/tirage-horizontal-machine.jpg",
+    "primaryMuscles": ["dorsaux", "haut_dos"],
+    "secondaryMuscles": ["biceps", "delto_posterieur"]
   },
   {
     "id": "rowing-halteres-un-bras",
@@ -333,7 +415,9 @@
     "muscleGroup": "dos",
     "movement": "pull",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/rowing-halteres-un-bras.jpg"
+    "thumbnailUrl": "/images/exercises/rowing-halteres-un-bras.jpg",
+    "primaryMuscles": ["dorsaux"],
+    "secondaryMuscles": ["haut_dos", "biceps", "delto_posterieur"]
   },
   {
     "id": "tractions-pronation",
@@ -341,7 +425,9 @@
     "muscleGroup": "dos",
     "movement": "pull",
     "equipment": "Barre de traction",
-    "thumbnailUrl": "/images/exercises/tractions-pronation.jpg"
+    "thumbnailUrl": "/images/exercises/tractions-pronation.jpg",
+    "primaryMuscles": ["dorsaux"],
+    "secondaryMuscles": ["biceps", "haut_dos", "avant_bras"]
   },
   {
     "id": "souleve-terre-classique-barre",
@@ -349,7 +435,9 @@
     "muscleGroup": "dos",
     "movement": "pull",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/souleve-terre-classique-barre.jpg"
+    "thumbnailUrl": "/images/exercises/souleve-terre-classique-barre.jpg",
+    "primaryMuscles": ["fessiers", "ischios", "lombaires"],
+    "secondaryMuscles": ["trapezes", "dorsaux", "quadriceps", "avant_bras"]
   },
   {
     "id": "rowing-t-bar",
@@ -357,7 +445,9 @@
     "muscleGroup": "dos",
     "movement": "pull",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/rowing-t-bar.jpg"
+    "thumbnailUrl": "/images/exercises/rowing-t-bar.jpg",
+    "primaryMuscles": ["dorsaux", "haut_dos"],
+    "secondaryMuscles": ["biceps", "lombaires", "delto_posterieur"]
   },
   {
     "id": "pullover-halteres",
@@ -365,7 +455,9 @@
     "muscleGroup": "dos",
     "movement": "pull",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/pullover-halteres.jpg"
+    "thumbnailUrl": "/images/exercises/pullover-halteres.jpg",
+    "primaryMuscles": ["dorsaux"],
+    "secondaryMuscles": ["pectoraux", "triceps"]
   },
   {
     "id": "extension-lombaires-banc",
@@ -373,7 +465,9 @@
     "muscleGroup": "dos",
     "movement": "pull",
     "equipment": "Poids du corps",
-    "thumbnailUrl": "/images/exercises/extension-lombaires-banc.jpg"
+    "thumbnailUrl": "/images/exercises/extension-lombaires-banc.jpg",
+    "primaryMuscles": ["lombaires"],
+    "secondaryMuscles": ["fessiers", "ischios"]
   },
   {
     "id": "tirage-prise-large-poulie",
@@ -381,7 +475,9 @@
     "muscleGroup": "dos",
     "movement": "pull",
     "equipment": "Poulie",
-    "thumbnailUrl": "/images/exercises/tirage-prise-large-poulie.jpg"
+    "thumbnailUrl": "/images/exercises/tirage-prise-large-poulie.jpg",
+    "primaryMuscles": ["dorsaux"],
+    "secondaryMuscles": ["biceps", "haut_dos", "delto_posterieur"]
   },
   {
     "id": "tirage-prise-serree-poulie",
@@ -389,7 +485,9 @@
     "muscleGroup": "dos",
     "movement": "pull",
     "equipment": "Poulie",
-    "thumbnailUrl": "/images/exercises/tirage-prise-serree-poulie.jpg"
+    "thumbnailUrl": "/images/exercises/tirage-prise-serree-poulie.jpg",
+    "primaryMuscles": ["dorsaux"],
+    "secondaryMuscles": ["biceps", "haut_dos"]
   },
   {
     "id": "souleve-terre-trap-bar",
@@ -397,7 +495,9 @@
     "muscleGroup": "dos",
     "movement": "pull",
     "equipment": "Barre hexagonale",
-    "thumbnailUrl": "/images/exercises/souleve-terre-trap-bar.jpg"
+    "thumbnailUrl": "/images/exercises/souleve-terre-trap-bar.jpg",
+    "primaryMuscles": ["fessiers", "quadriceps"],
+    "secondaryMuscles": ["ischios", "lombaires", "trapezes", "avant_bras"]
   },
   {
     "id": "developpe-couche-halteres",
@@ -405,7 +505,9 @@
     "muscleGroup": "pectoraux",
     "movement": "push",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/developpe-couche-halteres.jpg"
+    "thumbnailUrl": "/images/exercises/developpe-couche-halteres.jpg",
+    "primaryMuscles": ["pectoraux"],
+    "secondaryMuscles": ["delto_anterieur", "triceps"]
   },
   {
     "id": "developpe-incline-barre",
@@ -413,7 +515,9 @@
     "muscleGroup": "pectoraux",
     "movement": "push",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/developpe-incline-barre.jpg"
+    "thumbnailUrl": "/images/exercises/developpe-incline-barre.jpg",
+    "primaryMuscles": ["pectoraux", "delto_anterieur"],
+    "secondaryMuscles": ["triceps"]
   },
   {
     "id": "ecarte-couche-halteres",
@@ -421,7 +525,9 @@
     "muscleGroup": "pectoraux",
     "movement": "push",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/ecarte-couche-halteres.jpg"
+    "thumbnailUrl": "/images/exercises/ecarte-couche-halteres.jpg",
+    "primaryMuscles": ["pectoraux"],
+    "secondaryMuscles": ["delto_anterieur"]
   },
   {
     "id": "ecarte-poulie-vis-a-vis",
@@ -429,7 +535,9 @@
     "muscleGroup": "pectoraux",
     "movement": "push",
     "equipment": "Poulie",
-    "thumbnailUrl": "/images/exercises/ecarte-poulie-vis-a-vis.jpg"
+    "thumbnailUrl": "/images/exercises/ecarte-poulie-vis-a-vis.jpg",
+    "primaryMuscles": ["pectoraux"],
+    "secondaryMuscles": ["delto_anterieur"]
   },
   {
     "id": "pompes",
@@ -437,7 +545,9 @@
     "muscleGroup": "pectoraux",
     "movement": "push",
     "equipment": "Poids du corps",
-    "thumbnailUrl": "/images/exercises/pompes.jpg"
+    "thumbnailUrl": "/images/exercises/pompes.jpg",
+    "primaryMuscles": ["pectoraux"],
+    "secondaryMuscles": ["delto_anterieur", "triceps", "abdos"]
   },
   {
     "id": "developpe-decline-barre",
@@ -445,7 +555,9 @@
     "muscleGroup": "pectoraux",
     "movement": "push",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/developpe-decline-barre.jpg"
+    "thumbnailUrl": "/images/exercises/developpe-decline-barre.jpg",
+    "primaryMuscles": ["pectoraux"],
+    "secondaryMuscles": ["triceps", "delto_anterieur"]
   },
   {
     "id": "butterfly-machine",
@@ -453,7 +565,9 @@
     "muscleGroup": "pectoraux",
     "movement": "push",
     "equipment": "Machine",
-    "thumbnailUrl": "/images/exercises/butterfly-machine.jpg"
+    "thumbnailUrl": "/images/exercises/butterfly-machine.jpg",
+    "primaryMuscles": ["pectoraux"],
+    "secondaryMuscles": ["delto_anterieur"]
   },
   {
     "id": "dips-poids-du-corps",
@@ -461,7 +575,9 @@
     "muscleGroup": "pectoraux",
     "movement": "push",
     "equipment": "Poids du corps",
-    "thumbnailUrl": "/images/exercises/dips-poids-du-corps.jpg"
+    "thumbnailUrl": "/images/exercises/dips-poids-du-corps.jpg",
+    "primaryMuscles": ["pectoraux", "triceps"],
+    "secondaryMuscles": ["delto_anterieur"]
   },
   {
     "id": "presse-pectoraux-machine",
@@ -469,7 +585,9 @@
     "muscleGroup": "pectoraux",
     "movement": "push",
     "equipment": "Machine",
-    "thumbnailUrl": "/images/exercises/presse-pectoraux-machine.jpg"
+    "thumbnailUrl": "/images/exercises/presse-pectoraux-machine.jpg",
+    "primaryMuscles": ["pectoraux"],
+    "secondaryMuscles": ["triceps", "delto_anterieur"]
   },
   {
     "id": "pompes-lestees",
@@ -477,7 +595,9 @@
     "muscleGroup": "pectoraux",
     "movement": "push",
     "equipment": "Lest",
-    "thumbnailUrl": "/images/exercises/pompes-lestees.jpg"
+    "thumbnailUrl": "/images/exercises/pompes-lestees.jpg",
+    "primaryMuscles": ["pectoraux"],
+    "secondaryMuscles": ["delto_anterieur", "triceps", "abdos"]
   },
   {
     "id": "developpe-couche-prise-serree-barre",
@@ -485,7 +605,9 @@
     "muscleGroup": "pectoraux",
     "movement": "push",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/developpe-couche-prise-serree-barre.jpg"
+    "thumbnailUrl": "/images/exercises/developpe-couche-prise-serree-barre.jpg",
+    "primaryMuscles": ["triceps", "pectoraux"],
+    "secondaryMuscles": ["delto_anterieur"]
   },
   {
     "id": "developpe-militaire-halteres",
@@ -493,7 +615,9 @@
     "muscleGroup": "epaules",
     "movement": "push",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/developpe-militaire-halteres.jpg"
+    "thumbnailUrl": "/images/exercises/developpe-militaire-halteres.jpg",
+    "primaryMuscles": ["delto_anterieur", "delto_lateral"],
+    "secondaryMuscles": ["triceps", "trapezes"]
   },
   {
     "id": "elevations-frontales-halteres",
@@ -501,7 +625,9 @@
     "muscleGroup": "epaules",
     "movement": "push",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/elevations-frontales-halteres.jpg"
+    "thumbnailUrl": "/images/exercises/elevations-frontales-halteres.jpg",
+    "primaryMuscles": ["delto_anterieur"],
+    "secondaryMuscles": ["delto_lateral", "pectoraux"]
   },
   {
     "id": "oiseau-halteres",
@@ -509,7 +635,9 @@
     "muscleGroup": "epaules",
     "movement": "push",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/oiseau-halteres.jpg"
+    "thumbnailUrl": "/images/exercises/oiseau-halteres.jpg",
+    "primaryMuscles": ["delto_posterieur"],
+    "secondaryMuscles": ["haut_dos", "trapezes"]
   },
   {
     "id": "rowing-menton-barre",
@@ -517,7 +645,9 @@
     "muscleGroup": "epaules",
     "movement": "push",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/rowing-menton-barre.jpg"
+    "thumbnailUrl": "/images/exercises/rowing-menton-barre.jpg",
+    "primaryMuscles": ["delto_lateral", "trapezes"],
+    "secondaryMuscles": ["biceps", "delto_anterieur"]
   },
   {
     "id": "arnold-press-halteres",
@@ -525,7 +655,9 @@
     "muscleGroup": "epaules",
     "movement": "push",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/arnold-press-halteres.jpg"
+    "thumbnailUrl": "/images/exercises/arnold-press-halteres.jpg",
+    "primaryMuscles": ["delto_anterieur", "delto_lateral"],
+    "secondaryMuscles": ["triceps"]
   },
   {
     "id": "elevations-laterales-poulie",
@@ -533,7 +665,9 @@
     "muscleGroup": "epaules",
     "movement": "push",
     "equipment": "Poulie",
-    "thumbnailUrl": "/images/exercises/elevations-laterales-poulie.jpg"
+    "thumbnailUrl": "/images/exercises/elevations-laterales-poulie.jpg",
+    "primaryMuscles": ["delto_lateral"],
+    "secondaryMuscles": []
   },
   {
     "id": "shrug-halteres",
@@ -541,7 +675,9 @@
     "muscleGroup": "epaules",
     "movement": "push",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/shrug-halteres.jpg"
+    "thumbnailUrl": "/images/exercises/shrug-halteres.jpg",
+    "primaryMuscles": ["trapezes"],
+    "secondaryMuscles": ["avant_bras"]
   },
   {
     "id": "developpe-militaire-machine",
@@ -549,7 +685,9 @@
     "muscleGroup": "epaules",
     "movement": "push",
     "equipment": "Machine",
-    "thumbnailUrl": "/images/exercises/developpe-militaire-machine.jpg"
+    "thumbnailUrl": "/images/exercises/developpe-militaire-machine.jpg",
+    "primaryMuscles": ["delto_anterieur", "delto_lateral"],
+    "secondaryMuscles": ["triceps"]
   },
   {
     "id": "elevations-laterales-machine",
@@ -557,7 +695,9 @@
     "muscleGroup": "epaules",
     "movement": "push",
     "equipment": "Machine",
-    "thumbnailUrl": "/images/exercises/elevations-laterales-machine.jpg"
+    "thumbnailUrl": "/images/exercises/elevations-laterales-machine.jpg",
+    "primaryMuscles": ["delto_lateral"],
+    "secondaryMuscles": []
   },
   {
     "id": "handstand-pushup-mur",
@@ -565,7 +705,9 @@
     "muscleGroup": "epaules",
     "movement": "push",
     "equipment": "Poids du corps",
-    "thumbnailUrl": "/images/exercises/handstand-pushup-mur.jpg"
+    "thumbnailUrl": "/images/exercises/handstand-pushup-mur.jpg",
+    "primaryMuscles": ["delto_anterieur"],
+    "secondaryMuscles": ["delto_lateral", "triceps", "trapezes"]
   },
   {
     "id": "curl-halteres-alterne",
@@ -573,7 +715,9 @@
     "muscleGroup": "bras",
     "movement": "pull",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/curl-halteres-alterne.jpg"
+    "thumbnailUrl": "/images/exercises/curl-halteres-alterne.jpg",
+    "primaryMuscles": ["biceps"],
+    "secondaryMuscles": ["avant_bras"]
   },
   {
     "id": "curl-marteau-halteres",
@@ -581,7 +725,9 @@
     "muscleGroup": "bras",
     "movement": "pull",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/curl-marteau-halteres.jpg"
+    "thumbnailUrl": "/images/exercises/curl-marteau-halteres.jpg",
+    "primaryMuscles": ["biceps", "avant_bras"],
+    "secondaryMuscles": []
   },
   {
     "id": "curl-pupitre-barre",
@@ -589,7 +735,9 @@
     "muscleGroup": "bras",
     "movement": "pull",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/curl-pupitre-barre.jpg"
+    "thumbnailUrl": "/images/exercises/curl-pupitre-barre.jpg",
+    "primaryMuscles": ["biceps"],
+    "secondaryMuscles": []
   },
   {
     "id": "curl-poulie-basse",
@@ -597,7 +745,9 @@
     "muscleGroup": "bras",
     "movement": "pull",
     "equipment": "Poulie",
-    "thumbnailUrl": "/images/exercises/curl-poulie-basse.jpg"
+    "thumbnailUrl": "/images/exercises/curl-poulie-basse.jpg",
+    "primaryMuscles": ["biceps"],
+    "secondaryMuscles": ["avant_bras"]
   },
   {
     "id": "extension-triceps-nuque-halteres",
@@ -605,7 +755,9 @@
     "muscleGroup": "bras",
     "movement": "push",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/extension-triceps-nuque-halteres.jpg"
+    "thumbnailUrl": "/images/exercises/extension-triceps-nuque-halteres.jpg",
+    "primaryMuscles": ["triceps"],
+    "secondaryMuscles": []
   },
   {
     "id": "barre-au-front",
@@ -613,7 +765,9 @@
     "muscleGroup": "bras",
     "movement": "push",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/barre-au-front.jpg"
+    "thumbnailUrl": "/images/exercises/barre-au-front.jpg",
+    "primaryMuscles": ["triceps"],
+    "secondaryMuscles": []
   },
   {
     "id": "dips-triceps-banc",
@@ -621,7 +775,9 @@
     "muscleGroup": "bras",
     "movement": "push",
     "equipment": "Poids du corps",
-    "thumbnailUrl": "/images/exercises/dips-triceps-banc.jpg"
+    "thumbnailUrl": "/images/exercises/dips-triceps-banc.jpg",
+    "primaryMuscles": ["triceps"],
+    "secondaryMuscles": ["delto_anterieur", "pectoraux"]
   },
   {
     "id": "kickback-triceps-halteres",
@@ -629,7 +785,9 @@
     "muscleGroup": "bras",
     "movement": "push",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/kickback-triceps-halteres.jpg"
+    "thumbnailUrl": "/images/exercises/kickback-triceps-halteres.jpg",
+    "primaryMuscles": ["triceps"],
+    "secondaryMuscles": []
   },
   {
     "id": "curl-concentration-haltere",
@@ -637,7 +795,9 @@
     "muscleGroup": "bras",
     "movement": "pull",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/curl-concentration-haltere.jpg"
+    "thumbnailUrl": "/images/exercises/curl-concentration-haltere.jpg",
+    "primaryMuscles": ["biceps"],
+    "secondaryMuscles": []
   },
   {
     "id": "extension-triceps-corde-poulie",
@@ -645,7 +805,9 @@
     "muscleGroup": "bras",
     "movement": "push",
     "equipment": "Poulie",
-    "thumbnailUrl": "/images/exercises/extension-triceps-corde-poulie.jpg"
+    "thumbnailUrl": "/images/exercises/extension-triceps-corde-poulie.jpg",
+    "primaryMuscles": ["triceps"],
+    "secondaryMuscles": []
   },
   {
     "id": "extension-triceps-unilaterale-haltere",
@@ -653,7 +815,9 @@
     "muscleGroup": "bras",
     "movement": "push",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/extension-triceps-unilaterale-haltere.jpg"
+    "thumbnailUrl": "/images/exercises/extension-triceps-unilaterale-haltere.jpg",
+    "primaryMuscles": ["triceps"],
+    "secondaryMuscles": []
   },
   {
     "id": "curl-inverse-barre",
@@ -661,7 +825,9 @@
     "muscleGroup": "bras",
     "movement": "pull",
     "equipment": "Barre",
-    "thumbnailUrl": "/images/exercises/curl-inverse-barre.jpg"
+    "thumbnailUrl": "/images/exercises/curl-inverse-barre.jpg",
+    "primaryMuscles": ["avant_bras"],
+    "secondaryMuscles": ["biceps"]
   },
   {
     "id": "releve-jambes-suspendu-barre",
@@ -669,7 +835,9 @@
     "muscleGroup": "abdos",
     "movement": "core",
     "equipment": "Barre de traction",
-    "thumbnailUrl": "/images/exercises/releve-jambes-suspendu-barre.jpg"
+    "thumbnailUrl": "/images/exercises/releve-jambes-suspendu-barre.jpg",
+    "primaryMuscles": ["abdos"],
+    "secondaryMuscles": ["obliques", "avant_bras"]
   },
   {
     "id": "crunch-poids-du-corps",
@@ -677,7 +845,9 @@
     "muscleGroup": "abdos",
     "movement": "core",
     "equipment": "Poids du corps",
-    "thumbnailUrl": "/images/exercises/crunch-poids-du-corps.jpg"
+    "thumbnailUrl": "/images/exercises/crunch-poids-du-corps.jpg",
+    "primaryMuscles": ["abdos"],
+    "secondaryMuscles": ["obliques"]
   },
   {
     "id": "russian-twist-haltere",
@@ -685,7 +855,9 @@
     "muscleGroup": "abdos",
     "movement": "core",
     "equipment": "Haltères",
-    "thumbnailUrl": "/images/exercises/russian-twist-haltere.jpg"
+    "thumbnailUrl": "/images/exercises/russian-twist-haltere.jpg",
+    "primaryMuscles": ["obliques"],
+    "secondaryMuscles": ["abdos"]
   },
   {
     "id": "gainage-lateral",
@@ -693,7 +865,9 @@
     "muscleGroup": "abdos",
     "movement": "core",
     "equipment": "Poids du corps",
-    "thumbnailUrl": "/images/exercises/gainage-lateral.jpg"
+    "thumbnailUrl": "/images/exercises/gainage-lateral.jpg",
+    "primaryMuscles": ["obliques"],
+    "secondaryMuscles": ["abdos"]
   },
   {
     "id": "roulette-abdominale",
@@ -701,7 +875,9 @@
     "muscleGroup": "abdos",
     "movement": "core",
     "equipment": "Roulette",
-    "thumbnailUrl": "/images/exercises/roulette-abdominale.jpg"
+    "thumbnailUrl": "/images/exercises/roulette-abdominale.jpg",
+    "primaryMuscles": ["abdos"],
+    "secondaryMuscles": ["lombaires", "dorsaux"]
   },
   {
     "id": "mountain-climber",
@@ -709,7 +885,9 @@
     "muscleGroup": "abdos",
     "movement": "core",
     "equipment": "Poids du corps",
-    "thumbnailUrl": "/images/exercises/mountain-climber.jpg"
+    "thumbnailUrl": "/images/exercises/mountain-climber.jpg",
+    "primaryMuscles": ["abdos"],
+    "secondaryMuscles": ["delto_anterieur", "quadriceps"]
   },
   {
     "id": "crunch-poulie-haute",
@@ -717,7 +895,9 @@
     "muscleGroup": "abdos",
     "movement": "core",
     "equipment": "Poulie",
-    "thumbnailUrl": "/images/exercises/crunch-poulie-haute.jpg"
+    "thumbnailUrl": "/images/exercises/crunch-poulie-haute.jpg",
+    "primaryMuscles": ["abdos"],
+    "secondaryMuscles": ["obliques"]
   },
   {
     "id": "releve-bassin-sol",
@@ -725,7 +905,9 @@
     "muscleGroup": "abdos",
     "movement": "core",
     "equipment": "Poids du corps",
-    "thumbnailUrl": "/images/exercises/releve-bassin-sol.jpg"
+    "thumbnailUrl": "/images/exercises/releve-bassin-sol.jpg",
+    "primaryMuscles": ["abdos"],
+    "secondaryMuscles": ["obliques"]
   },
   {
     "id": "abdos-velo-sol",
@@ -733,7 +915,9 @@
     "muscleGroup": "abdos",
     "movement": "core",
     "equipment": "Poids du corps",
-    "thumbnailUrl": "/images/exercises/abdos-velo-sol.jpg"
+    "thumbnailUrl": "/images/exercises/abdos-velo-sol.jpg",
+    "primaryMuscles": ["abdos", "obliques"],
+    "secondaryMuscles": []
   },
   {
     "id": "hollow-body-hold",
@@ -741,6 +925,8 @@
     "muscleGroup": "abdos",
     "movement": "core",
     "equipment": "Poids du corps",
-    "thumbnailUrl": "/images/exercises/hollow-body-hold.jpg"
+    "thumbnailUrl": "/images/exercises/hollow-body-hold.jpg",
+    "primaryMuscles": ["abdos"],
+    "secondaryMuscles": ["obliques"]
   }
 ]

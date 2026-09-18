@@ -21,6 +21,11 @@ $color-accent-ink: #161410;
 $color-accent-wash: rgb(201 162 75 / 10%);
 $color-accent-soft: rgb(201 162 75 / 35%);
 
+// Volume musculaire (du plus faible au plus fort, l'objectif atteint utilise $color-accent)
+$color-volume-low: rgb(201 162 75 / 22%);
+$color-volume-medium: rgb(201 162 75 / 42%);
+$color-volume-high: rgb(201 162 75 / 68%);
+
 // Rangs (paliers)
 $color-tier-bronze: #a56a3c;
 $color-tier-argent: #a8adb4;
