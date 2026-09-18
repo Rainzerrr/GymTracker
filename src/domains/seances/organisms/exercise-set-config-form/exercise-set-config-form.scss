@@ -12,6 +12,7 @@
 .exercise-set-config-form__photo {
   display: block;
   width: calc(100% + 2.5rem);
+  max-width: none;
   height: 9.375rem;
   margin: -1.25rem -1.25rem 0;
   border-radius: $radius-xl $radius-xl 0 0;
