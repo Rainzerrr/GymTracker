@@ -1,11 +1,16 @@
 import { useLocalStorageState } from '@shared/hooks/use-local-storage-state'
+import { isRecord } from '@shared/utils/storage/guards'
 import defaultWeekPlan from '../data/default-week-plan.json'
 import type { DayAssignmentValue, WeekPlan } from '../types/day-assignment'
 
 const STORAGE_KEY = 'seances/week-plan'
 
 export const useWeekPlan = () => {
-  const [weekPlan, setWeekPlan] = useLocalStorageState<WeekPlan>(STORAGE_KEY, defaultWeekPlan as WeekPlan)
+  const [weekPlan, setWeekPlan] = useLocalStorageState<WeekPlan>(
+    STORAGE_KEY,
+    defaultWeekPlan as WeekPlan,
+    { isValid: isRecord<WeekPlan> },
+  )
 
   const getAssignment = (dayIndex: number): DayAssignmentValue => weekPlan[dayIndex] ?? 'free'
 

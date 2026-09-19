@@ -3,14 +3,20 @@ import { SegmentedToggle } from '../../molecules/segmented-toggle'
 import type { HistoryLogHeaderProps } from './history-log.types'
 import './history-log.scss'
 
-export const HistoryLogHeader = ({ activeView, onViewChange, totalSessionsCount }: HistoryLogHeaderProps) => {
+export const HistoryLogHeader = ({
+  activeView,
+  onViewChange,
+  totalSessionsCount,
+}: HistoryLogHeaderProps) => {
   const { t } = useTranslation('progression')
 
   return (
     <div className="history-log">
       <div className="history-log__header">
         <span className="history-log__title">{t('history.headerTitle')}</span>
-        <p className="history-log__subtitle">{t('history.subtitle', { count: totalSessionsCount })}</p>
+        <p className="history-log__subtitle">
+          {t('history.subtitle', { count: totalSessionsCount })}
+        </p>
       </div>
 
       <SegmentedToggle

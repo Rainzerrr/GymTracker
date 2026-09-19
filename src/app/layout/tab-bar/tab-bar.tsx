@@ -63,7 +63,13 @@ export const TabBar = () => {
           end={tab.to === '/'}
           className={({ isActive }) => `tab-bar__tab ${isActive ? 'tab-bar__tab--active' : ''}`}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={1.8}
+            aria-hidden="true"
+          >
             {tab.icon}
           </svg>
           <span>{t(tab.labelKey)}</span>

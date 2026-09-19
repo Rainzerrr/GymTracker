@@ -1,7 +1,15 @@
 import type { PhotoHeroProps } from './photo-hero.types'
 import './photo-hero.scss'
 
-export const PhotoHero = ({ imageUrl, alt, title, meta, heightRem, topLeft, topRight }: PhotoHeroProps) => {
+export const PhotoHero = ({
+  imageUrl,
+  alt,
+  title,
+  meta,
+  heightRem,
+  topLeft,
+  topRight,
+}: PhotoHeroProps) => {
   const hasTopRow = Boolean(topLeft) || Boolean(topRight)
 
   return (

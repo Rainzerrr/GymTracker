@@ -1,4 +1,5 @@
 import { useLocalStorageState } from '@shared/hooks/use-local-storage-state'
+import { isArray } from '@shared/utils/storage/guards'
 import defaultSessions from '../data/default-sessions.json'
 import type { SessionDraft, WorkoutSession } from '../types/workout-session'
 import { resolveSessionImageUrl } from '../utils/default-session-image'
@@ -18,6 +19,7 @@ export const useSessions = () => {
   const [sessions, setSessions] = useLocalStorageState<WorkoutSession[]>(
     STORAGE_KEY,
     defaultSessions as WorkoutSession[],
+    { isValid: isArray<WorkoutSession> },
   )
 
   const resolvedSessions = sessions.map(withResolvedImage)
@@ -38,7 +40,8 @@ export const useSessions = () => {
         }
 
         // The draft carries the resolved image; only keep it when it was chosen explicitly.
-        const isAutoImage = draft.imageUrl === resolveSessionImageUrl(session.imageUrl, session.exercises)
+        const isAutoImage =
+          draft.imageUrl === resolveSessionImageUrl(session.imageUrl, session.exercises)
 
         return { ...draft, id, imageUrl: isAutoImage ? session.imageUrl : draft.imageUrl }
       }),

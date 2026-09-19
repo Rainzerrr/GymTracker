@@ -62,7 +62,9 @@ export const SessionBuilderPage = () => {
     setDraft((current) => ({
       ...current,
       exercises: current.exercises.map((exercise) =>
-        exercise.id === exerciseId ? { ...exercise, linkedToNext: !exercise.linkedToNext } : exercise,
+        exercise.id === exerciseId
+          ? { ...exercise, linkedToNext: !exercise.linkedToNext }
+          : exercise,
       ),
     }))
   }
@@ -90,7 +92,9 @@ export const SessionBuilderPage = () => {
   }
 
   return (
-    <PageTemplate header={<BackHeader title={t('builder.headerTitle')} onBack={() => navigate('/seances')} />}>
+    <PageTemplate
+      header={<BackHeader title={t('builder.headerTitle')} onBack={() => navigate('/seances')} />}
+    >
       <SessionBuilderForm
         draft={draft}
         onNameChange={(value) => setDraft((current) => ({ ...current, name: value }))}

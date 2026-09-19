@@ -88,7 +88,9 @@ export const TierLadder = ({ steps }: TierLadderProps) => {
           <span className="tier-ladder__name">
             {t(`tiers.${step.tier}`)} {getSubLevelRoman(step.subLevel)}
           </span>
-          <span className="tier-ladder__status">{t(`rank.detail.ladderStatus.${step.status}`)}</span>
+          <span className="tier-ladder__status">
+            {t(`rank.detail.ladderStatus.${step.status}`)}
+          </span>
         </li>
       ))}
     </ol>

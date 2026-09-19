@@ -176,7 +176,12 @@
   inset: -0.45rem;
   z-index: 0;
   border-radius: $radius-pill;
-  background-image: conic-gradient(from 0deg, transparent, var(--tier-ladder-aura), transparent 40%);
+  background-image: conic-gradient(
+    from 0deg,
+    transparent,
+    var(--tier-ladder-aura),
+    transparent 40%
+  );
   opacity: 0.45;
 }
 

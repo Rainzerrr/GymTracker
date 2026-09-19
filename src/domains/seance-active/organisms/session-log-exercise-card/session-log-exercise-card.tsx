@@ -34,7 +34,11 @@ export const SessionLogExerciseCard = ({
                 onChange={(value) => onWeightChange(index, value)}
               />
             )}
-            <NumberField label={t('reps')} value={set.reps} onChange={(value) => onRepsChange(index, value)} />
+            <NumberField
+              label={t('reps')}
+              value={set.reps}
+              onChange={(value) => onRepsChange(index, value)}
+            />
           </div>
         </div>
       ))}

@@ -20,7 +20,9 @@ export const RankPage = () => {
   }))
 
   return (
-    <PageTemplate header={<BackHeader title={t('rank.headerTitle')} onBack={() => navigate('/')} />}>
+    <PageTemplate
+      header={<BackHeader title={t('rank.headerTitle')} onBack={() => navigate('/')} />}
+    >
       <RankBoard
         activeTab={activeTab}
         onTabChange={setActiveTab}

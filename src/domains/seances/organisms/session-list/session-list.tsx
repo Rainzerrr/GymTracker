@@ -6,7 +6,13 @@ import { ListRow } from '@shared/molecules/list-row'
 import type { SessionListProps } from './session-list.types'
 import './session-list.scss'
 
-export const SessionList = ({ sessions, editMode, onSelect, onDelete, onCreate }: SessionListProps) => {
+export const SessionList = ({
+  sessions,
+  editMode,
+  onSelect,
+  onDelete,
+  onCreate,
+}: SessionListProps) => {
   const { t } = useTranslation('seances')
   const { t: tCommon } = useTranslation('common')
 
@@ -25,7 +31,13 @@ export const SessionList = ({ sessions, editMode, onSelect, onDelete, onCreate }
                     onClick={() => onDelete(session.id)}
                     aria-label={tCommon('actions.delete')}
                   >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      aria-hidden="true"
+                    >
                       <path d="M6 6l12 12M18 6L6 18" />
                     </svg>
                   </button>

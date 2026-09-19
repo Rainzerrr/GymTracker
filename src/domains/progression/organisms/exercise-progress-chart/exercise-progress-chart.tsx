@@ -57,9 +57,15 @@ export const ExerciseProgressChart = ({ series }: ExerciseProgressChartProps) =>
               y1={tick.y}
               x2={PLOT_RIGHT}
               y2={tick.y}
-              className={index === 0 ? 'exercise-progress-chart__axis' : 'exercise-progress-chart__grid'}
+              className={
+                index === 0 ? 'exercise-progress-chart__axis' : 'exercise-progress-chart__grid'
+              }
             />
-            <text x={PLOT_LEFT - 8} y={tick.y + 3.5} className="exercise-progress-chart__tick-label">
+            <text
+              x={PLOT_LEFT - 8}
+              y={tick.y + 3.5}
+              className="exercise-progress-chart__tick-label"
+            >
               {tick.value.toLocaleString('fr-FR')}
             </text>
           </g>

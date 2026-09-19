@@ -40,5 +40,7 @@ export const resolveNextStep = (
 ): number => {
   const groupMatch = findNextInGroup(currentGroup, currentExerciseIndex, nextProgress, setCounts)
 
-  return groupMatch ? groupMatch.index : nextProgress.findIndex((count, index) => count < setCounts[index])
+  return groupMatch
+    ? groupMatch.index
+    : nextProgress.findIndex((count, index) => count < setCounts[index])
 }

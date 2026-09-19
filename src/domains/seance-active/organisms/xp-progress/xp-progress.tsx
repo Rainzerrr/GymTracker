@@ -2,7 +2,13 @@ import { useTranslation } from 'react-i18next'
 import type { XpProgressProps } from './xp-progress.types'
 import './xp-progress.scss'
 
-export const XpProgress = ({ xpGained, level, levelTitle, currentXp, xpToNextLevel }: XpProgressProps) => {
+export const XpProgress = ({
+  xpGained,
+  level,
+  levelTitle,
+  currentXp,
+  xpToNextLevel,
+}: XpProgressProps) => {
   const { t } = useTranslation('seanceActive')
   const progressPercent = (currentXp / xpToNextLevel) * 100
 

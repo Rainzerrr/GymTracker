@@ -1,0 +1,26 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.abandon-session__confirm {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  border-radius: $radius-lg;
+  border: 1px solid $color-danger-wash;
+  padding: $spacing-md;
+}
+
+.abandon-session__warning {
+  margin: 0;
+  color: $color-text-soft;
+  font-size: $font-size-sm;
+}
+
+.abandon-session__actions {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.abandon-session__actions .button--outline,
+.abandon-session__actions .button--danger {
+  padding: 0.6875rem 0;
+}

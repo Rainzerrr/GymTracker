@@ -11,7 +11,11 @@ export const RankItemCard = ({ item, onClick }: RankItemCardProps) => {
   const isMaxed = item.tier === 'platine' && item.subLevel === 3 && item.progressPercent >= 100
 
   return (
-    <button type="button" className={`rank-item-card rank-item-card--${item.tier}`} onClick={onClick}>
+    <button
+      type="button"
+      className={`rank-item-card rank-item-card--${item.tier}`}
+      onClick={onClick}
+    >
       <RankAvatar tier={item.tier} photoUrl={item.photoUrl} label={item.name} size="lg" />
       <span className="rank-item-card__name">{item.name}</span>
       <span className="rank-item-card__tier">

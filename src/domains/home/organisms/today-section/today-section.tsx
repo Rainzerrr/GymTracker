@@ -31,7 +31,11 @@ export const TodaySection = ({
         subtitle={postureSubtitle}
         trailing={
           !postureValidated && (
-            <Button label={t('todaySection.validate')} variant="outline" onClick={onValidatePosture} />
+            <Button
+              label={t('todaySection.validate')}
+              variant="outline"
+              onClick={onValidatePosture}
+            />
           )
         }
       />

@@ -16,7 +16,10 @@ export const SeancesPage = () => {
     id: session.id,
     name: session.name,
     subtitle: session.focusLabel
-      ? t('list.itemSubtitleWithFocus', { focus: session.focusLabel, count: session.exercises.length })
+      ? t('list.itemSubtitleWithFocus', {
+          focus: session.focusLabel,
+          count: session.exercises.length,
+        })
       : t('list.itemSubtitle', { count: session.exercises.length }),
     imageUrl: session.imageUrl,
   }))
@@ -38,7 +41,12 @@ export const SeancesPage = () => {
         onDelete={removeSession}
         onCreate={() => navigate('/seances/nouvelle')}
       />
-      <Button label={t('list.planWeek')} variant="outline" fullWidth onClick={() => navigate('/seances/planning')} />
+      <Button
+        label={t('list.planWeek')}
+        variant="outline"
+        fullWidth
+        onClick={() => navigate('/seances/planning')}
+      />
     </PageTemplate>
   )
 }

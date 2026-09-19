@@ -26,7 +26,9 @@ export const HistoryExerciseCard = ({ name, thumbnailUrl, sets }: HistoryExercis
             </span>
             {set.rir !== null && (
               <span className="history-exercise-card__set-rir">
-                {set.rir === 'echec' ? t('sessionDetail.rirFailure') : t('sessionDetail.rir', { value: set.rir })}
+                {set.rir === 'echec'
+                  ? t('sessionDetail.rirFailure')
+                  : t('sessionDetail.rir', { value: set.rir })}
               </span>
             )}
           </li>

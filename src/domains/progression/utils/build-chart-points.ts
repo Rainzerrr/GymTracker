@@ -49,7 +49,11 @@ export const buildChartPoints = (values: number[]): ChartGeometry => {
   const xStep = values.length > 1 ? (xEnd - xStart) / (values.length - 1) : 0
   const xOrigin = values.length > 1 ? xStart : (xStart + xEnd) / 2
 
-  const points = values.map((value, index) => ({ x: xOrigin + xStep * index, y: toY(value), value }))
+  const points = values.map((value, index) => ({
+    x: xOrigin + xStep * index,
+    y: toY(value),
+    value,
+  }))
 
   return { points, ticks }
 }

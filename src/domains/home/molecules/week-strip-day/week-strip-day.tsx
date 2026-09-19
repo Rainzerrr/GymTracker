@@ -3,7 +3,14 @@ import { getTodayLabel } from '@shared/utils/date/get-today-label'
 import type { WeekStripDayProps } from './week-strip-day.types'
 import './week-strip-day.scss'
 
-export const WeekStripDay = ({ date, initial, status, isToday, isSelected, onClick }: WeekStripDayProps) => {
+export const WeekStripDay = ({
+  date,
+  initial,
+  status,
+  isToday,
+  isSelected,
+  onClick,
+}: WeekStripDayProps) => {
   const { t } = useTranslation('home')
   const rootClassName = ['week-strip-day', isSelected && 'week-strip-day--selected']
     .filter(Boolean)

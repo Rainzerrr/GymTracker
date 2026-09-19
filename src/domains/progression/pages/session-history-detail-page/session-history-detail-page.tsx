@@ -34,7 +34,14 @@ export const SessionHistoryDetailPage = () => {
     .filter((exercise) => exercise.sets.length > 0)
 
   return (
-    <PageTemplate header={<BackHeader title={t('sessionDetail.headerTitle')} onBack={() => navigate('/progression')} />}>
+    <PageTemplate
+      header={
+        <BackHeader
+          title={t('sessionDetail.headerTitle')}
+          onBack={() => navigate('/progression')}
+        />
+      }
+    >
       <div className="session-history-detail-page__hero">
         <PhotoHero
           imageUrl={entry.imageUrl}

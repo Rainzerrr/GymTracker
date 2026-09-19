@@ -30,7 +30,9 @@ export const VolumePage = () => {
   const selectedVolume = muscleVolumes.find((entry) => entry.muscle === selectedMuscle)
 
   return (
-    <PageTemplate header={<BackHeader title={t('volume.headerTitle')} onBack={() => navigate('/')} />}>
+    <PageTemplate
+      header={<BackHeader title={t('volume.headerTitle')} onBack={() => navigate('/')} />}
+    >
       <BodyVolumeMap
         bodyView={bodyView}
         onBodyViewChange={setBodyView}

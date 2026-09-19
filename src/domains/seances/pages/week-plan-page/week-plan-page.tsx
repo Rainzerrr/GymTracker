@@ -15,7 +15,11 @@ export const WeekPlanPage = () => {
   const { weekPlan, setAssignment } = useWeekPlan()
 
   const weekdayNames = getWeekdayNames()
-  const cycleOptions: DayAssignmentValue[] = ['rest', 'free', ...sessions.map((session) => session.id)]
+  const cycleOptions: DayAssignmentValue[] = [
+    'rest',
+    'free',
+    ...sessions.map((session) => session.id),
+  ]
 
   const resolveLabel = (value: DayAssignmentValue) => {
     if (value === 'rest') return t('weekPlan.restTotal')
@@ -46,7 +50,9 @@ export const WeekPlanPage = () => {
   }
 
   return (
-    <PageTemplate header={<BackHeader title={t('weekPlan.headerTitle')} onBack={() => navigate('/seances')} />}>
+    <PageTemplate
+      header={<BackHeader title={t('weekPlan.headerTitle')} onBack={() => navigate('/seances')} />}
+    >
       <WeekPlanList days={days} onCycle={handleCycle} onSave={() => navigate('/seances')} />
     </PageTemplate>
   )

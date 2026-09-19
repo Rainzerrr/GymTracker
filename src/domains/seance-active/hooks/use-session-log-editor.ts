@@ -48,11 +48,18 @@ export const useSessionLogEditor = (sessionId: string | undefined, dateIso: stri
     exerciseTemplates.map((exercise) => exercise.initialSets),
   )
 
-  const updateSet = (exerciseIndex: number, setIndex: number, field: keyof EditableSet, value: number) => {
+  const updateSet = (
+    exerciseIndex: number,
+    setIndex: number,
+    field: keyof EditableSet,
+    value: number,
+  ) => {
     setSetsByExercise((current) =>
       current.map((sets, index) =>
         index === exerciseIndex
-          ? sets.map((set, setPosition) => (setPosition === setIndex ? { ...set, [field]: value } : set))
+          ? sets.map((set, setPosition) =>
+              setPosition === setIndex ? { ...set, [field]: value } : set,
+            )
           : sets,
       ),
     )
@@ -63,7 +70,9 @@ export const useSessionLogEditor = (sessionId: string | undefined, dateIso: stri
       return
     }
 
-    const finalSetsByExercise = setsByExercise.map((sets) => sets.map((set) => ({ ...set, rir: null })))
+    const finalSetsByExercise = setsByExercise.map((sets) =>
+      sets.map((set) => ({ ...set, rir: null })),
+    )
     const loggedExercises = buildLoggedExercises(exerciseTemplates, finalSetsByExercise)
 
     upsertSessionLogForDate(date, {

@@ -31,7 +31,10 @@ export const ProfilRecentSessions = ({ entries }: ProfilRecentSessionsProps) => 
                 trailing={
                   <span className="profil-recent-sessions__meta">
                     {totalSets > 0
-                      ? t('recentSessions.meta', { duration: entry.durationMinutes, count: totalSets })
+                      ? t('recentSessions.meta', {
+                          duration: entry.durationMinutes,
+                          count: totalSets,
+                        })
                       : t('recentSessions.noSets')}
                   </span>
                 }

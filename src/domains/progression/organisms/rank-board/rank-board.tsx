@@ -7,7 +7,13 @@ import { sortByTier } from '../../utils/sort-by-tier'
 import type { RankBoardProps } from './rank-board.types'
 import './rank-board.scss'
 
-export const RankBoard = ({ activeTab, onTabChange, exercises, muscles, onItemClick }: RankBoardProps) => {
+export const RankBoard = ({
+  activeTab,
+  onTabChange,
+  exercises,
+  muscles,
+  onItemClick,
+}: RankBoardProps) => {
   const { t } = useTranslation('progression')
 
   const items = sortByTier(activeTab === 'exercises' ? exercises : muscles)

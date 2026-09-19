@@ -21,7 +21,13 @@ export const ExercisePickerList = ({
   return (
     <div className="exercise-picker-list">
       <div className="exercise-picker-list__search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1.8}
+          aria-hidden="true"
+        >
           <circle cx="11" cy="11" r="7" />
           <path d="M21 21l-4.35-4.35" />
         </svg>
@@ -34,7 +40,11 @@ export const ExercisePickerList = ({
       </div>
 
       <div className="exercise-picker-list__filters">
-        <FilterPill label={t('muscleGroups.all')} active={muscleGroup === 'all'} onClick={() => onMuscleGroupChange('all')} />
+        <FilterPill
+          label={t('muscleGroups.all')}
+          active={muscleGroup === 'all'}
+          onClick={() => onMuscleGroupChange('all')}
+        />
         {MUSCLE_GROUPS.map((group) => (
           <FilterPill
             key={group}

@@ -4,7 +4,10 @@ import { computeSessionXp } from '../utils/compute-session-xp'
 
 export const usePlayerLevel = () => {
   const { sessionLog } = useSessionLog()
-  const lifetimeXp = sessionLog.reduce((total, session) => total + computeSessionXp(session.exercises), 0)
+  const lifetimeXp = sessionLog.reduce(
+    (total, session) => total + computeSessionXp(session.exercises),
+    0,
+  )
 
   return computeLevel(lifetimeXp)
 }

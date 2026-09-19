@@ -6,7 +6,11 @@ type UseReorderableListOptions<T> = {
   onReorder: (nextItems: T[]) => void
 }
 
-export const useReorderableList = <T,>({ items, getId, onReorder }: UseReorderableListOptions<T>) => {
+export const useReorderableList = <T>({
+  items,
+  getId,
+  onReorder,
+}: UseReorderableListOptions<T>) => {
   const itemRefs = useRef(new Map<string, HTMLElement>())
   const dragState = useRef<{ id: string; order: T[]; lastY: number } | null>(null)
   const [draggingId, setDraggingId] = useState<string | null>(null)

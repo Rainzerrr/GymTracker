@@ -1,4 +1,5 @@
 import { useLocalStorageState } from '@shared/hooks/use-local-storage-state'
+import { isFiniteNumber } from '@shared/utils/storage/guards'
 
 const STORAGE_KEY = 'profil/body-weight'
 
@@ -10,6 +11,7 @@ export const useBodyWeight = () => {
   const [storedBodyWeightKg, setBodyWeightKg] = useLocalStorageState<number>(
     STORAGE_KEY,
     DEFAULT_BODY_WEIGHT_KG,
+    { isValid: isFiniteNumber },
   )
 
   // La valeur brute peut être vide ou aberrante pendant la saisie : on borne à la lecture.

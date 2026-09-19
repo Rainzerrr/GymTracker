@@ -25,11 +25,12 @@ export const SessionBuilderForm = ({
     ? t('builder.subtitleWithFocus', { focus: draft.focusLabel, count: draft.exercises.length })
     : t('builder.subtitle', { count: draft.exercises.length })
 
-  const { draggingId, dragOffset, registerItemRef, handlePointerDown } = useReorderableList<SessionExercise>({
-    items: draft.exercises,
-    getId: (exercise) => exercise.id,
-    onReorder: onReorderExercises,
-  })
+  const { draggingId, dragOffset, registerItemRef, handlePointerDown } =
+    useReorderableList<SessionExercise>({
+      items: draft.exercises,
+      getId: (exercise) => exercise.id,
+      onReorder: onReorderExercises,
+    })
 
   const groups = groupExercisesBySuperset(draft.exercises)
 
@@ -92,7 +93,12 @@ export const SessionBuilderForm = ({
       </div>
 
       <div className="session-builder-form__actions">
-        <Button label={t('builder.addExercise')} variant="outline" fullWidth onClick={onAddExercise} />
+        <Button
+          label={t('builder.addExercise')}
+          variant="outline"
+          fullWidth
+          onClick={onAddExercise}
+        />
         <Button label={t('builder.save')} variant="accent" fullWidth onClick={onSave} />
       </div>
     </div>

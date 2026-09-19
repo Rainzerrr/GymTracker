@@ -5,12 +5,12 @@ export type StreakResult = {
   longest: number
 }
 
-const toDayKey = (iso: string): number => {
-  const date = new Date(iso)
-  date.setHours(0, 0, 0, 0)
+// Numéro de jour calendaire local : deux jours consécutifs diffèrent toujours de 1, même quand le
+// jour dure 23 h ou 25 h (changement d'heure), ce que ne garantit pas une différence en millisecondes.
+const toDayNumber = (date: Date): number =>
+  Math.round(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / DAY_MS)
 
-  return date.getTime()
-}
+const isoToDayNumber = (iso: string): number => toDayNumber(new Date(iso))
 
 export const computeStreaks = (
   completedAtDates: string[],
@@ -20,24 +20,23 @@ export const computeStreaks = (
     return { current: 0, longest: 0 }
   }
 
-  const dayKeys = Array.from(new Set(completedAtDates.map(toDayKey))).sort((a, b) => b - a)
+  const dayNumbers = Array.from(new Set(completedAtDates.map(isoToDayNumber))).sort((a, b) => b - a)
 
   let longest = 1
   let run = 1
-  for (let i = 1; i < dayKeys.length; i += 1) {
-    run = dayKeys[i - 1] - dayKeys[i] === DAY_MS ? run + 1 : 1
+  for (let i = 1; i < dayNumbers.length; i += 1) {
+    run = dayNumbers[i - 1] - dayNumbers[i] === 1 ? run + 1 : 1
     longest = Math.max(longest, run)
   }
 
-  const today = new Date(referenceDate)
-  today.setHours(0, 0, 0, 0)
-  const isStreakAlive = dayKeys[0] === today.getTime() || dayKeys[0] === today.getTime() - DAY_MS
+  const today = toDayNumber(referenceDate)
+  const isStreakAlive = dayNumbers[0] === today || dayNumbers[0] === today - 1
 
   let current = 0
   if (isStreakAlive) {
     current = 1
-    for (let i = 1; i < dayKeys.length; i += 1) {
-      if (dayKeys[i - 1] - dayKeys[i] === DAY_MS) {
+    for (let i = 1; i < dayNumbers.length; i += 1) {
+      if (dayNumbers[i - 1] - dayNumbers[i] === 1) {
         current += 1
       } else {
         break
@@ -53,13 +52,10 @@ export const computeStreakTrend = (
   days = 7,
   referenceDate: Date = new Date(),
 ): boolean[] => {
-  const trainedDayKeys = new Set(completedAtDates.map(toDayKey))
-  const today = new Date(referenceDate)
-  today.setHours(0, 0, 0, 0)
+  const trainedDayNumbers = new Set(completedAtDates.map(isoToDayNumber))
+  const today = toDayNumber(referenceDate)
 
-  return Array.from({ length: days }, (_unused, index) => {
-    const dayKey = today.getTime() - (days - 1 - index) * DAY_MS
-
-    return trainedDayKeys.has(dayKey)
-  })
+  return Array.from({ length: days }, (_unused, index) =>
+    trainedDayNumbers.has(today - (days - 1 - index)),
+  )
 }

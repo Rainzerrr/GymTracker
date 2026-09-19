@@ -46,7 +46,9 @@ export const useProgressionHistory = () => {
 
       const priorSets = bestSets.slice(0, -1)
       const priorRank =
-        priorSets.length > 0 ? computeExerciseRank(performance.exerciseId, priorSets, bodyWeightKg) : null
+        priorSets.length > 0
+          ? computeExerciseRank(performance.exerciseId, priorSets, bodyWeightKg)
+          : null
       const hasTieredUp =
         priorRank !== null && TIERS.indexOf(rank.tier) > TIERS.indexOf(priorRank.tier)
 

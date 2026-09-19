@@ -86,7 +86,12 @@
   inset: -0.55rem;
   z-index: 0;
   border-radius: $radius-pill;
-  background-image: conic-gradient(from 0deg, transparent, var(--rank-avatar-aura), transparent 40%);
+  background-image: conic-gradient(
+    from 0deg,
+    transparent,
+    var(--rank-avatar-aura),
+    transparent 40%
+  );
   opacity: 0.4;
 }
 

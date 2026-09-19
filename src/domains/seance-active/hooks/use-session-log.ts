@@ -1,4 +1,5 @@
 import { useLocalStorageState } from '@shared/hooks/use-local-storage-state'
+import { isArray } from '@shared/utils/storage/guards'
 import { resolveSessionImageUrl } from '@domains/seances/utils/default-session-image'
 import type { SessionLogEntry } from '../types/session-log-entry'
 
@@ -7,7 +8,11 @@ const STORAGE_KEY = 'seance-active/session-log'
 const createId = () => `log-${Date.now()}`
 
 export const useSessionLog = () => {
-  const [storedSessionLog, setSessionLog] = useLocalStorageState<SessionLogEntry[]>(STORAGE_KEY, [])
+  const [storedSessionLog, setSessionLog] = useLocalStorageState<SessionLogEntry[]>(
+    STORAGE_KEY,
+    [],
+    { isValid: isArray<SessionLogEntry> },
+  )
 
   // Entries logged before per-focus photos may still point at the retired default image.
   const sessionLog = storedSessionLog.map((entry) => ({
@@ -22,7 +27,10 @@ export const useSessionLog = () => {
   const getEntryForDate = (date: Date) =>
     sessionLog.find((entry) => new Date(entry.completedAt).toDateString() === date.toDateString())
 
-  const upsertSessionLogForDate = (date: Date, entry: Omit<SessionLogEntry, 'id' | 'completedAt'>) => {
+  const upsertSessionLogForDate = (
+    date: Date,
+    entry: Omit<SessionLogEntry, 'id' | 'completedAt'>,
+  ) => {
     const existing = getEntryForDate(date)
 
     if (existing) {
@@ -32,7 +40,10 @@ export const useSessionLog = () => {
       return
     }
 
-    setSessionLog([...storedSessionLog, { id: createId(), completedAt: date.toISOString(), ...entry }])
+    setSessionLog([
+      ...storedSessionLog,
+      { id: createId(), completedAt: date.toISOString(), ...entry },
+    ])
   }
 
   return { sessionLog, logSession, getEntryForDate, upsertSessionLogForDate }

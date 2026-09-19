@@ -3,7 +3,12 @@ import { PhotoHero } from '@shared/organisms/photo-hero'
 import type { SessionSummaryHeroProps } from './session-summary-hero.types'
 import './session-summary-hero.scss'
 
-export const SessionSummaryHero = ({ title, imageUrl, metaLabel, onClose }: SessionSummaryHeroProps) => {
+export const SessionSummaryHero = ({
+  title,
+  imageUrl,
+  metaLabel,
+  onClose,
+}: SessionSummaryHeroProps) => {
   const { t } = useTranslation('seanceActive')
   const { t: tCommon } = useTranslation('common')
 
@@ -35,7 +40,13 @@ export const SessionSummaryHero = ({ title, imageUrl, metaLabel, onClose }: Sess
           onClick={onClose}
           aria-label={tCommon('actions.close')}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            aria-hidden="true"
+          >
             <path d="M6 6l12 12M18 6L6 18" />
           </svg>
         </button>

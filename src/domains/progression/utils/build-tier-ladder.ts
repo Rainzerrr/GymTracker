@@ -26,7 +26,11 @@ export const buildTierLadder = (currentTier: Tier, currentSubLevel: TierSubLevel
   return ascendingSteps
     .map((step, index) => ({
       ...step,
-      status: (index < currentIndex ? 'achieved' : index === currentIndex ? 'current' : 'locked') as LadderStepStatus,
+      status: (index < currentIndex
+        ? 'achieved'
+        : index === currentIndex
+          ? 'current'
+          : 'locked') as LadderStepStatus,
     }))
     .reverse()
 }

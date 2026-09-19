@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { useActiveSessionSnapshot } from '@domains/seance-active/hooks/use-active-session-snapshot'
 import { useSessionLog } from '@domains/seance-active/hooks/use-session-log'
+import { isSnapshotResumable } from '@domains/seance-active/utils/active-session-snapshot'
 import { useSessions } from '@domains/seances/hooks/use-sessions'
 import { useWeekPlan } from '@domains/seances/hooks/use-week-plan'
 import { buildExercisePerformanceIndex } from '@domains/progression/utils/build-exercise-performance-index'
@@ -12,13 +14,14 @@ import { useLocalStorageState } from '@shared/hooks/use-local-storage-state'
 import { computeStreakTrend, computeStreaks } from '@shared/utils/date/compute-streaks'
 import { getTodayLabel } from '@shared/utils/date/get-today-label'
 import { getWeekDays } from '@shared/utils/date/get-week-days'
+import { toLocalDateKey } from '@shared/utils/date/to-local-date-key'
 import type { WeekDayStatus } from '../types/week-day-status'
 
 const ESTIMATED_MINUTES_PER_EXERCISE = 12
 
 export const useHomeOverview = () => {
   const today = new Date()
-  const todayIso = today.toISOString().slice(0, 10)
+  const todayKey = toLocalDateKey(today)
   const todayMidnight = new Date(today)
   todayMidnight.setHours(0, 0, 0, 0)
   const todayWeekDays = getWeekDays(today)
@@ -30,10 +33,11 @@ export const useHomeOverview = () => {
   const { bodyWeightKg } = useBodyWeight()
   const { musclesUnderTarget } = useVolumeDistribution()
   const [postureValidated, setPostureValidated] = useLocalStorageState(
-    `home/posture-routine-validated/${todayIso}`,
+    `home/posture-routine-validated/${todayKey}`,
     false,
   )
   const [selectedDayIndex, setSelectedDayIndex] = useState(todayIndex)
+  const [activeSnapshot] = useActiveSessionSnapshot()
 
   const completedDates = sessionLog.map((entry) => entry.completedAt)
   const { current: streakCurrent } = computeStreaks(completedDates)
@@ -64,6 +68,13 @@ export const useHomeOverview = () => {
     selectedDayAssignment === 'rest' || selectedDayAssignment === 'free'
       ? undefined
       : sessions.find((session) => session.id === selectedDayAssignment)
+
+  const hasResumableSession = isSnapshotResumable(
+    activeSnapshot,
+    selectedSession?.id,
+    selectedSession?.exercises.length ?? 0,
+    today.getTime(),
+  )
 
   const sortedLog = [...sessionLog].sort(
     (a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime(),
@@ -98,6 +109,7 @@ export const useHomeOverview = () => {
     selectedDayIndex: selectedDay.index,
     selectDay: setSelectedDayIndex,
     isRestDay: !selectedSession,
+    hasResumableSession,
     selectedSessionId: selectedSession?.id,
     selectedSession: selectedSession
       ? {

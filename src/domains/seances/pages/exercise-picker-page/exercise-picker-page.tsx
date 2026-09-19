@@ -13,7 +13,8 @@ export const ExercisePickerPage = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const { t } = useTranslation('seances')
-  const { results, totalCount, search, setSearch, muscleGroup, setMuscleGroup } = useExerciseLibrary()
+  const { results, totalCount, search, setSearch, muscleGroup, setMuscleGroup } =
+    useExerciseLibrary()
 
   const relay = location.state as PickerRelayState
   const backTarget = relay?.returnTo ? `/seances/${relay.returnTo}` : '/seances'

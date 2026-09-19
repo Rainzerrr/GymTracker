@@ -1,27 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useNow } from './use-now'
+
+const TICK_MS = 250
+
+export const computeRemainingSeconds = (endsAt: number, now: number, totalSeconds: number) =>
+  Math.min(totalSeconds, Math.max(0, Math.ceil((endsAt - now) / 1000)))
 
 export const useCountdown = () => {
-  const [remainingSeconds, setRemainingSeconds] = useState(0)
+  const [endsAt, setEndsAt] = useState<number | null>(null)
   const [totalSeconds, setTotalSeconds] = useState(0)
-  const [hasStarted, setHasStarted] = useState(false)
-  const isActive = hasStarted && remainingSeconds > 0
+  const now = useNow(endsAt !== null, TICK_MS, endsAt ?? undefined)
 
-  useEffect(() => {
-    if (!isActive) return undefined
-
-    const timeoutId = setTimeout(() => setRemainingSeconds((seconds) => seconds - 1), 1000)
-
-    return () => clearTimeout(timeoutId)
-  }, [isActive, remainingSeconds])
+  const remainingSeconds = endsAt === null ? 0 : computeRemainingSeconds(endsAt, now, totalSeconds)
+  const isActive = remainingSeconds > 0
 
   const start = (seconds: number) => {
-    setRemainingSeconds(seconds)
     setTotalSeconds(seconds)
-    setHasStarted(true)
+    setEndsAt(Date.now() + seconds * 1000)
   }
 
   const stop = () => {
-    setRemainingSeconds(0)
+    setEndsAt(null)
   }
 
   return { remainingSeconds, totalSeconds, isActive, start, stop }

@@ -1,7 +1,9 @@
 import { getLibraryExercise } from '../hooks/use-exercise-library'
 import type { SessionFocus } from '../types/session-focus'
 
-export const detectSessionFocus = (exercises: { libraryExerciseId: string }[]): SessionFocus | null => {
+export const detectSessionFocus = (
+  exercises: { libraryExerciseId: string }[],
+): SessionFocus | null => {
   let hasPush = false
   let hasPull = false
   let hasLegs = false

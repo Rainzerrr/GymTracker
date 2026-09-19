@@ -2,7 +2,11 @@ import { useTranslation } from 'react-i18next'
 import type { SessionListHeaderProps } from './session-list.types'
 import './session-list.scss'
 
-export const SessionListHeader = ({ sessionCount, editMode, onToggleEditMode }: SessionListHeaderProps) => {
+export const SessionListHeader = ({
+  sessionCount,
+  editMode,
+  onToggleEditMode,
+}: SessionListHeaderProps) => {
   const { t } = useTranslation('seances')
   const { t: tCommon } = useTranslation('common')
 

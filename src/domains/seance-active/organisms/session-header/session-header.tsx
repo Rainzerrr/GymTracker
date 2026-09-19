@@ -9,8 +9,19 @@ export const SessionHeader = ({ title, elapsedSeconds, onBack }: SessionHeaderPr
   return (
     <div className="session-header">
       <div className="session-header__left">
-        <button type="button" className="session-header__back" onClick={onBack} aria-label={t('actions.back')}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+        <button
+          type="button"
+          className="session-header__back"
+          onClick={onBack}
+          aria-label={t('actions.back')}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            aria-hidden="true"
+          >
             <path d="M15 18l-6-6 6-6" />
           </svg>
         </button>

@@ -22,7 +22,9 @@ export const ExerciseConfigPage = () => {
   const relay = location.state as ConfigRelayState
   const libraryExercise = libraryExerciseId ? getLibraryExercise(libraryExerciseId) : undefined
   const isValid = Boolean(libraryExercise) && Boolean(relay?.returnTo)
-  const allowMaxObjective = libraryExercise ? isBodyweightEquipment(libraryExercise.equipment) : false
+  const allowMaxObjective = libraryExercise
+    ? isBodyweightEquipment(libraryExercise.equipment)
+    : false
 
   const [sets, setSets] = useState(3)
   const [isMaxObjective, setIsMaxObjective] = useState(false)
@@ -48,7 +50,9 @@ export const ExerciseConfigPage = () => {
       libraryExerciseId: libraryExercise.id,
       name: libraryExercise.name,
       thumbnailUrl: libraryExercise.thumbnailUrl,
-      targetLabel: isMaxObjective ? `${sets} × ${t('config.objectiveMaxLabel')}` : `${sets} × ${repsMin}-${repsMax}`,
+      targetLabel: isMaxObjective
+        ? `${sets} × ${t('config.objectiveMaxLabel')}`
+        : `${sets} × ${repsMin}-${repsMax}`,
       restLabel: t('config.restLabelValue', { value: restLabel }),
       linkedToNext: false,
     }

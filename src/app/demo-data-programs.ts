@@ -35,7 +35,12 @@ export const PROGRAMS: Program[] = [
     id: 'demo-full',
     name: 'Full Body A',
     focusLabel: 'Full Body',
-    exerciseIds: ['squat-barre-libre', 'developpe-couche-barre', 'rowing-barre', 'tractions-supination'],
+    exerciseIds: [
+      'squat-barre-libre',
+      'developpe-couche-barre',
+      'rowing-barre',
+      'tractions-supination',
+    ],
   },
 ]
 

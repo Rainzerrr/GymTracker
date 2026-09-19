@@ -1,15 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useNow } from './use-now'
 
-export const useStopwatch = (isRunning: boolean) => {
-  const [elapsedSeconds, setElapsedSeconds] = useState(0)
+const TICK_MS = 1000
 
-  useEffect(() => {
-    if (!isRunning) return undefined
+export const computeElapsedSeconds = (startedAt: number, now: number): number =>
+  Math.max(0, Math.floor((now - startedAt) / 1000))
 
-    const intervalId = setInterval(() => setElapsedSeconds((seconds) => seconds + 1), 1000)
+export const useStopwatch = (startedAt: number, isRunning: boolean) => {
+  const now = useNow(isRunning, TICK_MS)
 
-    return () => clearInterval(intervalId)
-  }, [isRunning])
-
-  return elapsedSeconds
+  return computeElapsedSeconds(startedAt, now)
 }

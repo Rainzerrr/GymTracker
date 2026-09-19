@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { PageTemplate } from '@shared/templates/page-template'
 import { useActiveSession } from '../../hooks/use-active-session'
+import { AbandonSession } from '../../organisms/abandon-session'
 import { ActiveExerciseCard } from '../../organisms/active-exercise-card'
 import { ExerciseQueue } from '../../organisms/exercise-queue'
 import { SessionHeader } from '../../organisms/session-header'
@@ -33,6 +34,7 @@ export const ActiveSessionPage = () => {
     skipSet,
     skipExercise,
     selectExercise,
+    abandonSession,
   } = useActiveSession(sessionId)
 
   useEffect(() => {
@@ -47,14 +49,23 @@ export const ActiveSessionPage = () => {
     }
   }, [isSessionComplete, navigate])
 
-  if (!session || !currentExercise) {
+  if (!session || !currentExercise || isSessionComplete) {
     return null
+  }
+
+  const handleAbandon = () => {
+    abandonSession()
+    navigate('/', { replace: true })
   }
 
   return (
     <PageTemplate
       header={
-        <SessionHeader title={session.name} elapsedSeconds={elapsedSeconds} onBack={() => navigate('/')} />
+        <SessionHeader
+          title={session.name}
+          elapsedSeconds={elapsedSeconds}
+          onBack={() => navigate('/')}
+        />
       }
     >
       <ActiveExerciseCard
@@ -82,6 +93,7 @@ export const ActiveSessionPage = () => {
         onSkipExercise={skipExercise}
       />
       <ExerciseQueue exercises={exercises} onSelect={selectExercise} />
+      <AbandonSession onAbandon={handleAbandon} />
     </PageTemplate>
   )
 }

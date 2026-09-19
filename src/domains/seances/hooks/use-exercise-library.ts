@@ -14,7 +14,8 @@ export const useExerciseLibrary = () => {
 
     return library.filter((exercise) => {
       const matchesGroup = muscleGroup === 'all' || exercise.muscleGroup === muscleGroup
-      const matchesSearch = normalizedSearch === '' || exercise.name.toLowerCase().includes(normalizedSearch)
+      const matchesSearch =
+        normalizedSearch === '' || exercise.name.toLowerCase().includes(normalizedSearch)
 
       return matchesGroup && matchesSearch
     })

@@ -21,6 +21,7 @@ export const HomePage = () => {
     selectedDayIndex,
     selectDay,
     isRestDay,
+    hasResumableSession,
     selectedSessionId,
     selectedSession,
     streak,
@@ -34,6 +35,7 @@ export const HomePage = () => {
   const canStartSelectedSession = isSelectedDayToday && selectedDayStatus === 'scheduled'
   const canViewSelectedSession = selectedDayStatus === 'done' || selectedDayStatus === 'missed'
   const showsRestBanner = isRestDay || !selectedSession
+  const startLabel = hasResumableSession ? t('resumeCta') : t('cta')
 
   const handlePrimaryAction = () => {
     if (!selectedSessionId) {
@@ -67,7 +69,7 @@ export const HomePage = () => {
           <div className="home-page__cta" style={{ height: `${HOME_CTA_HEIGHT_REM}rem` }}>
             {(canStartSelectedSession || canViewSelectedSession) && (
               <Button
-                label={canStartSelectedSession ? t('cta') : t('viewSessionCta')}
+                label={canStartSelectedSession ? startLabel : t('viewSessionCta')}
                 variant="accent"
                 fullWidth
                 onClick={handlePrimaryAction}

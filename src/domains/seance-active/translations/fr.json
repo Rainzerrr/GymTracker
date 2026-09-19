@@ -9,6 +9,12 @@
   "validate": "Valider la série",
   "skipSet": "Passer la série",
   "skipExercise": "Passer l'exercice",
+  "abandon": {
+    "trigger": "Abandonner la séance",
+    "warning": "Les séries déjà validées de cette séance seront perdues.",
+    "cancel": "Continuer",
+    "confirm": "Abandonner"
+  },
   "restStart": "Lancer",
   "restStop": "Arrêter",
   "supersetBadge": "Superset · {{position}}/{{size}}",
