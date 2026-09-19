@@ -7,7 +7,7 @@ export const ProfilStats = ({
   sessionsCompletedCount,
   trainingDurationLabel,
   totalSets,
-  currentStreakDays,
+  currentStreakSessions,
 }: ProfilStatsProps) => {
   const { t } = useTranslation('profil')
 
@@ -15,7 +15,7 @@ export const ProfilStats = ({
     { value: sessionsCompletedCount, label: t('stats.sessions') },
     { value: trainingDurationLabel, label: t('stats.duration') },
     { value: totalSets, label: t('stats.sets') },
-    { value: t('stats.streakValue', { count: currentStreakDays }), label: t('stats.streak') },
+    { value: t('stats.streakValue', { count: currentStreakSessions }), label: t('stats.streak') },
   ]
 
   return (

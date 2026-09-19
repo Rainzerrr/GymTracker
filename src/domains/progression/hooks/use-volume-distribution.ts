@@ -83,9 +83,9 @@ export const useVolumeDistribution = () => {
     }
   })
 
-  const musclesUnderTarget = muscleVolumes.filter(
-    ({ status }) => status !== 'none' && status !== 'target',
-  ).length
+  // Un muscle sans objectif (0 série) n'entre pas dans le décompte.
+  const trackedMuscles = muscleVolumes.filter(({ targetSets }) => targetSets > 0)
+  const musclesOnTarget = trackedMuscles.filter(({ status }) => status === 'target').length
 
-  return { muscleVolumes, musclesUnderTarget }
+  return { muscleVolumes, musclesOnTarget, trackedMuscleCount: trackedMuscles.length }
 }

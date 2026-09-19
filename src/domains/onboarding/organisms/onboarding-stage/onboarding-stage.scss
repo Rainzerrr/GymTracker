@@ -1,7 +1,7 @@
 @use 'shared/styles/abstracts/variables' as *;
 
 .onboarding-stage {
-  height: 100%;
+  min-height: 100%;
 }
 
 @media (prefers-reduced-motion: no-preference) {

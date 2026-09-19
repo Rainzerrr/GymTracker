@@ -50,6 +50,25 @@
   line-height: 1.4;
 }
 
+// Écrans courts : chaque carte devient une ligne icône + titre, sans description.
+@media (height <= 46rem) {
+  .onboarding-features__item {
+    flex-direction: row;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-sm;
+  }
+
+  .onboarding-features__icon {
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+
+  .onboarding-features__text {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .onboarding-features__item {
     animation: onboarding-features-pop 0.55s cubic-bezier(0.3, 1.4, 0.5, 1) both;

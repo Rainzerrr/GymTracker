@@ -190,6 +190,13 @@
   color: $color-accent;
 }
 
+// Très petits écrans : on garde l'essentiel (l'échelle et la carte), sans la liste d'arguments.
+@media (height <= 40rem) {
+  .onboarding-ranks__points {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .onboarding-ranks__rail {
     transform-origin: left;

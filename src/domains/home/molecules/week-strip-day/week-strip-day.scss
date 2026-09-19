@@ -48,6 +48,12 @@
   border-style: dashed;
 }
 
+// Jour prévu mais antérieur au début du programme : neutre, ni manqué ni à venir.
+.week-strip-day__dot--before-start {
+  border-color: $color-border-soft;
+  border-style: dashed;
+}
+
 .week-strip-day__dot--today {
   outline: 1.4px solid $color-accent;
   outline-offset: 1.5px;

@@ -8,9 +8,9 @@
     "sessions": "Séances complétées",
     "duration": "Temps d'entraînement",
     "sets": "Séries réalisées",
-    "streak": "Streak actuelle",
-    "streakValue_one": "{{count}} jour",
-    "streakValue_other": "{{count}} jours"
+    "streak": "Streak séances",
+    "streakValue_one": "{{count}} séance",
+    "streakValue_other": "{{count}} séances"
   },
   "bodyWeight": {
     "label": "Poids de corps",

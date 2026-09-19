@@ -69,7 +69,7 @@ export const SessionRecapPage = () => {
         id: 'streak',
         icon: 'streak',
         title: t('recap.highlights.streakTitle'),
-        subtitle: t('recap.highlights.streakSubtitle', { count: highlight.days }),
+        subtitle: t('recap.highlights.streakSubtitle', { count: highlight.sessions }),
       }
     }
 

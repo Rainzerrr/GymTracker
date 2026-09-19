@@ -38,8 +38,8 @@
       "tierUpTitle": "Palier franchi",
       "tierUpSubtitle": "{{name}} — passage au rang {{tier}}",
       "streakTitle": "Streak en cours",
-      "streakSubtitle_one": "{{count}} jour consécutif",
-      "streakSubtitle_other": "{{count}} jours consécutifs",
+      "streakSubtitle_one": "{{count}} séance d'affilée",
+      "streakSubtitle_other": "{{count}} séances d'affilée",
       "firstTitle": "Séance enregistrée",
       "firstSubtitle": "Continue comme ça pour construire ta progression."
     }

@@ -28,7 +28,7 @@ export const ProfilPage = () => {
     sessionsCompletedCount,
     totalMinutesTrained,
     totalSets,
-    currentStreakDays,
+    currentStreakSessions,
     muscleSplit,
     recentEntries,
   } = useProfilOverview()
@@ -47,7 +47,7 @@ export const ProfilPage = () => {
         sessionsCompletedCount={sessionsCompletedCount}
         trainingDurationLabel={formatTrainingDuration(totalMinutesTrained)}
         totalSets={totalSets}
-        currentStreakDays={currentStreakDays}
+        currentStreakSessions={currentStreakSessions}
       />
       <ProfilBodyWeight
         bodyWeightKg={storedBodyWeightKg}

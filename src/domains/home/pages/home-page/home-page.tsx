@@ -109,7 +109,8 @@ export const HomePage = () => {
           onValidatePosture={posture.validateToday}
         />
         <ProgressSection
-          musclesUnderTarget={volumeSummary.musclesUnderTarget}
+          musclesOnTarget={volumeSummary.musclesOnTarget}
+          trackedMuscleCount={volumeSummary.trackedMuscleCount}
           lastExercise={lastExercise}
           onVolumeClick={() => navigate('/progression/volume')}
           onLastExerciseClick={() => navigate('/progression/rangs')}

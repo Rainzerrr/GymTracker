@@ -5,7 +5,8 @@ export type ProgressSectionLastExercise = {
 }
 
 export type ProgressSectionProps = {
-  musclesUnderTarget: number
+  musclesOnTarget: number
+  trackedMuscleCount: number
   lastExercise?: ProgressSectionLastExercise
   onVolumeClick: () => void
   onLastExerciseClick: () => void

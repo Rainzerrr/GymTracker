@@ -86,6 +86,16 @@
   clip-path: polygon(50% 0%, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0% 50%, 39% 35%);
 }
 
+@media (height <= 46rem) {
+  .onboarding-intro__line {
+    font-size: $font-size-4xl;
+  }
+
+  .onboarding-intro__stage {
+    max-width: 14rem;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .onboarding-intro__line {
     animation: onboarding-intro-rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;

@@ -13,7 +13,7 @@
     "text": "Suis chaque série, débloque des rangs et regarde ta force grimper, séance après séance.",
     "rankChip": "Or II",
     "xpChip": "+120 XP",
-    "streakChip": "12 jours"
+    "streakChip": "12 séances"
   },
   "ranks": {
     "eyebrow": "Rangs",
@@ -62,7 +62,7 @@
     "levelValue": "7",
     "levelTitle": "Vétéran",
     "xpSuffix": "XP",
-    "streak": "12 jours de suite",
+    "streak": "12 séances de suite",
     "titles": ["Vétéran", "Expert", "Élite", "Légende"]
   },
   "volume": {

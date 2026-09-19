@@ -5,6 +5,7 @@ import { SectionLabel } from '@shared/atoms/section-label'
 import { Thumbnail } from '@shared/atoms/thumbnail'
 import { ListRow } from '@shared/molecules/list-row'
 import type { ProgressSectionProps } from './progress-section.types'
+import './progress-section.scss'
 
 const bodyIcon = (
   <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
@@ -20,13 +21,18 @@ const bodyIcon = (
 )
 
 export const ProgressSection = ({
-  musclesUnderTarget,
+  musclesOnTarget,
+  trackedMuscleCount,
   lastExercise,
   onVolumeClick,
   onLastExerciseClick,
 }: ProgressSectionProps) => {
   const { t } = useTranslation('home')
-  const volumeSubtitle = t('progressSection.volumeSubtitle', { count: musclesUnderTarget })
+  const volumeSubtitle = t('progressSection.volumeSubtitle', {
+    reached: musclesOnTarget,
+    total: trackedMuscleCount,
+  })
+  const reachedPercent = trackedMuscleCount > 0 ? (musclesOnTarget / trackedMuscleCount) * 100 : 0
 
   return (
     <section>
@@ -35,6 +41,11 @@ export const ProgressSection = ({
         leading={<IconChip icon={bodyIcon} />}
         title={t('progressSection.volumeTitle')}
         subtitle={volumeSubtitle}
+        meta={
+          <span className="progress-section__bar" aria-hidden="true">
+            <span className="progress-section__bar-fill" style={{ width: `${reachedPercent}%` }} />
+          </span>
+        }
         trailing={<ChevronIcon />}
         onClick={onVolumeClick}
       />

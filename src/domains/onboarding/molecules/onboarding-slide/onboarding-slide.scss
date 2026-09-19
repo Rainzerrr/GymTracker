@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-lg;
-  height: 100%;
+  min-height: 100%;
 }
 
 .onboarding-slide__head {
@@ -44,7 +44,22 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 0;
+}
+
+// Écrans courts : on resserre pour que l'étape tienne sans défiler. Si elle ne tient toujours pas,
+// la scène défile (le contenu ne remonte jamais par-dessus le titre).
+@media (height <= 46rem) {
+  .onboarding-slide {
+    gap: $spacing-md;
+  }
+
+  .onboarding-slide__title {
+    font-size: $font-size-2xl;
+  }
+
+  .onboarding-slide__text {
+    font-size: $font-size-md;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {

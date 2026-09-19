@@ -8,7 +8,8 @@
       "done": "Terminé",
       "missed": "Manqué",
       "scheduled": "Prévu",
-      "rest": "Repos"
+      "rest": "Repos",
+      "before-start": "Avant le début"
     }
   },
   "nextWorkout": {
@@ -23,8 +24,8 @@
   },
   "todaySection": {
     "label": "Cette semaine",
-    "streakTitle": "Streak musculation",
-    "streakSubtitle": "jours consécutifs",
+    "streakTitle": "Streak séances",
+    "streakSubtitle": "séances d'affilée, repos compris",
     "postureTitle": "Routine posture",
     "postureNotValidated": "Pas encore validée aujourd'hui",
     "postureValidated": "Validée aujourd'hui",
@@ -34,9 +35,8 @@
   },
   "progressSection": {
     "label": "Progression",
-    "volumeTitle": "Répartition du volume",
-    "volumeSubtitle_one": "{{count}} muscle sous l'objectif",
-    "volumeSubtitle_other": "{{count}} muscles sous l'objectif"
+    "volumeTitle": "Objectifs de la semaine",
+    "volumeSubtitle": "{{reached}}/{{total}} muscles ont atteint l'objectif"
   },
   "welcome": {
     "title": "Bienvenue sur GymTracker",

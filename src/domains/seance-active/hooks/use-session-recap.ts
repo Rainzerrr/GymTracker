@@ -8,21 +8,22 @@ import { TIERS } from '@domains/progression/types/tier'
 import type { Tier } from '@domains/progression/types/tier'
 import { getLibraryExercise } from '@domains/seances/hooks/use-exercise-library'
 import { useLocalStorageState } from '@shared/hooks/use-local-storage-state'
-import { computeStreaks } from '@shared/utils/date/compute-streaks'
 import { useSessionLog } from './use-session-log'
+import { useSessionStreak } from './use-session-streak'
 import type { SessionSummary } from '../types/session-summary'
 
 export type SessionRecapHighlightFact =
   | { kind: 'pr'; exerciseName: string; isBodyweight: boolean; value: number }
   | { kind: 'tierUp'; exerciseName: string; tier: Tier }
-  | { kind: 'streak'; days: number }
+  | { kind: 'streak'; sessions: number }
   | { kind: 'first' }
 
-const STREAK_HIGHLIGHT_MIN_DAYS = 2
+const STREAK_HIGHLIGHT_MIN_SESSIONS = 2
 
 export const useSessionRecap = () => {
   const [summary] = useLocalStorageState<SessionSummary | null>('seance-active/last-summary', null)
   const { sessionLog } = useSessionLog()
+  const streakSessions = useSessionStreak()
   const { level, levelTitle, currentXp, xpToNextLevel } = usePlayerLevel()
   const { bodyWeightKg } = useBodyWeight()
 
@@ -94,9 +95,8 @@ export const useSessionRecap = () => {
     }
   })
 
-  const { current: streakDays } = computeStreaks(sessionLog.map((session) => session.completedAt))
-  if (streakDays >= STREAK_HIGHLIGHT_MIN_DAYS) {
-    highlights.push({ kind: 'streak', days: streakDays })
+  if (streakSessions >= STREAK_HIGHLIGHT_MIN_SESSIONS) {
+    highlights.push({ kind: 'streak', sessions: streakSessions })
   }
 
   if (highlights.length === 0) {

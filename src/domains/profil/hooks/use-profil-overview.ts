@@ -1,6 +1,6 @@
 import { useSessionLog } from '@domains/seance-active/hooks/use-session-log'
+import { useSessionStreak } from '@domains/seance-active/hooks/use-session-streak'
 import type { MuscleGroup } from '@domains/seances/types/muscle-group'
-import { computeStreaks } from '@shared/utils/date/compute-streaks'
 
 export type MuscleSplitItem = {
   muscleGroup: MuscleGroup
@@ -10,6 +10,7 @@ export type MuscleSplitItem = {
 
 export const useProfilOverview = () => {
   const { sessionLog } = useSessionLog()
+  const currentStreakSessions = useSessionStreak()
 
   const sessionsCompletedCount = sessionLog.length
   const totalMinutesTrained = sessionLog.reduce((total, entry) => total + entry.durationMinutes, 0)
@@ -30,10 +31,6 @@ export const useProfilOverview = () => {
     percent: totalSets > 0 ? Math.round((sets / totalSets) * 100) : 0,
   })).sort((a, b) => b.sets - a.sets)
 
-  const { current: currentStreakDays, longest: longestStreakDays } = computeStreaks(
-    sessionLog.map((entry) => entry.completedAt),
-  )
-
   const recentEntries = [...sessionLog]
     .sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime())
     .slice(0, 5)
@@ -42,8 +39,7 @@ export const useProfilOverview = () => {
     sessionsCompletedCount,
     totalMinutesTrained,
     totalSets,
-    currentStreakDays,
-    longestStreakDays,
+    currentStreakSessions,
     muscleSplit,
     recentEntries,
   }
