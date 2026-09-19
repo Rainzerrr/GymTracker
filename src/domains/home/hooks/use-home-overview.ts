@@ -15,9 +15,8 @@ import { getTodayLabel } from '@shared/utils/date/get-today-label'
 import { getWeekDays } from '@shared/utils/date/get-week-days'
 import { toLocalDateKey } from '@shared/utils/date/to-local-date-key'
 import { usePostureRoutine } from './use-posture-routine'
+import { useSessionPreview } from './use-session-preview'
 import type { WeekDayStatus } from '../types/week-day-status'
-
-const ESTIMATED_MINUTES_PER_EXERCISE = 12
 
 export const useHomeOverview = () => {
   const today = new Date()
@@ -66,6 +65,8 @@ export const useHomeOverview = () => {
       ? undefined
       : sessions.find((session) => session.id === selectedDayAssignment)
 
+  const preview = useSessionPreview(selectedSession?.id)
+
   const hasResumableSession = isSnapshotResumable(
     activeSnapshot,
     selectedSession?.id,
@@ -108,12 +109,13 @@ export const useHomeOverview = () => {
     isRestDay: !selectedSession,
     hasResumableSession,
     selectedSessionId: selectedSession?.id,
+    preview,
     selectedSession: selectedSession
       ? {
           title: selectedSession.name,
           imageUrl: selectedSession.imageUrl,
           exerciseCount: selectedSession.exercises.length,
-          durationMinutes: selectedSession.exercises.length * ESTIMATED_MINUTES_PER_EXERCISE,
+          durationMinutes: preview?.durationMinutes ?? 0,
         }
       : undefined,
     streak: { current: streakCurrent, trend: streakTrend },

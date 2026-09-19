@@ -1,5 +1,7 @@
 export const isArray = <Item>(value: unknown): value is Item[] => Array.isArray(value)
 
+export const isBoolean = (value: unknown): value is boolean => typeof value === 'boolean'
+
 export const isRecord = <Shape extends object>(value: unknown): value is Shape =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 

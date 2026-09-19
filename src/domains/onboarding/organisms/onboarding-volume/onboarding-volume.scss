@@ -1,0 +1,117 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.onboarding-volume {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  width: 100%;
+  max-width: 24rem;
+}
+
+.onboarding-volume__goal {
+  margin: 0;
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  text-align: right;
+}
+
+.onboarding-volume__list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.onboarding-volume__row {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr 3.25rem;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.onboarding-volume__name {
+  color: $color-text;
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+}
+
+.onboarding-volume__track {
+  display: block;
+  height: 0.625rem;
+  overflow: hidden;
+  border-radius: $radius-pill;
+  background-color: $color-border-medium;
+}
+
+.onboarding-volume__fill {
+  display: block;
+  width: var(--onboarding-volume-width);
+  height: 100%;
+  border-radius: $radius-pill;
+}
+
+.onboarding-volume__fill--reached {
+  background-color: $color-accent;
+  box-shadow: 0 0 0.75rem $color-accent-soft;
+}
+
+.onboarding-volume__fill--high {
+  background-color: $color-volume-high;
+}
+
+.onboarding-volume__fill--medium {
+  background-color: $color-volume-medium;
+}
+
+.onboarding-volume__fill--low {
+  background-color: $color-volume-low;
+}
+
+.onboarding-volume__count {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .onboarding-volume__row {
+    animation: onboarding-volume-rise 0.5s ease both;
+    animation-delay: var(--onboarding-delay, 0s);
+  }
+
+  .onboarding-volume__fill {
+    transform-origin: left;
+    animation: onboarding-volume-grow 1s cubic-bezier(0.3, 0.7, 0.2, 1) both;
+    animation-delay: calc(var(--onboarding-delay, 0s) + 0.25s);
+  }
+
+  .onboarding-volume__count {
+    animation: onboarding-volume-rise 0.5s ease both;
+    animation-delay: calc(var(--onboarding-delay, 0s) + 0.6s);
+  }
+}
+
+@keyframes onboarding-volume-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes onboarding-volume-grow {
+  0% {
+    transform: scaleX(0);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}

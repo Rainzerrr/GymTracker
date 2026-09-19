@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '@shared/atoms/button'
 import { useNumberInputField } from '@shared/hooks/use-number-input-field'
-import { formatDurationClock } from '@shared/utils/date/format-duration-clock'
+import { resolveImageUrl } from '@shared/utils/image/image-url'
+import { RestTimer } from '../../molecules/rest-timer'
 import { RirSelector } from '../../molecules/rir-selector'
 import type { ActiveExerciseCardProps } from './active-exercise-card.types'
 import './active-exercise-card.scss'
@@ -21,15 +22,12 @@ export const ActiveExerciseCard = ({
   isBodyweight,
   selectedRir,
   onSelectRir,
-  isResting,
-  restRemainingSeconds,
-  restTotalSeconds,
-  onStartRest,
-  onStopRest,
+  restSeconds,
   onValidate,
   onSkipSet,
   onSkipExercise,
   lastPerformanceLabel,
+  nextTargetLabel,
 }: ActiveExerciseCardProps) => {
   const { t } = useTranslation('seanceActive')
   const weightField = useNumberInputField(weight, onWeightChange)
@@ -39,13 +37,10 @@ export const ActiveExerciseCard = ({
     total: totalSets,
     label: targetLabel,
   })
-  const restProgressPercent = isResting
-    ? ((restTotalSeconds - restRemainingSeconds) / restTotalSeconds) * 100
-    : 0
 
   return (
     <div className="active-exercise-card">
-      <img className="active-exercise-card__photo" src={photoUrl} alt={name} />
+      <img className="active-exercise-card__photo" src={resolveImageUrl(photoUrl)} alt={name} />
 
       <div className="active-exercise-card__header">
         {supersetSize > 1 && (
@@ -58,6 +53,7 @@ export const ActiveExerciseCard = ({
         {lastPerformanceLabel && (
           <span className="active-exercise-card__last">{lastPerformanceLabel}</span>
         )}
+        {nextTargetLabel && <span className="active-exercise-card__target">{nextTargetLabel}</span>}
       </div>
 
       <div className="active-exercise-card__field-row">
@@ -107,29 +103,7 @@ export const ActiveExerciseCard = ({
         </div>
       </div>
 
-      <div className="active-exercise-card__rest">
-        <div className="active-exercise-card__rest-row">
-          <span>{t('rest')}</span>
-          <span>
-            {isResting
-              ? t('restRemaining', { time: formatDurationClock(restRemainingSeconds) })
-              : formatDurationClock(restTotalSeconds)}
-          </span>
-          <button
-            type="button"
-            className="active-exercise-card__rest-toggle"
-            onClick={isResting ? onStopRest : onStartRest}
-          >
-            {isResting ? t('restStop') : t('restStart')}
-          </button>
-        </div>
-        <div className="active-exercise-card__rest-bar">
-          <div
-            className="active-exercise-card__rest-bar-fill"
-            style={{ width: `${restProgressPercent}%` }}
-          />
-        </div>
-      </div>
+      <RestTimer restSeconds={restSeconds} />
 
       <button type="button" className="active-exercise-card__validate" onClick={onValidate}>
         {t('validate')}

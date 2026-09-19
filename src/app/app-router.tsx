@@ -1,4 +1,5 @@
 import { HomePage } from '@domains/home/pages/home-page'
+import { OnboardingPage } from '@domains/onboarding/pages/onboarding-page'
 import { ProfilPage } from '@domains/profil/pages/profil-page'
 import { ProgressionPage } from '@domains/progression/pages/progression-page'
 import { SessionHistoryDetailPage } from '@domains/progression/pages/session-history-detail-page'
@@ -34,6 +35,7 @@ export const appRouter = createBrowserRouter([
           { path: '/profil', element: <ProfilPage /> },
         ],
       },
+      { path: '/onboarding', element: <OnboardingPage /> },
       { path: '/profil/reglages', element: <SettingsPage /> },
       { path: '/progression/volume', element: <VolumePage /> },
       { path: '/progression/seances/:entryId', element: <SessionHistoryDetailPage /> },

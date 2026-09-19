@@ -3,6 +3,7 @@ import { Button } from '@shared/atoms/button'
 import { FilterPill } from '@shared/atoms/filter-pill'
 import { NumberField } from '@shared/molecules/number-field'
 import { Stepper } from '@shared/molecules/stepper'
+import { resolveImageUrl } from '@shared/utils/image/image-url'
 import { REST_OPTIONS } from '../../data/rest-options'
 import type { ExerciseSetConfigFormProps } from './exercise-set-config-form.types'
 import './exercise-set-config-form.scss'
@@ -28,7 +29,11 @@ export const ExerciseSetConfigForm = ({
 
   return (
     <div className="exercise-set-config-form">
-      <img className="exercise-set-config-form__photo" src={photoUrl} alt={exerciseName} />
+      <img
+        className="exercise-set-config-form__photo"
+        src={resolveImageUrl(photoUrl)}
+        alt={exerciseName}
+      />
 
       <div className="exercise-set-config-form__header">
         <span className="exercise-set-config-form__name">{exerciseName}</span>

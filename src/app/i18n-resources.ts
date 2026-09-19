@@ -1,6 +1,7 @@
 import i18n from '@shared/i18n/i18n'
 import commonFr from '@shared/i18n/locales/fr/common.json'
 import homeFr from '@domains/home/translations/fr.json'
+import onboardingFr from '@domains/onboarding/translations/fr.json'
 import profilFr from '@domains/profil/translations/fr.json'
 import progressionFr from '@domains/progression/translations/fr.json'
 import reglagesFr from '@domains/reglages/translations/fr.json'
@@ -9,6 +10,7 @@ import seancesFr from '@domains/seances/translations/fr.json'
 
 i18n.addResourceBundle('fr', 'common', commonFr)
 i18n.addResourceBundle('fr', 'home', homeFr)
+i18n.addResourceBundle('fr', 'onboarding', onboardingFr)
 i18n.addResourceBundle('fr', 'profil', profilFr)
 i18n.addResourceBundle('fr', 'progression', progressionFr)
 i18n.addResourceBundle('fr', 'reglages', reglagesFr)

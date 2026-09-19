@@ -1,0 +1,70 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.session-preview-sheet__summary {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+}
+
+.session-preview-sheet__muted {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+}
+
+.session-preview-sheet__summary + .session-preview-sheet__muted {
+  display: block;
+  margin: $spacing-3xs 0 0;
+}
+
+.session-preview-sheet__muscles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  margin: $spacing-sm 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.session-preview-sheet__muscle {
+  padding: $spacing-3xs $spacing-sm;
+  border-radius: $radius-pill;
+  background-color: $color-accent-wash;
+  color: $color-accent;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+}
+
+.session-preview-sheet__exercises {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  margin: $spacing-md 0;
+  padding: 0;
+  list-style: none;
+}
+
+.session-preview-sheet__exercise {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-sm;
+}
+
+.session-preview-sheet__text {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3xs;
+  min-width: 0;
+}
+
+.session-preview-sheet__name {
+  color: $color-text;
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+}
+
+.session-preview-sheet__target {
+  color: $color-accent;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+}

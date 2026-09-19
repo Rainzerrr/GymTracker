@@ -3,14 +3,15 @@ import { useSessionLog } from './use-session-log'
 import {
   DEFAULT_REPS,
   DEFAULT_WEIGHT,
-  findLastPerformance,
+  findLastSets,
+  resolveNextTarget,
   resolveSetPrefill,
 } from '../utils/set-prefill'
+import type { PrefillExercise } from '../utils/set-prefill'
 
-type ExerciseRef = { libraryExerciseId: string }
-
-// Ce que l'utilisateur a fait la dernière fois sur chaque exercice de la séance en cours.
-export const useExerciseHistory = (exercises: ExerciseRef[]) => {
+// Ce que l'utilisateur a fait la dernière fois sur chaque exercice de la séance en cours, et ce
+// qu'on lui propose cette fois.
+export const useExerciseHistory = (exercises: PrefillExercise[]) => {
   const { sessionLog } = useSessionLog()
   const performanceIndex = buildExercisePerformanceIndex(sessionLog)
 
@@ -18,15 +19,21 @@ export const useExerciseHistory = (exercises: ExerciseRef[]) => {
     const exercise = exercises[exerciseIndex]
 
     return exercise
-      ? resolveSetPrefill(performanceIndex, exercise.libraryExerciseId)
+      ? resolveSetPrefill(performanceIndex, exercise)
       : { weight: DEFAULT_WEIGHT, reps: DEFAULT_REPS }
   }
 
-  const lastPerformanceFor = (exerciseIndex: number) => {
+  const lastSetsFor = (exerciseIndex: number) => {
     const exercise = exercises[exerciseIndex]
 
-    return exercise ? findLastPerformance(performanceIndex, exercise.libraryExerciseId) : null
+    return exercise ? findLastSets(performanceIndex, exercise.libraryExerciseId) : null
   }
 
-  return { prefillFor, lastPerformanceFor }
+  const targetFor = (exerciseIndex: number) => {
+    const exercise = exercises[exerciseIndex]
+
+    return exercise ? resolveNextTarget(performanceIndex, exercise) : null
+  }
+
+  return { prefillFor, lastSetsFor, targetFor }
 }

@@ -1,0 +1,38 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.rest-timer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.rest-timer__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+}
+
+.rest-timer__toggle {
+  border: 1px solid $color-border-medium;
+  border-radius: $radius-md;
+  background: none;
+  padding: 0.25rem 0.75rem;
+  color: $color-text;
+  font-family: $font-family-base;
+  font-size: $font-size-xs-plus;
+  cursor: pointer;
+}
+
+.rest-timer__bar {
+  height: 0.1875rem;
+  border-radius: 0.125rem;
+  background-color: $color-border-medium;
+  overflow: hidden;
+}
+
+.rest-timer__bar-fill {
+  height: 100%;
+  background-color: $color-accent;
+}

@@ -1,12 +1,6 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-@mixin emit-tokens($palette) {
-  @each $name, $value in $palette {
-    --color-#{$name}: #{$value};
-  }
-}
-
 // Thème sombre par défaut ; « auto » suit le système (aucun attribut), « clair » et « sombre »
 // forcent le choix via data-theme sur <html>.
 :root {

@@ -1,3 +1,4 @@
+import { resolveImageUrl } from '@shared/utils/image/image-url'
 import type { PhotoHeroProps } from './photo-hero.types'
 import './photo-hero.scss'
 
@@ -14,7 +15,7 @@ export const PhotoHero = ({
 
   return (
     <div className="photo-hero" style={{ height: `${heightRem}rem` }}>
-      <img className="photo-hero__image" src={imageUrl} alt={alt} />
+      <img className="photo-hero__image" src={resolveImageUrl(imageUrl)} alt={alt} />
       {hasTopRow && (
         <div className="photo-hero__top-row">
           {topLeft}

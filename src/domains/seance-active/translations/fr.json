@@ -44,8 +44,18 @@
       "firstSubtitle": "Continue comme ça pour construire ta progression."
     }
   },
-  "lastPerformance": "Dernière fois : {{weight}} kg × {{reps}}",
-  "lastPerformanceReps": "Dernière fois : {{reps}} reps",
+  "lastSets": "Dernière fois : {{sets}}",
+  "lastSetsReps": "Dernière fois : {{reps}} reps",
+  "target": {
+    "repeat": "Objectif : {{weight}} kg × {{reps}}",
+    "moreReps": "Objectif : {{weight}} kg × {{reps}} · une rep de plus",
+    "moreWeight": "Objectif : {{weight}} kg × {{reps}} · on monte la charge",
+    "consolidate": "Objectif : {{weight}} kg × {{reps}} · on confirme cette charge"
+  },
+  "targetReps": {
+    "repeat": "Objectif : {{reps}} reps",
+    "moreReps": "Objectif : {{reps}} reps · une de plus"
+  },
   "undo": "Annuler la dernière série",
   "note": {
     "label": "Note",

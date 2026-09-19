@@ -62,5 +62,10 @@
       "unsupportedVersion": "Cette sauvegarde vient d'une version plus récente de l'app.",
       "unreadable": "Impossible de lire ce fichier."
     }
+  },
+  "onboarding": {
+    "label": "Onboarding",
+    "title": "Revoir la présentation",
+    "subtitle": "Rangs, XP, objectifs de charge : le tour de l'app"
   }
 }

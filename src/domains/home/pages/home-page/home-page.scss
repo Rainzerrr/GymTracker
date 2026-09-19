@@ -11,8 +11,14 @@
   padding: $spacing-md $spacing-lg $spacing-xl;
 }
 
-// The button stretches to the slot height so its size matches the space the
-// rest-day banner reserves for it.
+// The buttons stretch to the slot height so their size matches the space the
+// rest-day banner reserves for them.
 .home-page__cta {
   display: flex;
+  gap: $spacing-sm;
+}
+
+.home-page__cta-main {
+  display: flex;
+  flex: 1;
 }

@@ -9,6 +9,7 @@ import { ExerciseNote } from '../../molecules/exercise-note'
 import { ActiveExerciseCard } from '../../organisms/active-exercise-card'
 import { ExerciseQueue } from '../../organisms/exercise-queue'
 import { SessionHeader } from '../../organisms/session-header'
+import { formatLastSets, formatNextTarget } from '../../utils/build-history-labels'
 
 export const ActiveSessionPage = () => {
   const { sessionId } = useParams<{ sessionId: string }>()
@@ -27,18 +28,14 @@ export const ActiveSessionPage = () => {
     setWeight,
     selectedRir,
     selectRir,
-    isResting,
-    restRemainingSeconds,
-    restTotalSeconds,
-    startRest,
-    stopRest,
-    elapsedSeconds,
+    startedAt,
     isSessionComplete,
     validateSet,
     skipSet,
     skipExercise,
     selectExercise,
-    lastPerformance,
+    lastSets,
+    nextTarget,
     canUndo,
     undoLastStep,
     note,
@@ -62,11 +59,9 @@ export const ActiveSessionPage = () => {
     return null
   }
 
-  const showsWeight = lastPerformance && !currentExercise.isBodyweight && lastPerformance.weight > 0
-  const lastPerformanceLabel = lastPerformance
-    ? showsWeight
-      ? t('lastPerformance', { weight: lastPerformance.weight, reps: lastPerformance.reps })
-      : t('lastPerformanceReps', { reps: lastPerformance.reps })
+  const lastPerformanceLabel = lastSets ? formatLastSets(t, lastSets) : undefined
+  const nextTargetLabel = nextTarget
+    ? formatNextTarget(t, nextTarget, currentExercise.isBodyweight)
     : undefined
 
   const handleAbandon = () => {
@@ -77,11 +72,7 @@ export const ActiveSessionPage = () => {
   return (
     <PageTemplate
       header={
-        <SessionHeader
-          title={session.name}
-          elapsedSeconds={elapsedSeconds}
-          onBack={() => navigate('/')}
-        />
+        <SessionHeader title={session.name} startedAt={startedAt} onBack={() => navigate('/')} />
       }
     >
       <ActiveExerciseCard
@@ -99,15 +90,12 @@ export const ActiveSessionPage = () => {
         isBodyweight={currentExercise.isBodyweight}
         selectedRir={selectedRir}
         onSelectRir={selectRir}
-        isResting={isResting}
-        restRemainingSeconds={restRemainingSeconds}
-        restTotalSeconds={restTotalSeconds}
-        onStartRest={startRest}
-        onStopRest={stopRest}
+        restSeconds={currentExercise.restSeconds}
         onValidate={validateSet}
         onSkipSet={skipSet}
         onSkipExercise={skipExercise}
         lastPerformanceLabel={lastPerformanceLabel}
+        nextTargetLabel={nextTargetLabel}
       />
       {canUndo && <Button label={t('undo')} variant="outline" fullWidth onClick={undoLastStep} />}
       <ExerciseNote value={note} onChange={setNote} />

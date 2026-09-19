@@ -1,0 +1,250 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.onboarding-target {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  width: 100%;
+  max-width: 24rem;
+}
+
+.onboarding-target__card {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-xl;
+  background-color: $color-surface;
+  box-shadow: 0 1rem 2.5rem $color-scrim-soft;
+}
+
+.onboarding-target__head {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.onboarding-target__photo {
+  display: block;
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: $radius-md;
+  object-fit: cover;
+}
+
+.onboarding-target__head-text,
+.onboarding-target__history {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3xs;
+}
+
+.onboarding-target__name {
+  color: $color-text;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+}
+
+.onboarding-target__set,
+.onboarding-target__last {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+}
+
+.onboarding-target__goal {
+  align-self: flex-start;
+  padding: $spacing-3xs $spacing-sm;
+  border-radius: $radius-pill;
+  background-color: $color-accent-wash;
+  color: $color-accent;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+}
+
+.onboarding-target__reason {
+  font-weight: $font-weight-medium;
+}
+
+.onboarding-target__fields {
+  display: flex;
+  gap: $spacing-xs;
+}
+
+.onboarding-target__field {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: $spacing-3xs;
+}
+
+.onboarding-target__field-label {
+  color: $color-text-muted;
+  font-size: $font-size-2xs;
+}
+
+.onboarding-target__field-value {
+  position: relative;
+  height: 2.5rem;
+  overflow: hidden;
+  border-radius: $radius-md;
+  background-color: $color-surface-strong;
+}
+
+.onboarding-target__value {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-text;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+}
+
+// Sans animation, on garde la valeur finale.
+.onboarding-target__value--before {
+  opacity: 0;
+}
+
+.onboarding-target__validate {
+  padding: $spacing-sm 0;
+  border-radius: $radius-lg;
+  background-color: $color-accent;
+  color: $color-accent-ink;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  text-align: center;
+}
+
+.onboarding-target__points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.onboarding-target__point {
+  padding: $spacing-2xs $spacing-sm;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-pill;
+  color: $color-text-soft;
+  font-size: $font-size-xs;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .onboarding-target__card {
+    animation: onboarding-target-card 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  }
+
+  .onboarding-target__last {
+    animation: onboarding-target-fade 0.5s ease 0.8s both;
+  }
+
+  .onboarding-target__goal {
+    animation: onboarding-target-goal 0.7s cubic-bezier(0.3, 1.5, 0.5, 1) 1.6s both;
+  }
+
+  // Les valeurs changent au moment où l'objectif apparaît.
+  .onboarding-target__value--before {
+    opacity: 1;
+    animation: onboarding-target-out 0.45s ease 2.1s both;
+  }
+
+  .onboarding-target__value--after {
+    animation: onboarding-target-in 0.5s cubic-bezier(0.3, 1.4, 0.5, 1) 2.1s both;
+  }
+
+  .onboarding-target__validate {
+    animation: onboarding-target-press 2.4s ease-in-out 3s infinite;
+  }
+
+  .onboarding-target__point {
+    animation: onboarding-target-fade 0.5s ease both;
+    animation-delay: var(--onboarding-delay, 0s);
+  }
+}
+
+@keyframes onboarding-target-card {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes onboarding-target-fade {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes onboarding-target-goal {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  60% {
+    box-shadow: 0 0 1.5rem $color-accent-soft;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 $color-accent-soft;
+  }
+}
+
+@keyframes onboarding-target-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-1.25rem);
+  }
+}
+
+@keyframes onboarding-target-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes onboarding-target-press {
+  0%,
+  70%,
+  100% {
+    transform: scale(1);
+  }
+
+  80% {
+    transform: scale(0.97);
+  }
+
+  90% {
+    transform: scale(1.02);
+  }
+}

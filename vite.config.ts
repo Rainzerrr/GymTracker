@@ -37,7 +37,9 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,woff,woff2}'],
+        // woff2 seul : tous les navigateurs modernes le gèrent, le woff n'est qu'un repli inutile.
+        // Les photos sont précachées pour que l'app reste complète en salle, sans réseau.
+        globPatterns: ['**/*.{js,css,html,svg,woff2,webp}'],
         runtimeCaching: [
           {
             urlPattern: ({ request }) => request.destination === 'image',

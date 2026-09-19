@@ -2,6 +2,7 @@
   "cta": "Commencer la séance",
   "resumeCta": "Reprendre la séance",
   "viewSessionCta": "Voir la séance",
+  "previewCta": "Aperçu",
   "weekStrip": {
     "status": {
       "done": "Terminé",
@@ -54,5 +55,12 @@
       "Étirement des fléchisseurs de hanche : 30 s de chaque côté",
       "Chat-vache : 10 répétitions lentes"
     ]
+  },
+  "preview": {
+    "eyebrow": "Aperçu de la séance",
+    "summary": "~{{duration}} min · {{count}} exercices",
+    "lastDone": "Dernière fois {{when}}",
+    "neverDone": "Pas encore faite",
+    "firstTime": "Première fois : on part de zéro"
   }
 }

@@ -10,6 +10,7 @@ import { ProfilBackup } from '../../organisms/profil-backup'
 import { ProfilBodyWeight } from '../../organisms/profil-body-weight'
 import { ProfilHeader } from '../../organisms/profil-header'
 import { ProfilMuscleSplit } from '../../organisms/profil-muscle-split'
+import { ProfilOnboarding } from '../../organisms/profil-onboarding'
 import { ProfilRecentSessions } from '../../organisms/profil-recent-sessions'
 import { ProfilResetData } from '../../organisms/profil-reset-data'
 import { ProfilShortcuts } from '../../organisms/profil-shortcuts'
@@ -63,6 +64,7 @@ export const ProfilPage = () => {
         onProgressionClick={() => navigate('/progression')}
         onSettingsClick={() => navigate('/profil/reglages')}
       />
+      <ProfilOnboarding onOpen={() => navigate('/onboarding')} />
       <ProfilBackup
         importState={importState}
         onExport={exportData}

@@ -1,10 +1,13 @@
 import { useTranslation } from 'react-i18next'
+import { useStopwatch } from '@shared/hooks/use-stopwatch'
 import { formatDurationClock } from '@shared/utils/date/format-duration-clock'
 import type { SessionHeaderProps } from './session-header.types'
 import './session-header.scss'
 
-export const SessionHeader = ({ title, elapsedSeconds, onBack }: SessionHeaderProps) => {
+export const SessionHeader = ({ title, startedAt, onBack }: SessionHeaderProps) => {
   const { t } = useTranslation('common')
+  // Le chrono tourne ici : seul ce bloc se re-rend chaque seconde.
+  const elapsedSeconds = useStopwatch(startedAt, true)
 
   return (
     <div className="session-header">

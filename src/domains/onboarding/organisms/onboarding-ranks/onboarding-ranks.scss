@@ -1,0 +1,345 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.onboarding-ranks {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  width: 100%;
+  max-width: 24rem;
+}
+
+.onboarding-ranks__ladder {
+  position: relative;
+}
+
+// Le trait qui relie les quatre rangs passe derrière les médaillons.
+.onboarding-ranks__rail {
+  position: absolute;
+  top: 1.4375rem;
+  right: 12%;
+  left: 12%;
+  height: 0.125rem;
+  border-radius: $radius-pill;
+  background-image: linear-gradient(
+    90deg,
+    $color-tier-bronze,
+    $color-tier-argent,
+    $color-tier-or,
+    $color-tier-platine
+  );
+  opacity: 0.55;
+}
+
+.onboarding-ranks__tiers {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.onboarding-ranks__tier {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.onboarding-ranks__avatar {
+  display: flex;
+  margin-bottom: $spacing-3xs;
+}
+
+.onboarding-ranks__tier-name {
+  color: $color-text;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+}
+
+.onboarding-ranks__steps {
+  display: flex;
+  gap: $spacing-3xs;
+}
+
+.onboarding-ranks__step {
+  width: 0.3125rem;
+  height: 0.3125rem;
+  border-radius: $radius-pill;
+  background-color: $color-border-strong;
+}
+
+.onboarding-ranks__card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-xl;
+  background-color: $color-surface;
+}
+
+.onboarding-ranks__card-avatar {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  width: 2.875rem;
+  height: 2.875rem;
+}
+
+.onboarding-ranks__card-avatar-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.onboarding-ranks__card-avatar-layer--before {
+  opacity: 0;
+}
+
+.onboarding-ranks__card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: $spacing-3xs;
+  min-width: 0;
+}
+
+.onboarding-ranks__card-name {
+  color: $color-text;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+}
+
+.onboarding-ranks__card-rank {
+  position: relative;
+  height: 1.125rem;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+}
+
+.onboarding-ranks__rank-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.onboarding-ranks__rank-label--before {
+  opacity: 0;
+  color: $color-tier-argent;
+}
+
+.onboarding-ranks__rank-label--after {
+  color: $color-tier-or;
+}
+
+.onboarding-ranks__bar {
+  display: block;
+  height: 0.3125rem;
+  overflow: hidden;
+  border-radius: $radius-pill;
+  background-color: $color-border-medium;
+}
+
+.onboarding-ranks__bar-fill {
+  display: block;
+  width: 6%;
+  height: 100%;
+  border-radius: $radius-pill;
+  background-color: $color-tier-or;
+}
+
+.onboarding-ranks__unlocked {
+  position: absolute;
+  top: -0.75rem;
+  right: $spacing-md;
+  padding: $spacing-3xs $spacing-sm;
+  border-radius: $radius-pill;
+  background-color: $color-accent;
+  color: $color-accent-ink;
+  font-size: $font-size-2xs;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 0 1.25rem $color-accent-soft;
+}
+
+.onboarding-ranks__points {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.onboarding-ranks__point {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  color: $color-text-soft;
+  font-size: $font-size-md;
+}
+
+.onboarding-ranks__point svg {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  color: $color-accent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .onboarding-ranks__rail {
+    transform-origin: left;
+    animation: onboarding-ranks-rail 1.3s ease 0.35s both;
+  }
+
+  // Chaque rang s'allume l'un après l'autre.
+  .onboarding-ranks__avatar {
+    animation: onboarding-ranks-light 0.6s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+    animation-delay: var(--onboarding-delay, 0s);
+  }
+
+  .onboarding-ranks__tier-name,
+  .onboarding-ranks__steps {
+    animation: onboarding-ranks-fade 0.5s ease both;
+    animation-delay: calc(var(--onboarding-delay, 0s) + 0.15s);
+  }
+
+  .onboarding-ranks__card {
+    animation: onboarding-ranks-card 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: var(--onboarding-delay, 0s);
+  }
+
+  // Séquence de la carte : la barre se remplit, puis le rang change.
+  .onboarding-ranks__bar-fill {
+    animation: onboarding-ranks-fill 3s ease calc(var(--onboarding-delay, 0s) + 0.3s) both;
+  }
+
+  .onboarding-ranks__card-avatar-layer--before,
+  .onboarding-ranks__rank-label--before {
+    animation: onboarding-ranks-out 0.5s ease calc(var(--onboarding-delay, 0s) + 2.25s) both;
+  }
+
+  .onboarding-ranks__card-avatar-layer--after,
+  .onboarding-ranks__rank-label--after {
+    animation: onboarding-ranks-in 0.55s cubic-bezier(0.3, 1.5, 0.5, 1)
+      calc(var(--onboarding-delay, 0s) + 2.25s) both;
+  }
+
+  .onboarding-ranks__card-avatar-layer--before,
+  .onboarding-ranks__rank-label--before {
+    opacity: 1;
+  }
+
+  .onboarding-ranks__unlocked {
+    animation: onboarding-ranks-badge 0.6s cubic-bezier(0.3, 1.6, 0.5, 1)
+      calc(var(--onboarding-delay, 0s) + 2.3s) both;
+  }
+
+  .onboarding-ranks__point {
+    animation: onboarding-ranks-fade 0.5s ease both;
+    animation-delay: var(--onboarding-delay, 0s);
+  }
+}
+
+@keyframes onboarding-ranks-rail {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes onboarding-ranks-light {
+  from {
+    opacity: 0.3;
+    transform: scale(0.6);
+    filter: grayscale(1) brightness(0.6);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.15);
+    filter: none;
+  }
+}
+
+@keyframes onboarding-ranks-fade {
+  from {
+    opacity: 0;
+    transform: translateY(0.375rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes onboarding-ranks-card {
+  from {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes onboarding-ranks-fill {
+  0% {
+    width: 0;
+  }
+
+  65% {
+    width: 100%;
+  }
+
+  72%,
+  100% {
+    width: 6%;
+  }
+}
+
+@keyframes onboarding-ranks-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+}
+
+@keyframes onboarding-ranks-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes onboarding-ranks-badge {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.6);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

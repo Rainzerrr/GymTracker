@@ -1,5 +1,5 @@
 export type SessionHeaderProps = {
   title: string
-  elapsedSeconds: number
+  startedAt: number
   onBack: () => void
 }

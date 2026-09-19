@@ -1,0 +1,224 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.onboarding-intro__line {
+  display: block;
+  font-size: $font-size-5xl;
+  line-height: 1.02;
+}
+
+// La deuxième ligne, celle de la progression, prend l'accent.
+.onboarding-intro__line--1 {
+  background-image: linear-gradient(90deg, $color-accent, $color-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.onboarding-intro__stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 20rem;
+  aspect-ratio: 1;
+}
+
+.onboarding-intro__pulse {
+  position: absolute;
+  inset: 18%;
+  border: 1px solid $color-accent-soft;
+  border-radius: $radius-pill;
+  opacity: 0.5;
+}
+
+.onboarding-intro__mark {
+  position: relative;
+  width: 64%;
+  fill: $color-accent;
+  filter: drop-shadow(0 0 1.5rem $color-accent-soft);
+}
+
+.onboarding-intro__chip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2xs;
+  padding: $spacing-2xs $spacing-sm;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-pill;
+  background-color: $color-surface;
+  color: $color-text;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  box-shadow: 0 0.5rem 1.5rem $color-scrim-soft;
+}
+
+.onboarding-intro__chip svg {
+  width: 0.9375rem;
+  height: 0.9375rem;
+  color: $color-accent;
+}
+
+.onboarding-intro__chip--rank {
+  top: 8%;
+  left: 0;
+}
+
+.onboarding-intro__chip--xp {
+  top: 42%;
+  right: -2%;
+  border-color: $color-accent;
+  background-color: $color-accent;
+  color: $color-accent-ink;
+}
+
+.onboarding-intro__chip--streak {
+  bottom: 6%;
+  left: 8%;
+}
+
+.onboarding-intro__spark {
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: $color-accent;
+  clip-path: polygon(50% 0%, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0% 50%, 39% 35%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .onboarding-intro__line {
+    animation: onboarding-intro-rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: var(--onboarding-delay, 0s);
+  }
+
+  .onboarding-intro__plate--left,
+  .onboarding-intro__collar--left {
+    animation: onboarding-intro-from-left 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s both;
+  }
+
+  .onboarding-intro__plate--right,
+  .onboarding-intro__collar--right {
+    animation: onboarding-intro-from-right 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s both;
+  }
+
+  .onboarding-intro__bar {
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: onboarding-intro-bar 0.55s ease 0.35s both;
+  }
+
+  .onboarding-intro__mark {
+    animation: onboarding-intro-lift 2.6s ease-in-out 1.2s infinite;
+  }
+
+  .onboarding-intro__pulse {
+    animation: onboarding-intro-pulse 3.2s ease-out infinite;
+  }
+
+  .onboarding-intro__pulse--late {
+    animation-delay: 1.6s;
+  }
+
+  .onboarding-intro__chip {
+    animation:
+      onboarding-intro-pop 0.5s cubic-bezier(0.3, 1.5, 0.5, 1) both,
+      onboarding-intro-float 4s ease-in-out infinite;
+    animation-delay: var(--onboarding-delay, 0s), calc(var(--onboarding-delay, 0s) + 0.5s);
+  }
+}
+
+@keyframes onboarding-intro-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes onboarding-intro-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes onboarding-intro-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes onboarding-intro-bar {
+  from {
+    opacity: 0;
+    transform: scaleX(0.2);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+// Une répétition : la barre monte, puis redescend.
+@keyframes onboarding-intro-lift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  45% {
+    transform: translateY(-0.75rem);
+  }
+}
+
+@keyframes onboarding-intro-pulse {
+  from {
+    opacity: 0.55;
+    transform: scale(0.7);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+
+@keyframes onboarding-intro-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6) translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes onboarding-intro-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-0.5rem);
+  }
+}

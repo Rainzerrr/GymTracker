@@ -1,3 +1,4 @@
+import { resolveThumbnailUrl } from '@shared/utils/image/image-url'
 import './thumbnail.scss'
 
 type ThumbnailProps = {
@@ -10,5 +11,15 @@ export const Thumbnail = ({ src, alt }: ThumbnailProps) => {
     return <span className="thumbnail thumbnail--placeholder" aria-hidden="true" />
   }
 
-  return <img className="thumbnail" src={src} alt={alt} loading="lazy" />
+  return (
+    <img
+      className="thumbnail"
+      src={resolveThumbnailUrl(src)}
+      alt={alt}
+      width={320}
+      height={320}
+      loading="lazy"
+      decoding="async"
+    />
+  )
 }

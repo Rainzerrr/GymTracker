@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { getLibraryExercise } from '@domains/seances/hooks/use-exercise-library'
 import { useSessions } from '@domains/seances/hooks/use-sessions'
 import { isBodyweightEquipment } from '@domains/seances/utils/is-bodyweight-equipment'
+import { estimateSessionMinutes } from '@domains/seances/utils/estimate-session-duration'
+import { parseRestSeconds } from '@domains/seances/utils/parse-rest-seconds'
 import { parseSetCount } from '@domains/seances/utils/parse-set-count'
 import { useSessionLog } from './use-session-log'
 import { buildLoggedExercises } from '../utils/build-logged-exercises'
-
-const ESTIMATED_MINUTES_PER_EXERCISE = 12
 
 type EditableSet = { weight: number; reps: number }
 
@@ -81,7 +81,12 @@ export const useSessionLogEditor = (sessionId: string | undefined, dateIso: stri
     upsertSessionLogForDate(date, {
       sessionName: session.name,
       imageUrl: session.imageUrl,
-      durationMinutes: Math.max(1, session.exercises.length * ESTIMATED_MINUTES_PER_EXERCISE),
+      durationMinutes: estimateSessionMinutes(
+        session.exercises.map((exercise) => ({
+          setCount: parseSetCount(exercise.targetLabel),
+          restSeconds: parseRestSeconds(exercise.restLabel),
+        })),
+      ),
       exercises: loggedExercises,
     })
   }

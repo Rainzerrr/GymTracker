@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@shared/atoms/button'
 import { PageTemplate } from '@shared/templates/page-template'
+import { formatRelativeDays } from '@shared/utils/date/format-relative-days'
+import { useSessionLog } from '@domains/seance-active/hooks/use-session-log'
 import { useSessions } from '../../hooks/use-sessions'
 import { useStarterProgram } from '../../hooks/use-starter-program'
 import { SessionList, SessionListHeader } from '../../organisms/session-list'
@@ -12,19 +14,28 @@ export const SeancesPage = () => {
   const { t } = useTranslation('seances')
   const { sessions, removeSession, duplicateSession } = useSessions()
   const { installStarterProgram } = useStarterProgram()
+  const { sessionLog } = useSessionLog()
   const [editMode, setEditMode] = useState(false)
 
-  const listItems = sessions.map((session) => ({
-    id: session.id,
-    name: session.name,
-    subtitle: session.focusLabel
+  const listItems = sessions.map((session) => {
+    const baseSubtitle = session.focusLabel
       ? t('list.itemSubtitleWithFocus', {
           focus: session.focusLabel,
           count: session.exercises.length,
         })
-      : t('list.itemSubtitle', { count: session.exercises.length }),
-    imageUrl: session.imageUrl,
-  }))
+      : t('list.itemSubtitle', { count: session.exercises.length })
+    const lastDoneAt = sessionLog
+      .filter((entry) => entry.sessionName === session.name)
+      .reduce<string | undefined>(
+        (latest, entry) => (!latest || entry.completedAt > latest ? entry.completedAt : latest),
+        undefined,
+      )
+    const subtitle = lastDoneAt
+      ? `${baseSubtitle} · ${t('list.lastDone', { when: formatRelativeDays(new Date(lastDoneAt)) })}`
+      : baseSubtitle
+
+    return { id: session.id, name: session.name, subtitle, imageUrl: session.imageUrl }
+  })
 
   return (
     <PageTemplate

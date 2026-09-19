@@ -1,0 +1,227 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+// Compteur animé : la valeur finale est celle par défaut, l'animation part de 0.
+@property --onboarding-xp {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 120;
+}
+
+.onboarding-level {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-lg;
+  width: 100%;
+}
+
+.onboarding-level__ring-wrap {
+  position: relative;
+  width: 13rem;
+  height: 13rem;
+}
+
+.onboarding-level__ring {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  filter: drop-shadow(0 0 1rem $color-accent-soft);
+}
+
+.onboarding-level__track,
+.onboarding-level__progress {
+  fill: none;
+  stroke-width: 7;
+}
+
+.onboarding-level__track {
+  stroke: $color-border-medium;
+}
+
+.onboarding-level__progress {
+  stroke: $color-accent;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 28;
+  stroke-linecap: round;
+}
+
+.onboarding-level__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.onboarding-level__label {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.onboarding-level__value {
+  color: $color-text;
+  font-family: $font-family-heading;
+  font-size: 4rem;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+}
+
+.onboarding-level__title {
+  color: $color-accent;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+}
+
+.onboarding-level__xp {
+  position: absolute;
+  top: 0;
+  right: -1.25rem;
+  padding: $spacing-2xs $spacing-sm;
+  border-radius: $radius-pill;
+  background-color: $color-accent;
+  color: $color-accent-ink;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  box-shadow: 0 0 1.5rem $color-accent-soft;
+}
+
+.onboarding-level__xp-count {
+  counter-reset: onboarding-xp var(--onboarding-xp);
+}
+
+.onboarding-level__xp-count::after {
+  content: counter(onboarding-xp);
+}
+
+.onboarding-level__streak {
+  position: absolute;
+  bottom: 0.25rem;
+  left: -1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2xs;
+  padding: $spacing-2xs $spacing-sm;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-pill;
+  background-color: $color-surface;
+  color: $color-text;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+}
+
+.onboarding-level__streak svg {
+  width: 0.9375rem;
+  height: 0.9375rem;
+  color: $color-accent;
+}
+
+.onboarding-level__titles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $spacing-xs;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.onboarding-level__step {
+  padding: $spacing-2xs $spacing-sm;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-pill;
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+}
+
+.onboarding-level__step--current {
+  border-color: $color-accent;
+  color: $color-accent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .onboarding-level__progress {
+    animation: onboarding-level-fill 1.8s cubic-bezier(0.3, 0.7, 0.2, 1) 0.35s both;
+  }
+
+  .onboarding-level__center {
+    animation: onboarding-level-pop 0.7s cubic-bezier(0.3, 1.5, 0.5, 1) 0.5s both;
+  }
+
+  .onboarding-level__xp {
+    animation: onboarding-level-badge 0.6s cubic-bezier(0.3, 1.6, 0.5, 1) 1.2s both;
+  }
+
+  .onboarding-level__xp-count {
+    animation: onboarding-level-count 1.1s ease-out 1.3s both;
+  }
+
+  .onboarding-level__streak {
+    animation: onboarding-level-badge 0.6s cubic-bezier(0.3, 1.6, 0.5, 1) 1.5s both;
+  }
+
+  .onboarding-level__step {
+    animation: onboarding-level-rise 0.5s ease both;
+    animation-delay: var(--onboarding-delay, 0s);
+  }
+}
+
+@keyframes onboarding-level-fill {
+  0% {
+    stroke-dashoffset: 100;
+  }
+
+  100% {
+    stroke-dashoffset: 28;
+  }
+}
+
+@keyframes onboarding-level-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes onboarding-level-badge {
+  0% {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.6);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes onboarding-level-count {
+  0% {
+    --onboarding-xp: 0;
+  }
+
+  100% {
+    --onboarding-xp: 120;
+  }
+}
+
+@keyframes onboarding-level-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

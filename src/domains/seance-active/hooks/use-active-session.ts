@@ -1,8 +1,7 @@
 import { useSessions } from '@domains/seances/hooks/use-sessions'
-import { useStopwatch } from '@shared/hooks/use-stopwatch'
 import { useActiveSessionState } from './use-active-session-state'
 import { useSessionCompletion } from './use-session-completion'
-import { useSessionRest } from './use-session-rest'
+import { useSessionWakeLock } from './use-session-wake-lock'
 import { useExerciseHistory } from './use-exercise-history'
 import type { RirValue } from '../types/rir-value'
 import type { SetLogEntry } from '../types/set-log-entry'
@@ -18,7 +17,7 @@ export const useActiveSession = (sessionId: string | undefined) => {
   const exercises = deriveActiveExercises(session?.exercises ?? [])
   const groups = buildGroups(exercises.map((exercise) => exercise.linkedToNext))
 
-  const { prefillFor, lastPerformanceFor } = useExerciseHistory(exercises)
+  const { prefillFor, lastSetsFor, targetFor } = useExerciseHistory(exercises)
 
   const { snapshot, updateSnapshot, clearSnapshot } = useActiveSessionState(
     sessionId,
@@ -29,9 +28,8 @@ export const useActiveSession = (sessionId: string | undefined) => {
 
   const { progress, setLogsByExercise, notesByExercise, currentExerciseIndex } = snapshot
   const { reps, weight, selectedRir } = snapshot
-  const elapsedSeconds = useStopwatch(snapshot.startedAt, !isSessionComplete)
   const currentExercise = exercises[currentExerciseIndex]
-  const rest = useSessionRest(currentExercise?.restSeconds ?? 0, !isSessionComplete)
+  useSessionWakeLock(!isSessionComplete)
   const completedSetsOfCurrent = progress[currentExerciseIndex] ?? 0
   const currentSetNumber = currentExercise
     ? Math.min(completedSetsOfCurrent + 1, currentExercise.setCount)
@@ -153,14 +151,14 @@ export const useActiveSession = (sessionId: string | undefined) => {
     setWeight: (value: number) => updateSnapshot({ weight: value }),
     selectedRir,
     selectRir: (value: RirValue | null) => updateSnapshot({ selectedRir: value }),
-    ...rest,
-    elapsedSeconds,
+    startedAt: snapshot.startedAt,
     isSessionComplete,
     validateSet,
     skipSet,
     skipExercise,
     selectExercise,
-    lastPerformance: lastPerformanceFor(currentExerciseIndex),
+    lastSets: lastSetsFor(currentExerciseIndex),
+    nextTarget: targetFor(currentExerciseIndex),
     canUndo: snapshot.previous !== null,
     undoLastStep,
     note: notesByExercise[currentExerciseIndex] ?? '',

@@ -1,0 +1,111 @@
+@use 'shared/styles/abstracts/variables' as *;
+@use 'shared/styles/abstracts/mixins' as *;
+
+// Registre l'halo pour qu'il change de teinte en fondu d'une étape à l'autre.
+@property --onboarding-glow {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+
+// L'onboarding est toujours sombre, quel que soit le thème choisi : c'est ce qui donne son relief
+// aux halos, aux rangs et aux médaillons.
+.onboarding-page {
+  --onboarding-glow: #{$color-accent};
+
+  @include emit-tokens($theme-dark);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background-color: $color-background;
+  color: $color-text;
+  color-scheme: dark;
+  touch-action: pan-y;
+  transition: --onboarding-glow 0.9s ease;
+}
+
+.onboarding-page--accent {
+  --onboarding-glow: #{$color-accent};
+}
+
+.onboarding-page--platine {
+  --onboarding-glow: #{$color-tier-platine};
+}
+
+.onboarding-page--argent {
+  --onboarding-glow: #{$color-tier-argent};
+}
+
+.onboarding-page--bronze {
+  --onboarding-glow: #{$color-tier-bronze};
+}
+
+.onboarding-page__glow {
+  position: absolute;
+  top: -22%;
+  right: -30%;
+  left: -30%;
+  height: 65%;
+  border-radius: $radius-pill;
+  background-image: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--onboarding-glow) 38%, transparent),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.onboarding-page__top {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-sm $spacing-lg 0;
+}
+
+.onboarding-page__skip {
+  flex-shrink: 0;
+  border: 0;
+  background: none;
+  padding: $spacing-xs 0;
+  color: $color-text-muted;
+  font-family: $font-family-base;
+  font-size: $font-size-md;
+  cursor: pointer;
+}
+
+.onboarding-page__stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden auto;
+  padding: $spacing-md $spacing-lg;
+}
+
+.onboarding-page__footer {
+  position: relative;
+  padding: $spacing-sm $spacing-lg;
+  padding-bottom: calc(#{$spacing-lg} + env(safe-area-inset-bottom));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .onboarding-page__glow {
+    animation: onboarding-page-breathe 6s ease-in-out infinite;
+  }
+}
+
+@keyframes onboarding-page-breathe {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}

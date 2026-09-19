@@ -5,11 +5,11 @@ import { detectSessionFocus } from './detect-session-focus'
 const LEGACY_DEFAULT_SESSION_IMAGE_URL = '/images/workouts/upper-hypertrophy.jpg'
 
 const FOCUS_IMAGE_URLS: Record<SessionFocus, string> = {
-  push: '/images/workouts/push.jpg',
-  pull: '/images/workouts/pull.jpg',
-  upper: '/images/workouts/upper.jpg',
-  lower: '/images/workouts/lower.jpg',
-  'full-body': '/images/workouts/full-body.jpg',
+  push: '/images/workouts/push.webp',
+  pull: '/images/workouts/pull.webp',
+  upper: '/images/workouts/upper.webp',
+  lower: '/images/workouts/lower.webp',
+  'full-body': '/images/workouts/full-body.webp',
 }
 
 export const DEFAULT_SESSION_IMAGE_URL = FOCUS_IMAGE_URLS['full-body']

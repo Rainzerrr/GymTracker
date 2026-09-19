@@ -1,0 +1,70 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.onboarding-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-sm;
+  width: 100%;
+  max-width: 24rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.onboarding-features__item {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3xs;
+  padding: $spacing-md;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-xl;
+  background-color: $color-surface;
+}
+
+.onboarding-features__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.125rem;
+  height: 2.125rem;
+  margin-bottom: $spacing-2xs;
+  border-radius: $radius-md;
+  background-color: $color-accent-wash;
+  color: $color-accent;
+}
+
+.onboarding-features__icon svg {
+  width: 1.1875rem;
+  height: 1.1875rem;
+}
+
+.onboarding-features__title {
+  color: $color-text;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+}
+
+.onboarding-features__text {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  line-height: 1.4;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .onboarding-features__item {
+    animation: onboarding-features-pop 0.55s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+    animation-delay: var(--onboarding-delay, 0s);
+  }
+}
+
+@keyframes onboarding-features-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.92);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

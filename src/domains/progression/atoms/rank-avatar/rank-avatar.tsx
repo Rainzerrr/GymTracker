@@ -1,3 +1,4 @@
+import { resolveThumbnailUrl } from '@shared/utils/image/image-url'
 import type { RankAvatarProps } from './rank-avatar.types'
 import './rank-avatar.scss'
 
@@ -12,7 +13,7 @@ const dumbbellIcon = (
 export const RankAvatar = ({ tier, photoUrl, label, size = 'md' }: RankAvatarProps) => {
   return (
     <span className={`rank-avatar rank-avatar--${tier} rank-avatar--${size}`}>
-      {photoUrl ? <img src={photoUrl} alt={label} /> : dumbbellIcon}
+      {photoUrl ? <img src={resolveThumbnailUrl(photoUrl)} alt={label} /> : dumbbellIcon}
     </span>
   )
 }

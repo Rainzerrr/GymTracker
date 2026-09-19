@@ -15,13 +15,10 @@ export type ActiveExerciseCardProps = {
   isBodyweight: boolean
   selectedRir: RirValue | null
   onSelectRir: (value: RirValue) => void
-  isResting: boolean
-  restRemainingSeconds: number
-  restTotalSeconds: number
-  onStartRest: () => void
-  onStopRest: () => void
+  restSeconds: number
   onValidate: () => void
   onSkipSet: () => void
   onSkipExercise: () => void
   lastPerformanceLabel?: string
+  nextTargetLabel?: string
 }

@@ -1,0 +1,125 @@
+{
+  "aria": {
+    "carousel": "Présentation de GymTracker",
+    "step": "Étape {{current}} sur {{total}}"
+  },
+  "controls": {
+    "next": "Suivant",
+    "skip": "Passer"
+  },
+  "intro": {
+    "eyebrow": "Bienvenue",
+    "lines": ["Charge.", "Progresse.", "Répète."],
+    "text": "Suis chaque série, débloque des rangs et regarde ta force grimper, séance après séance.",
+    "rankChip": "Or II",
+    "xpChip": "+120 XP",
+    "streakChip": "12 jours"
+  },
+  "ranks": {
+    "eyebrow": "Rangs",
+    "title": "Chaque exercice a son rang",
+    "text": "De Bronze à Platine : ta force est comparée à de vrais standards, ajustés à ton poids de corps.",
+    "tiers": {
+      "bronze": "Bronze",
+      "argent": "Argent",
+      "or": "Or",
+      "platine": "Platine"
+    },
+    "exercise": "Squat barre libre",
+    "rankBefore": "Argent III",
+    "rankAfter": "Or I",
+    "unlocked": "Rang débloqué",
+    "points": [
+      "12 paliers par exercice",
+      "Calculé sur ta 1RM estimée",
+      "Ajusté à ton poids de corps"
+    ]
+  },
+  "target": {
+    "eyebrow": "Objectifs",
+    "title": "L'app te dit quoi soulever",
+    "text": "Ton objectif se calcule à partir de ta dernière séance : d'abord plus de reps, puis plus de charge.",
+    "exercise": "Squat barre libre",
+    "setLabel": "Série 1 sur 3 · 3 × 6-10",
+    "last": "Dernière fois : 75 kg × 10, 10, 10",
+    "goal": "Objectif : 80 kg × 6",
+    "reason": "on monte la charge",
+    "weight": "Poids (kg)",
+    "reps": "Reps",
+    "validate": "Valider la série",
+    "points": [
+      "Plus de reps, puis plus de charge",
+      "Le RIR module le saut de charge",
+      "Poids et reps déjà pré-remplis"
+    ],
+    "rir": "RIR"
+  },
+  "level": {
+    "eyebrow": "Niveau",
+    "title": "Chaque séance rapporte de l'XP",
+    "text": "Grimpe de Débutant à Légende et garde ta streak allumée pour ne jamais casser le rythme.",
+    "levelLabel": "Niveau",
+    "levelValue": "7",
+    "levelTitle": "Vétéran",
+    "xpSuffix": "XP",
+    "streak": "12 jours de suite",
+    "titles": ["Vétéran", "Expert", "Élite", "Légende"]
+  },
+  "volume": {
+    "eyebrow": "Volume",
+    "title": "Équilibre ton volume",
+    "text": "Suis tes séries par muscle chaque semaine et repère d'un coup d'œil ce qui reste sous l'objectif.",
+    "target": "objectif {{count}} séries",
+    "muscles": {
+      "pectoraux": "Pectoraux",
+      "dos": "Dos",
+      "epaules": "Épaules",
+      "quadriceps": "Quadriceps",
+      "bras": "Bras"
+    },
+    "sets": "{{done}} / {{goal}}"
+  },
+  "features": {
+    "eyebrow": "Tout-en-un",
+    "title": "Tout ce qu'il faut à la salle",
+    "text": "Une app pensée pour s'entraîner : rapide, claire, et qui marche même sans réseau.",
+    "items": {
+      "sessions": {
+        "title": "Séances sur-mesure",
+        "text": "90+ exercices illustrés, supersets, notes"
+      },
+      "planning": {
+        "title": "Planning",
+        "text": "Ta semaine en un coup d'œil"
+      },
+      "rest": {
+        "title": "Chrono de repos",
+        "text": "Alerte de fin, écran allumé"
+      },
+      "history": {
+        "title": "Historique",
+        "text": "Chaque série, chaque record"
+      },
+      "backup": {
+        "title": "Sauvegarde",
+        "text": "Export et import en un tap"
+      },
+      "offline": {
+        "title": "Hors ligne",
+        "text": "Thème clair ou sombre, sans réseau"
+      }
+    }
+  },
+  "start": {
+    "eyebrow": "C'est parti",
+    "title": "Prêt à monter en rang ?",
+    "textFirst": "Une séance suffit pour débloquer ton premier rang.",
+    "textReturning": "Chaque série te rapproche du prochain rang. À toi de jouer.",
+    "installStarter": "Utiliser le programme Push / Pull / Jambes",
+    "createSession": "Créer ma séance",
+    "later": "Plus tard",
+    "go": "C'est parti",
+    "seeRanks": "Voir mes rangs",
+    "rankLabel": "Platine"
+  }
+}

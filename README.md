@@ -34,6 +34,13 @@ src/
       base/       Reset + styles de base
 ```
 
+Les photos sources (JPEG) vivent dans `assets-src/images` ; l'app ne sert que les WebP générés dans
+`public/images` (qualité 85, 1200 px max, vignettes 320 px dans `thumbs/`). Après avoir ajouté ou
+remplacé une photo source, lancer `npm run optimize:images`.
+
+L'onboarding (`src/domains/onboarding`) s'ouvre tout seul au premier lancement, une fois le splash
+terminé, puis se rouvre depuis le profil (rubrique « Onboarding »). Il est toujours en thème sombre.
+
 Règles à respecter (voir `instructions.md`) :
 
 - Pas de fichier de plus de 150 lignes : découper en sous-composants et hooks.
@@ -57,4 +64,5 @@ npm run lint            # oxlint (JS/TS)
 npm run lint:style   # stylelint (SCSS)
 npm run format         # prettier --write
 npm run format:check   # prettier --check
+npm run optimize:images # régénère les WebP (pleine taille + vignettes) dans public/images
 ```

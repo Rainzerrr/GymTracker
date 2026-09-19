@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
+import { SPLASH_EXIT_DELAY_MS, SPLASH_FINISH_DELAY_MS } from '@shared/constants/splash'
 import './app-splash.scss'
-
-const EXIT_DELAY_MS = 2000
-const FINISH_DELAY_MS = 2380
 
 type AppSplashProps = {
   onFinish: () => void
@@ -12,8 +10,8 @@ export const AppSplash = ({ onFinish }: AppSplashProps) => {
   const [isExiting, setIsExiting] = useState(false)
 
   useEffect(() => {
-    const exitTimer = setTimeout(() => setIsExiting(true), EXIT_DELAY_MS)
-    const finishTimer = setTimeout(onFinish, FINISH_DELAY_MS)
+    const exitTimer = setTimeout(() => setIsExiting(true), SPLASH_EXIT_DELAY_MS)
+    const finishTimer = setTimeout(onFinish, SPLASH_FINISH_DELAY_MS)
 
     return () => {
       clearTimeout(exitTimer)

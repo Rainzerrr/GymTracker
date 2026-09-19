@@ -7,6 +7,28 @@ const STORAGE_KEY = 'seance-active/session-log'
 
 const createId = () => `log-${Date.now()}`
 
+// Les entrées enregistrées avant les photos par focus peuvent encore pointer vers l'ancienne image
+// par défaut. Le résultat est gardé par référence : tous les écrans partagent le même tableau tant
+// que l'historique ne change pas, ce qui évite de recalculer ce qui en dérive (index de
+// performances notamment).
+const resolvedLogs = new WeakMap<SessionLogEntry[], SessionLogEntry[]>()
+
+const resolveSessionLog = (stored: SessionLogEntry[]): SessionLogEntry[] => {
+  const cached = resolvedLogs.get(stored)
+
+  if (cached) {
+    return cached
+  }
+
+  const resolved = stored.map((entry) => ({
+    ...entry,
+    imageUrl: resolveSessionImageUrl(entry.imageUrl, entry.exercises),
+  }))
+  resolvedLogs.set(stored, resolved)
+
+  return resolved
+}
+
 export const useSessionLog = () => {
   const [storedSessionLog, setSessionLog] = useLocalStorageState<SessionLogEntry[]>(
     STORAGE_KEY,
@@ -14,11 +36,7 @@ export const useSessionLog = () => {
     { isValid: isArray<SessionLogEntry> },
   )
 
-  // Entries logged before per-focus photos may still point at the retired default image.
-  const sessionLog = storedSessionLog.map((entry) => ({
-    ...entry,
-    imageUrl: resolveSessionImageUrl(entry.imageUrl, entry.exercises),
-  }))
+  const sessionLog = resolveSessionLog(storedSessionLog)
 
   const logSession = (entry: SessionLogEntry) => {
     setSessionLog([...storedSessionLog, entry])

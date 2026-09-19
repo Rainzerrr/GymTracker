@@ -12,7 +12,8 @@
     "duplicate": "Dupliquer",
     "copyName": "{{name}} (copie)",
     "empty": "Tu n'as encore aucune séance. Crée la tienne, ou pars d'un programme Push / Pull / Jambes sur trois jours que tu pourras ensuite modifier.",
-    "installStarter": "Utiliser un programme de départ"
+    "installStarter": "Utiliser un programme de départ",
+    "lastDone": "faite {{when}}"
   },
   "builder": {
     "headerTitle": "Modifier",

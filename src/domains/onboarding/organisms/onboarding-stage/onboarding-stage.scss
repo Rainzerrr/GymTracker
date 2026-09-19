@@ -1,0 +1,39 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.onboarding-stage {
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .onboarding-stage--forward {
+    animation: onboarding-stage-from-right 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .onboarding-stage--backward {
+    animation: onboarding-stage-from-left 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+}
+
+@keyframes onboarding-stage-from-right {
+  0% {
+    opacity: 0;
+    transform: translateX(2.5rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes onboarding-stage-from-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-2.5rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
