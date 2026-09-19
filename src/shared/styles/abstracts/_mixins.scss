@@ -13,20 +13,6 @@
   }
 }
 
-@mixin prefers-light {
-  @media (prefers-color-scheme: light) {
-    @content;
-  }
-}
-
-// Déclare une palette (voir $theme-dark / $theme-light) sous forme de variables CSS. Sert au thème
-// global et à tout bloc qui force un thème (ex. l'onboarding, toujours sombre).
-@mixin emit-tokens($palette) {
-  @each $name, $value in $palette {
-    --color-#{$name}: #{$value};
-  }
-}
-
 @mixin visually-hidden {
   position: absolute;
   width: 1px;

@@ -6,7 +6,6 @@ import { BackHeader } from '@shared/molecules/back-header'
 import { PageTemplate } from '@shared/templates/page-template'
 import { toLocalDateKey } from '@shared/utils/date/to-local-date-key'
 import { useAppSettings } from '../../hooks/use-app-settings'
-import { SettingsAppearance } from '../../organisms/settings-appearance'
 import { SettingsPosture } from '../../organisms/settings-posture'
 import { SettingsSession } from '../../organisms/settings-session'
 import { SettingsVolumeTargets } from '../../organisms/settings-volume-targets'
@@ -20,10 +19,6 @@ export const SettingsPage = () => {
 
   return (
     <PageTemplate header={<BackHeader title={t('title')} onBack={() => navigate('/profil')} />}>
-      <SettingsAppearance
-        theme={settings.theme}
-        onThemeChange={(theme) => updateSettings({ theme })}
-      />
       <SettingsSession settings={settings} onChange={updateSettings} />
       <SettingsPosture
         isEnabled={settings.postureRoutineEnabled}

@@ -1,24 +1,15 @@
 @use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
 
-// Thème sombre par défaut ; « auto » suit le système (aucun attribut), « clair » et « sombre »
-// forcent le choix via data-theme sur <html>.
+@mixin emit-tokens($palette) {
+  @each $name, $value in $palette {
+    --color-#{$name}: #{$value};
+  }
+}
+
+// L'app n'a pour l'instant qu'un thème sombre, quel que soit le réglage du système. La palette
+// claire ($theme-light) est conservée dans les variables pour un éventuel retour.
 :root {
   color-scheme: dark;
 
   @include emit-tokens($theme-dark);
-}
-
-:root[data-theme='light'] {
-  color-scheme: light;
-
-  @include emit-tokens($theme-light);
-}
-
-@include prefers-light {
-  :root:not([data-theme='dark']) {
-    color-scheme: light;
-
-    @include emit-tokens($theme-light);
-  }
 }

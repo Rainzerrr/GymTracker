@@ -1,14 +1,5 @@
 {
   "title": "Réglages",
-  "appearance": {
-    "label": "Apparence",
-    "theme": {
-      "auto": "Auto",
-      "light": "Clair",
-      "dark": "Sombre"
-    },
-    "hint": "« Auto » suit le réglage de ton téléphone."
-  },
   "session": {
     "label": "Séance",
     "restAlert": "Alerte de fin de repos",

@@ -1,6 +1,6 @@
-// Palettes : les valeurs réelles vivent dans des variables CSS (voir base/_theme.scss) pour que
-// le thème puisse changer à l'exécution. Ajouter une couleur = l'ajouter aux deux palettes
-// puis à la liste de variables juste en dessous.
+// Palettes : les valeurs réelles vivent dans des variables CSS (voir base/_theme.scss). Seule la
+// palette sombre est émise pour l'instant ; la claire est gardée à jour pour un retour éventuel.
+// Ajouter une couleur = l'ajouter aux deux palettes puis à la liste de variables juste en dessous.
 $theme-dark: (
   'background': #0e0e10,
   'surface': #1b1b1e,

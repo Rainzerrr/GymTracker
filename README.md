@@ -39,7 +39,7 @@ Les photos sources (JPEG) vivent dans `assets-src/images` ; l'app ne sert que le
 remplacé une photo source, lancer `npm run optimize:images`.
 
 L'onboarding (`src/domains/onboarding`) s'ouvre tout seul au premier lancement, une fois le splash
-terminé, puis se rouvre depuis le profil (rubrique « Onboarding »). Il est toujours en thème sombre.
+terminé, puis se rouvre depuis le profil (rubrique « Onboarding »).
 
 Règles à respecter (voir `instructions.md`) :
 

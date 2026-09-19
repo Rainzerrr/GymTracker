@@ -9,8 +9,6 @@ import '@fontsource/space-grotesk/latin-700.css'
 import '@app/i18n-resources'
 import '@shared/styles/main.scss'
 import { App } from '@app/app'
-import { readAppSettings } from '@domains/reglages/hooks/use-app-settings'
-import { applyTheme } from '@shared/utils/theme/apply-theme'
 
 // Dev-only: `?demo` fills the app with sample training data, `?demo=restore` undoes it.
 const loadDemoDataIfRequested = async () => {
@@ -34,9 +32,6 @@ const loadDemoDataIfRequested = async () => {
 
   window.history.replaceState(null, '', window.location.pathname)
 }
-
-// Applique le thème avant le premier rendu pour éviter un flash de la mauvaise couleur.
-applyTheme(readAppSettings().theme)
 
 void loadDemoDataIfRequested().then(() => {
   createRoot(document.getElementById('root')!).render(
