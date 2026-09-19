@@ -46,8 +46,7 @@ export const WeekPlanPage = () => {
   }
 
   return (
-    <PageTemplate>
-      <BackHeader title={t('weekPlan.headerTitle')} onBack={() => navigate('/seances')} />
+    <PageTemplate header={<BackHeader title={t('weekPlan.headerTitle')} onBack={() => navigate('/seances')} />}>
       <WeekPlanList days={days} onCycle={handleCycle} onSave={() => navigate('/seances')} />
     </PageTemplate>
   )

@@ -1,15 +1,17 @@
 import { useLocalStorageState } from '@shared/hooks/use-local-storage-state'
 import defaultSessions from '../data/default-sessions.json'
 import type { SessionDraft, WorkoutSession } from '../types/workout-session'
-import { DEFAULT_SESSION_IMAGE_URL } from '../utils/default-session-image'
+import { resolveSessionImageUrl } from '../utils/default-session-image'
 
 const STORAGE_KEY = 'seances/sessions'
 
 const createId = () => `session-${Date.now()}-${Math.round(Math.random() * 10000)}`
 
-const withImageFallback = (session: WorkoutSession): WorkoutSession => ({
+// Sessions keep an empty imageUrl until one is chosen explicitly, so the
+// default photo follows the session's focus as its exercises change.
+const withResolvedImage = (session: WorkoutSession): WorkoutSession => ({
   ...session,
-  imageUrl: session.imageUrl || DEFAULT_SESSION_IMAGE_URL,
+  imageUrl: resolveSessionImageUrl(session.imageUrl, session.exercises),
 })
 
 export const useSessions = () => {
@@ -18,19 +20,28 @@ export const useSessions = () => {
     defaultSessions as WorkoutSession[],
   )
 
-  const resolvedSessions = sessions.map(withImageFallback)
+  const resolvedSessions = sessions.map(withResolvedImage)
 
   const getSession = (id: string) => resolvedSessions.find((session) => session.id === id)
 
   const createSession = (draft: SessionDraft): WorkoutSession => {
-    const newSession = withImageFallback({ ...draft, id: createId() })
+    const newSession: WorkoutSession = { ...draft, id: createId() }
     setSessions([...sessions, newSession])
-    return newSession
+    return withResolvedImage(newSession)
   }
 
   const updateSession = (id: string, draft: SessionDraft) => {
     setSessions(
-      sessions.map((session) => (session.id === id ? withImageFallback({ ...draft, id }) : session)),
+      sessions.map((session) => {
+        if (session.id !== id) {
+          return session
+        }
+
+        // The draft carries the resolved image; only keep it when it was chosen explicitly.
+        const isAutoImage = draft.imageUrl === resolveSessionImageUrl(session.imageUrl, session.exercises)
+
+        return { ...draft, id, imageUrl: isAutoImage ? session.imageUrl : draft.imageUrl }
+      }),
     )
   }
 

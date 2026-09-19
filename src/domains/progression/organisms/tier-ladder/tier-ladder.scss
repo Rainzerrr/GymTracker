@@ -20,16 +20,16 @@
   width: 2px;
   background-image: linear-gradient(
     to bottom,
-    $color-tier-platine,
-    $color-tier-or,
-    $color-tier-argent,
-    $color-tier-bronze
+    color-mix(in srgb, $color-tier-platine 22%, $color-background),
+    color-mix(in srgb, $color-tier-or 22%, $color-background),
+    color-mix(in srgb, $color-tier-argent 22%, $color-background),
+    color-mix(in srgb, $color-tier-bronze 22%, $color-background)
   );
-  opacity: 0.22;
   transform: translateX(-50%);
   z-index: 0;
 }
 
+// Each step is opaque so the connecting line runs behind it, never over it.
 .tier-ladder__step {
   position: relative;
   z-index: 1;
@@ -41,6 +41,7 @@
   max-width: 15rem;
   padding: $spacing-sm $spacing-md;
   border-radius: $radius-lg;
+  background-color: $color-background;
   text-align: center;
   transition: background-color 0.2s ease;
 }
@@ -76,8 +77,14 @@
   letter-spacing: 0.08em;
 }
 
-.tier-ladder__step--locked {
-  opacity: 0.4;
+// Locked steps are dimmed without opacity: the badge and text stay opaque, so
+// the connecting line runs behind them instead of showing through.
+.tier-ladder__step--locked .tier-ladder__badge {
+  filter: brightness(0.4);
+}
+
+.tier-ladder__step--locked .tier-ladder__name {
+  color: $color-text-dim;
 }
 
 .tier-ladder__step--current {

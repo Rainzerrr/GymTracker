@@ -8,13 +8,20 @@
       "chart": "Courbes"
     },
     "empty": "Termine ta première séance pour commencer ton historique.",
-    "chartEmpty": "Refais un exercice une deuxième fois pour voir sa courbe de progression.",
-    "milestoneLabel": "Palier franchi",
-    "chart": {
-      "sessionsAgo_one": "il y a {{count}} séance",
-      "sessionsAgo_other": "il y a {{count}} séances",
-      "today": "aujourd’hui"
-    }
+    "chartEmpty": "Termine une séance pour voir la courbe de tes exercices.",
+    "milestoneLabel": "Palier franchi"
+  },
+  "sessionDetail": {
+    "headerTitle": "Séance réalisée",
+    "meta": "{{date}} · {{duration}} min",
+    "xp": "+{{amount}} XP",
+    "exercisesLabel": "Exercices",
+    "empty": "Aucune série enregistrée pour cette séance.",
+    "setLabel": "Série {{number}}",
+    "weightReps": "{{weight}} kg × {{reps}}",
+    "repsOnly": "{{reps}} reps",
+    "rir": "RIR {{value}}",
+    "rirFailure": "Échec"
   },
   "volume": {
     "headerTitle": "Répartition du volume",

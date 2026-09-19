@@ -13,7 +13,7 @@ import type {
 } from '../types/exercise-progress-series'
 import type { HistoryEntry } from '../types/history-entry'
 
-const MIN_POINTS_FOR_CHART = 2
+const MIN_POINTS_FOR_CHART = 1
 
 export const useProgressionHistory = () => {
   const { sessionLog } = useSessionLog()
@@ -61,6 +61,7 @@ export const useProgressionHistory = () => {
         subLevel: rank.subLevel,
         unit: isBodyweight ? 'reps' : 'kg',
         points: values.map((value) => Math.round(value * 10) / 10),
+        dateLabels: performance.points.map((point) => formatShortDateLabel(point.completedAt)),
         milestone,
       }
     })

@@ -1,7 +1,11 @@
 .app-layout {
-  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .app-layout__content {
-  padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }

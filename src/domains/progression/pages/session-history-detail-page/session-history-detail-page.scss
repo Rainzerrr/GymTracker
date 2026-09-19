@@ -1,0 +1,28 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.session-history-detail-page__hero {
+  overflow: hidden;
+  border-radius: $radius-xl;
+}
+
+.session-history-detail-page__xp {
+  border-radius: $radius-pill;
+  background-color: $color-scrim-soft;
+  padding: $spacing-3xs $spacing-xs;
+  color: $color-accent;
+  font-family: $font-family-heading;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+}
+
+.session-history-detail-page__list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.session-history-detail-page__empty {
+  margin: 0;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}

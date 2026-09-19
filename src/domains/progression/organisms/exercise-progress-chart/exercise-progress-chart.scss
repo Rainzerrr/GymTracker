@@ -28,8 +28,28 @@
 }
 
 .exercise-progress-chart__axis {
-  stroke: $color-border;
+  stroke: $color-border-strong;
   stroke-width: 1;
+}
+
+.exercise-progress-chart__grid {
+  stroke: $color-border;
+  stroke-dasharray: 2 4;
+  stroke-width: 1;
+}
+
+.exercise-progress-chart__tick-label {
+  font-family: $font-family-base;
+  font-size: 9px;
+  text-anchor: end;
+  fill: $color-text-dim;
+}
+
+.exercise-progress-chart__unit-label {
+  font-family: $font-family-base;
+  font-size: 9px;
+  text-anchor: end;
+  fill: $color-text-muted;
 }
 
 .exercise-progress-chart__line {
@@ -48,12 +68,6 @@
 
 .exercise-progress-chart__dot--last {
   fill: $color-accent;
-}
-
-.exercise-progress-chart__value-label {
-  font-family: $font-family-heading;
-  font-size: 11px;
-  fill: $color-text-muted;
 }
 
 .exercise-progress-chart__value-label--last {

@@ -29,12 +29,15 @@ export const ProfilPage = () => {
   } = useProfilOverview()
 
   return (
-    <PageTemplate>
-      <ProfilHeader
-        displayName={displayName}
-        memberSinceLabel={formatDateLabel(memberSinceIso)}
-        onSaveName={setDisplayName}
-      />
+    <PageTemplate
+      header={
+        <ProfilHeader
+          displayName={displayName}
+          memberSinceLabel={formatDateLabel(memberSinceIso)}
+          onSaveName={setDisplayName}
+        />
+      }
+    >
       <ProfilStats
         sessionsCompletedCount={sessionsCompletedCount}
         trainingDurationLabel={formatTrainingDuration(totalMinutesTrained)}

@@ -62,11 +62,14 @@ export const ExerciseConfigPage = () => {
   }
 
   return (
-    <PageTemplate>
-      <BackHeader
-        title={t('config.headerTitle')}
-        onBack={() => navigate(backTarget, { state: { draft: relay.draft } })}
-      />
+    <PageTemplate
+      header={
+        <BackHeader
+          title={t('config.headerTitle')}
+          onBack={() => navigate(backTarget, { state: { draft: relay.draft } })}
+        />
+      }
+    >
       <ExerciseSetConfigForm
         exerciseName={libraryExercise.name}
         exerciseMeta={`${t(`muscleGroups.${libraryExercise.muscleGroup}`)} · ${libraryExercise.equipment}`}

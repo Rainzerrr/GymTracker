@@ -21,3 +21,15 @@ correspondante n'a été trouvée pour ces mouvements, souvent trop spécifiques
 
 Les licences CC BY nécessitent une attribution — c'est ce que fait ce fichier.
 Les licences CC0 n'en nécessitent pas mais l'auteur est crédité par courtoisie.
+
+# Crédits photos — séances
+
+Photos d'en-tête des séances (`public/images/workouts/`), libres de droit.
+
+| Fichier | Titre | Auteur | Licence | Source |
+|---|---|---|---|---|
+| push.jpg | 10TH MDSB Command Mentorship PT | U.S. Army | CC0 1.0 | https://www.rawpixel.com/image/11072620/10th-mdsb-command-mentorship |
+| pull.jpg | Girl doing lat pulldown exercise | Tyler Read | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Girl_doing_lat_pulldown_exercise.jpg |
+| upper.jpg | Strong woman using cable machine for upper body workout in gym | Shixart1985 | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Strong_woman_using_cable_machine_for_upper_body_workout_in_gym.jpg |
+| lower.jpg | Woman doing squat workout in gym with barbell | Nenad Stojkovic | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Woman_doing_squat_workout_in_gym_with_barbell.jpg |
+| full-body.jpg | Fit young man doing deadlift exercise in gym | Nenad Stojkovic | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Fit_young_man_doing_deadlift_exercise_in_gym.jpg |

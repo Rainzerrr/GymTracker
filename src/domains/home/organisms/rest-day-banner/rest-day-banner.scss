@@ -1,7 +1,17 @@
 @use 'shared/styles/abstracts/variables' as *;
 
 .rest-day-banner {
-  margin: $spacing-md $spacing-lg 0;
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-md $spacing-lg;
+}
+
+.rest-day-banner__card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border-radius: $radius-xl;
   background-color: $color-surface;
   padding: $spacing-xl $spacing-lg;

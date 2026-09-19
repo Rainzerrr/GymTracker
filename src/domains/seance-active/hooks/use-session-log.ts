@@ -1,4 +1,5 @@
 import { useLocalStorageState } from '@shared/hooks/use-local-storage-state'
+import { resolveSessionImageUrl } from '@domains/seances/utils/default-session-image'
 import type { SessionLogEntry } from '../types/session-log-entry'
 
 const STORAGE_KEY = 'seance-active/session-log'
@@ -6,10 +7,16 @@ const STORAGE_KEY = 'seance-active/session-log'
 const createId = () => `log-${Date.now()}`
 
 export const useSessionLog = () => {
-  const [sessionLog, setSessionLog] = useLocalStorageState<SessionLogEntry[]>(STORAGE_KEY, [])
+  const [storedSessionLog, setSessionLog] = useLocalStorageState<SessionLogEntry[]>(STORAGE_KEY, [])
+
+  // Entries logged before per-focus photos may still point at the retired default image.
+  const sessionLog = storedSessionLog.map((entry) => ({
+    ...entry,
+    imageUrl: resolveSessionImageUrl(entry.imageUrl, entry.exercises),
+  }))
 
   const logSession = (entry: SessionLogEntry) => {
-    setSessionLog([...sessionLog, entry])
+    setSessionLog([...storedSessionLog, entry])
   }
 
   const getEntryForDate = (date: Date) =>
@@ -20,12 +27,12 @@ export const useSessionLog = () => {
 
     if (existing) {
       setSessionLog(
-        sessionLog.map((log) => (log.id === existing.id ? { ...log, ...entry } : log)),
+        storedSessionLog.map((log) => (log.id === existing.id ? { ...log, ...entry } : log)),
       )
       return
     }
 
-    setSessionLog([...sessionLog, { id: createId(), completedAt: date.toISOString(), ...entry }])
+    setSessionLog([...storedSessionLog, { id: createId(), completedAt: date.toISOString(), ...entry }])
   }
 
   return { sessionLog, logSession, getEntryForDate, upsertSessionLogForDate }

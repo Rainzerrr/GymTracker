@@ -1,6 +1,7 @@
 import { HomePage } from '@domains/home/pages/home-page'
 import { ProfilPage } from '@domains/profil/pages/profil-page'
 import { ProgressionPage } from '@domains/progression/pages/progression-page'
+import { SessionHistoryDetailPage } from '@domains/progression/pages/session-history-detail-page'
 import { RankDetailPage } from '@domains/progression/pages/rank-detail-page'
 import { RankPage } from '@domains/progression/pages/rank-page'
 import { VolumePage } from '@domains/progression/pages/volume-page'
@@ -30,6 +31,7 @@ export const appRouter = createBrowserRouter([
         ],
       },
       { path: '/progression/volume', element: <VolumePage /> },
+      { path: '/progression/seances/:entryId', element: <SessionHistoryDetailPage /> },
       { path: '/progression/rangs', element: <RankPage /> },
       { path: '/progression/rangs/:category/:itemId', element: <RankDetailPage /> },
       { path: '/seances/planning', element: <WeekPlanPage /> },

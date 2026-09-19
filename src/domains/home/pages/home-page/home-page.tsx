@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@shared/atoms/button'
+import { HOME_CTA_HEIGHT_REM } from '../../constants/home-hero'
 import { useHomeOverview } from '../../hooks/use-home-overview'
 import { NextWorkoutCard } from '../../organisms/next-workout-card'
 import { ProgressSection } from '../../organisms/progress-section'
@@ -32,6 +33,7 @@ export const HomePage = () => {
 
   const canStartSelectedSession = isSelectedDayToday && selectedDayStatus === 'scheduled'
   const canViewSelectedSession = selectedDayStatus === 'done' || selectedDayStatus === 'missed'
+  const showsRestBanner = isRestDay || !selectedSession
 
   const handlePrimaryAction = () => {
     if (!selectedSessionId) {
@@ -47,7 +49,7 @@ export const HomePage = () => {
 
   return (
     <div className="home-page">
-      {isRestDay || !selectedSession ? (
+      {showsRestBanner ? (
         <RestDayBanner dateLabel={selectedDayLabel} />
       ) : (
         <NextWorkoutCard
@@ -61,13 +63,17 @@ export const HomePage = () => {
         />
       )}
       <div className="home-page__content">
-        {(canStartSelectedSession || canViewSelectedSession) && (
-          <Button
-            label={canStartSelectedSession ? t('cta') : t('viewSessionCta')}
-            variant="accent"
-            fullWidth
-            onClick={handlePrimaryAction}
-          />
+        {!showsRestBanner && (
+          <div className="home-page__cta" style={{ height: `${HOME_CTA_HEIGHT_REM}rem` }}>
+            {(canStartSelectedSession || canViewSelectedSession) && (
+              <Button
+                label={canStartSelectedSession ? t('cta') : t('viewSessionCta')}
+                variant="accent"
+                fullWidth
+                onClick={handlePrimaryAction}
+              />
+            )}
+          </div>
         )}
         <WeekStrip days={weekDays} selectedIndex={selectedDayIndex} onSelectDay={selectDay} />
         <TodaySection

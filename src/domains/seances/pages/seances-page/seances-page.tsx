@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button } from '@shared/atoms/button'
 import { PageTemplate } from '@shared/templates/page-template'
 import { useSessions } from '../../hooks/use-sessions'
-import { SessionList } from '../../organisms/session-list'
+import { SessionList, SessionListHeader } from '../../organisms/session-list'
 
 export const SeancesPage = () => {
   const navigate = useNavigate()
@@ -22,11 +22,18 @@ export const SeancesPage = () => {
   }))
 
   return (
-    <PageTemplate>
+    <PageTemplate
+      header={
+        <SessionListHeader
+          sessionCount={sessions.length}
+          editMode={editMode}
+          onToggleEditMode={() => setEditMode((value) => !value)}
+        />
+      }
+    >
       <SessionList
         sessions={listItems}
         editMode={editMode}
-        onToggleEditMode={() => setEditMode((value) => !value)}
         onSelect={(id) => navigate(`/seances/${id}`)}
         onDelete={removeSession}
         onCreate={() => navigate('/seances/nouvelle')}

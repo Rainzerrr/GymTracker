@@ -6,20 +6,12 @@ import { ListRow } from '@shared/molecules/list-row'
 import type { SessionListProps } from './session-list.types'
 import './session-list.scss'
 
-export const SessionList = ({ sessions, editMode, onToggleEditMode, onSelect, onDelete, onCreate }: SessionListProps) => {
+export const SessionList = ({ sessions, editMode, onSelect, onDelete, onCreate }: SessionListProps) => {
   const { t } = useTranslation('seances')
   const { t: tCommon } = useTranslation('common')
 
   return (
     <div className="session-list">
-      <div className="session-list__header">
-        <span className="session-list__title">{t('list.title')}</span>
-        <button type="button" className="session-list__edit-toggle" onClick={onToggleEditMode}>
-          {editMode ? tCommon('actions.done') : tCommon('actions.edit')}
-        </button>
-      </div>
-      <p className="session-list__subtitle">{t('list.subtitle', { count: sessions.length })}</p>
-
       <div>
         {sessions.map((session) => (
           <ListRow

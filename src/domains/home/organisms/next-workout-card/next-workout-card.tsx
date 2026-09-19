@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { PhotoHero } from '@shared/organisms/photo-hero'
+import { HOME_HERO_HEIGHT_REM } from '../../constants/home-hero'
 import type { NextWorkoutCardProps } from './next-workout-card.types'
 import './next-workout-card.scss'
 
@@ -21,7 +22,7 @@ export const NextWorkoutCard = ({
       alt={title}
       title={title}
       meta={metaLabel}
-      heightRem={13.125}
+      heightRem={HOME_HERO_HEIGHT_REM}
       topLeft={
         <span className="next-workout-card__top-left">
           <span className="next-workout-card__date-chip">{dateLabel}</span>

@@ -31,6 +31,13 @@
   font-size: $font-size-sm;
 }
 
+.history-log__trailing {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
 .history-log__xp-tag {
   flex-shrink: 0;
   color: $color-accent;
@@ -43,7 +50,7 @@
   display: flex;
   gap: $spacing-2xs;
   overflow-x: auto;
-  margin-bottom: $spacing-sm;
+  margin-bottom: $spacing-lg;
 }
 
 .history-log__milestone {

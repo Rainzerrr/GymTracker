@@ -32,8 +32,7 @@ export const SessionLogPage = () => {
   }
 
   return (
-    <PageTemplate>
-      <BackHeader title={session.name} onBack={() => navigate('/')} />
+    <PageTemplate header={<BackHeader title={session.name} onBack={() => navigate('/')} />}>
       <div className="session-log-page__list">
         {exercises.map((exercise, index) => (
           <SessionLogExerciseCard

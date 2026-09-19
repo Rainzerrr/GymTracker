@@ -1,0 +1,59 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.history-exercise-card {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  padding: $spacing-md;
+}
+
+.history-exercise-card__header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.history-exercise-card__name {
+  color: $color-text;
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+}
+
+.history-exercise-card__sets {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.history-exercise-card__set {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-sm;
+  border-top: 1px solid $color-border-soft;
+  padding: $spacing-xs 0;
+}
+
+.history-exercise-card__set-label {
+  flex: 1;
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+}
+
+.history-exercise-card__set-value {
+  color: $color-text;
+  font-family: $font-family-heading;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+}
+
+.history-exercise-card__set-rir {
+  min-width: 3.5rem;
+  color: $color-accent;
+  font-size: $font-size-xs;
+  text-align: right;
+}

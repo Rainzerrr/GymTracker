@@ -43,13 +43,19 @@ export const TierLadder = ({ steps }: TierLadderProps) => {
       return
     }
 
+    const scroller = currentRef.current?.closest('[data-scroll-container]')
+
+    if (!scroller) {
+      return
+    }
+
     let frame = 0
 
     // A fixed-length glide back to the top, regardless of how tall the
     // ladder is — the native smooth scroll stretches out on long pages.
     const animateScrollToTop = (startY: number, startTime: number) => (now: number) => {
       const progress = Math.min(1, (now - startTime) / SCROLL_UP_DURATION_MS)
-      window.scrollTo(0, startY * (1 - easeInOutQuad(progress)))
+      scroller.scrollTo(0, startY * (1 - easeInOutQuad(progress)))
 
       if (progress < 1) {
         frame = requestAnimationFrame(animateScrollToTop(startY, startTime))
@@ -57,7 +63,7 @@ export const TierLadder = ({ steps }: TierLadderProps) => {
     }
 
     const timeout = window.setTimeout(() => {
-      frame = requestAnimationFrame((now) => animateScrollToTop(window.scrollY, now)(now))
+      frame = requestAnimationFrame((now) => animateScrollToTop(scroller.scrollTop, now)(now))
     }, REVEAL_DELAY_MS)
 
     return () => {

@@ -5,7 +5,7 @@ import './app-layout.scss'
 export const AppLayout = () => {
   return (
     <div className="app-layout">
-      <div className="app-layout__content">
+      <div className="app-layout__content" data-scroll-container>
         <Outlet />
       </div>
       <TabBar />

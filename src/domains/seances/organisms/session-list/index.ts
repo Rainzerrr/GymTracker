@@ -1,2 +1,3 @@
 export { SessionList } from './session-list'
-export type { SessionListItem, SessionListProps } from './session-list.types'
+export { SessionListHeader } from './session-list-header'
+export type { SessionListHeaderProps, SessionListItem, SessionListProps } from './session-list.types'

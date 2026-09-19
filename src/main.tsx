@@ -10,8 +10,33 @@ import '@app/i18n-resources'
 import '@shared/styles/main.scss'
 import { App } from '@app/app'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+// Dev-only: `?demo` fills the app with sample training data, `?demo=restore` undoes it.
+const loadDemoDataIfRequested = async () => {
+  if (!import.meta.env.DEV) {
+    return
+  }
+
+  const demo = new URLSearchParams(window.location.search).get('demo')
+
+  if (demo === null) {
+    return
+  }
+
+  const { restoreDemoBackup, seedDemoData } = await import('@app/demo-data')
+
+  if (demo === 'restore') {
+    restoreDemoBackup()
+  } else {
+    seedDemoData()
+  }
+
+  window.history.replaceState(null, '', window.location.pathname)
+}
+
+void loadDemoDataIfRequested().then(() => {
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  )
+})

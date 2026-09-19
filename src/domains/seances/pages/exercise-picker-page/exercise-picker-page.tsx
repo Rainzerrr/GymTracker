@@ -23,8 +23,14 @@ export const ExercisePickerPage = () => {
   }
 
   return (
-    <PageTemplate>
-      <BackHeader title={t('picker.headerTitle')} onBack={() => navigate(backTarget, { state: { draft: relay?.draft } })} />
+    <PageTemplate
+      header={
+        <BackHeader
+          title={t('picker.headerTitle')}
+          onBack={() => navigate(backTarget, { state: { draft: relay?.draft } })}
+        />
+      }
+    >
       <ExercisePickerList
         results={results}
         totalCount={totalCount}

@@ -90,8 +90,7 @@ export const SessionBuilderPage = () => {
   }
 
   return (
-    <PageTemplate>
-      <BackHeader title={t('builder.headerTitle')} onBack={() => navigate('/seances')} />
+    <PageTemplate header={<BackHeader title={t('builder.headerTitle')} onBack={() => navigate('/seances')} />}>
       <SessionBuilderForm
         draft={draft}
         onNameChange={(value) => setDraft((current) => ({ ...current, name: value }))}

@@ -10,3 +10,9 @@
 .home-page__content {
   padding: $spacing-md $spacing-lg $spacing-xl;
 }
+
+// The button stretches to the slot height so its size matches the space the
+// rest-day banner reserves for it.
+.home-page__cta {
+  display: flex;
+}

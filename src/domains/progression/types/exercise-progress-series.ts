@@ -19,5 +19,7 @@ export type ExerciseProgressSeries = {
   subLevel: TierSubLevel
   unit: string
   points: number[]
+  // One short date per point, same order.
+  dateLabels: string[]
   milestone?: ExerciseProgressMilestone
 }

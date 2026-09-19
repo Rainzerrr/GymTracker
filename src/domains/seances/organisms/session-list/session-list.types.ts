@@ -8,8 +8,13 @@ export type SessionListItem = {
 export type SessionListProps = {
   sessions: SessionListItem[]
   editMode: boolean
-  onToggleEditMode: () => void
   onSelect: (id: string) => void
   onDelete: (id: string) => void
   onCreate: () => void
+}
+
+export type SessionListHeaderProps = {
+  sessionCount: number
+  editMode: boolean
+  onToggleEditMode: () => void
 }

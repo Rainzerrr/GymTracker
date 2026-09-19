@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { PageTemplate } from '@shared/templates/page-template'
 import { useActiveSession } from '../../hooks/use-active-session'
 import { ActiveExerciseCard } from '../../organisms/active-exercise-card'
 import { ExerciseQueue } from '../../organisms/exercise-queue'
 import { SessionHeader } from '../../organisms/session-header'
-import './active-session-page.scss'
 
 export const ActiveSessionPage = () => {
   const { sessionId } = useParams<{ sessionId: string }>()
@@ -52,12 +52,11 @@ export const ActiveSessionPage = () => {
   }
 
   return (
-    <div className="active-session-page">
-      <SessionHeader
-        title={session.name}
-        elapsedSeconds={elapsedSeconds}
-        onBack={() => navigate('/')}
-      />
+    <PageTemplate
+      header={
+        <SessionHeader title={session.name} elapsedSeconds={elapsedSeconds} onBack={() => navigate('/')} />
+      }
+    >
       <ActiveExerciseCard
         name={currentExercise.name}
         photoUrl={currentExercise.thumbnailUrl}
@@ -83,6 +82,6 @@ export const ActiveSessionPage = () => {
         onSkipExercise={skipExercise}
       />
       <ExerciseQueue exercises={exercises} onSelect={selectExercise} />
-    </div>
+    </PageTemplate>
   )
 }

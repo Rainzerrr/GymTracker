@@ -1,16 +1,49 @@
 @use 'shared/styles/abstracts/variables' as *;
 @use 'shared/styles/abstracts/mixins' as *;
 
+// The page itself never scrolls: the header stays put and only the content
+// area gets a scrollbar, and only when its content overflows.
 .page-template {
   display: flex;
   flex-direction: column;
-  min-height: 100dvh;
+  height: 100%;
+}
+
+.page-template__header {
+  flex: none;
+  padding: $spacing-lg $spacing-lg $spacing-sm;
+  background-color: $color-background;
+}
+
+.page-template__content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
   padding: $spacing-lg;
+}
+
+.page-template__content--with-header {
+  padding-top: $spacing-sm;
+}
+
+.page-template__body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
   gap: $spacing-lg;
 }
 
 @include breakpoint-up('md') {
-  .page-template {
+  .page-template__header {
+    padding-right: $spacing-xl;
+    padding-left: $spacing-xl;
+  }
+
+  .page-template__content {
     padding: $spacing-xl;
+  }
+
+  .page-template__content--with-header {
+    padding-top: $spacing-sm;
   }
 }
