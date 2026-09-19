@@ -21,7 +21,13 @@
     "weightReps": "{{weight}} kg × {{reps}}",
     "repsOnly": "{{reps}} reps",
     "rir": "RIR {{value}}",
-    "rirFailure": "Échec"
+    "rirFailure": "Échec",
+    "delete": {
+      "trigger": "Supprimer cette séance",
+      "warning": "Cette séance sera retirée de ton historique, de tes rangs et de ta série de jours. C'est irréversible.",
+      "cancel": "Annuler",
+      "confirm": "Supprimer"
+    }
   },
   "volume": {
     "headerTitle": "Répartition du volume",

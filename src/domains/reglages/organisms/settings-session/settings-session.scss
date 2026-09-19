@@ -1,0 +1,14 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.settings-session__label {
+  display: block;
+  margin: $spacing-md 0 $spacing-xs;
+  color: $color-text;
+  font-size: $font-size-base;
+}
+
+.settings-session__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+}

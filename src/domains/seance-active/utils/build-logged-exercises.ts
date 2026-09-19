@@ -7,6 +7,7 @@ type ExerciseWithMeta = {
   name: string
   thumbnailUrl: string
   muscleGroup: MuscleGroup | undefined
+  note?: string
 }
 
 export const buildLoggedExercises = (
@@ -20,6 +21,7 @@ export const buildLoggedExercises = (
       thumbnailUrl: exercise.thumbnailUrl,
       muscleGroup: exercise.muscleGroup,
       sets: setLogsByExercise[index] ?? [],
+      ...(exercise.note?.trim() ? { note: exercise.note.trim() } : {}),
     }))
     .filter(
       (exercise): exercise is ExerciseLogEntry =>

@@ -1,0 +1,30 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+@mixin emit-tokens($palette) {
+  @each $name, $value in $palette {
+    --color-#{$name}: #{$value};
+  }
+}
+
+// Thème sombre par défaut ; « auto » suit le système (aucun attribut), « clair » et « sombre »
+// forcent le choix via data-theme sur <html>.
+:root {
+  color-scheme: dark;
+
+  @include emit-tokens($theme-dark);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  @include emit-tokens($theme-light);
+}
+
+@include prefers-light {
+  :root:not([data-theme='dark']) {
+    color-scheme: light;
+
+    @include emit-tokens($theme-light);
+  }
+}

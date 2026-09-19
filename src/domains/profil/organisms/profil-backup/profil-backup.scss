@@ -1,0 +1,29 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.profil-backup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.profil-backup__hint {
+  margin: 0;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}
+
+.profil-backup__file {
+  display: none;
+}
+
+.profil-backup__error {
+  margin: 0;
+  color: $color-danger;
+  font-size: $font-size-sm;
+}
+
+.profil-backup__restore {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}

@@ -1,7 +1,10 @@
 import { useLocalStorageState } from '@shared/hooks/use-local-storage-state'
-import { isFiniteNumber } from '@shared/utils/storage/guards'
+import { isArray, isFiniteNumber } from '@shared/utils/storage/guards'
+import { removeBodyWeightEntry, upsertBodyWeightEntry } from '../utils/body-weight-history'
+import type { BodyWeightEntry } from '../utils/body-weight-history'
 
 const STORAGE_KEY = 'profil/body-weight'
+const HISTORY_STORAGE_KEY = 'profil/body-weight-history'
 
 export const DEFAULT_BODY_WEIGHT_KG = 80
 const MIN_BODY_WEIGHT_KG = 40
@@ -20,5 +23,20 @@ export const useBodyWeight = () => {
     Math.max(MIN_BODY_WEIGHT_KG, storedBodyWeightKg || DEFAULT_BODY_WEIGHT_KG),
   )
 
-  return { bodyWeightKg, storedBodyWeightKg, setBodyWeightKg }
+  const [history, setHistory] = useLocalStorageState<BodyWeightEntry[]>(HISTORY_STORAGE_KEY, [], {
+    isValid: isArray<BodyWeightEntry>,
+  })
+
+  const recordBodyWeight = () =>
+    setHistory(upsertBodyWeightEntry(history, bodyWeightKg, new Date()))
+  const removeEntry = (recordedAt: string) => setHistory(removeBodyWeightEntry(history, recordedAt))
+
+  return {
+    bodyWeightKg,
+    storedBodyWeightKg,
+    setBodyWeightKg,
+    history,
+    recordBodyWeight,
+    removeEntry,
+  }
 }

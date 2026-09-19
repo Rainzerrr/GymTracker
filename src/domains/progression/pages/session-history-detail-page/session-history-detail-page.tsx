@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useSessionLog } from '@domains/seance-active/hooks/use-session-log'
 import { SectionLabel } from '@shared/atoms/section-label'
+import { ConfirmAction } from '@shared/molecules/confirm-action'
 import { BackHeader } from '@shared/molecules/back-header'
 import { PhotoHero } from '@shared/organisms/photo-hero'
 import { PageTemplate } from '@shared/templates/page-template'
@@ -15,7 +16,7 @@ export const SessionHistoryDetailPage = () => {
   const { entryId } = useParams<{ entryId: string }>()
   const navigate = useNavigate()
   const { t } = useTranslation('progression')
-  const { sessionLog } = useSessionLog()
+  const { sessionLog, removeSessionLogEntry } = useSessionLog()
 
   const entry = sessionLog.find((candidate) => candidate.id === entryId)
 
@@ -27,6 +28,11 @@ export const SessionHistoryDetailPage = () => {
 
   if (!entry) {
     return null
+  }
+
+  const handleDelete = () => {
+    removeSessionLogEntry(entry.id)
+    navigate('/progression', { replace: true })
   }
 
   const performedExercises = entry.exercises
@@ -71,10 +77,19 @@ export const SessionHistoryDetailPage = () => {
               name={exercise.name}
               thumbnailUrl={exercise.thumbnailUrl}
               sets={exercise.sets}
+              note={exercise.note}
             />
           ))}
         </div>
       )}
+
+      <ConfirmAction
+        triggerLabel={t('sessionDetail.delete.trigger')}
+        warning={t('sessionDetail.delete.warning')}
+        cancelLabel={t('sessionDetail.delete.cancel')}
+        confirmLabel={t('sessionDetail.delete.confirm')}
+        onConfirm={handleDelete}
+      />
     </PageTemplate>
   )
 }

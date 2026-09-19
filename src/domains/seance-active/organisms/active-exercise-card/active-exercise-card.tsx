@@ -29,6 +29,7 @@ export const ActiveExerciseCard = ({
   onValidate,
   onSkipSet,
   onSkipExercise,
+  lastPerformanceLabel,
 }: ActiveExerciseCardProps) => {
   const { t } = useTranslation('seanceActive')
   const weightField = useNumberInputField(weight, onWeightChange)
@@ -54,6 +55,9 @@ export const ActiveExerciseCard = ({
         )}
         <span className="active-exercise-card__name">{name}</span>
         <span className="active-exercise-card__set">{setSubtitle}</span>
+        {lastPerformanceLabel && (
+          <span className="active-exercise-card__last">{lastPerformanceLabel}</span>
+        )}
       </div>
 
       <div className="active-exercise-card__field-row">

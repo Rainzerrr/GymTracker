@@ -15,7 +15,12 @@
   "bodyWeight": {
     "label": "Poids de corps",
     "field": "Poids (kg)",
-    "hint": "Sert à calibrer tes rangs : les seuils de force sont mis à l'échelle de ton poids, et tractions, dips ou pompes comptent ton poids de corps."
+    "hint": "Sert à calibrer tes rangs : les seuils de force sont mis à l'échelle de ton poids, et tractions, dips ou pompes comptent ton poids de corps.",
+    "record": "Enregistrer ma pesée du jour",
+    "trendLabel": "Évolution du poids de corps",
+    "historyEmpty": "Enregistre ta première pesée pour suivre l'évolution de ton poids.",
+    "entryValue": "{{value}} kg",
+    "delta": "{{value, number(signDisplay: always)}} kg"
   },
   "muscleSplit": {
     "label": "Répartition musculaire",
@@ -33,7 +38,8 @@
     "label": "Raccourcis",
     "sessions": "Mes séances",
     "planning": "Planning de la semaine",
-    "progression": "Progression"
+    "progression": "Progression",
+    "settings": "Réglages"
   },
   "resetData": {
     "label": "Données",
@@ -41,5 +47,20 @@
     "warning": "Cette action supprime définitivement toutes tes séances, ton historique, ta progression et tes réglages. Elle est irréversible.",
     "cancel": "Annuler",
     "confirm": "Tout réinitialiser"
+  },
+  "backup": {
+    "label": "Sauvegarde",
+    "hint": "Tes données restent uniquement sur cet appareil. Exporte-les régulièrement pour ne rien perdre en changeant de téléphone ou en vidant le navigateur.",
+    "export": "Exporter mes données",
+    "import": "Importer une sauvegarde",
+    "restore": "Restaurer cette sauvegarde",
+    "restoreWarning": "Sauvegarde du {{date}} · séances créées : {{sessions}} · séances effectuées : {{logged}}. Elle remplacera toutes tes données actuelles.",
+    "cancel": "Annuler",
+    "confirm": "Remplacer mes données",
+    "errors": {
+      "invalid": "Ce fichier n'est pas une sauvegarde GymTracker valide.",
+      "unsupportedVersion": "Cette sauvegarde vient d'une version plus récente de l'app.",
+      "unreadable": "Impossible de lire ce fichier."
+    }
   }
 }

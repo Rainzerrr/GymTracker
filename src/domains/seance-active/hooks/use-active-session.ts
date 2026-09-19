@@ -1,15 +1,14 @@
-import { buildExercisePerformanceIndex } from '@domains/progression/utils/build-exercise-performance-index'
 import { useSessions } from '@domains/seances/hooks/use-sessions'
-import { useCountdown } from '@shared/hooks/use-countdown'
 import { useStopwatch } from '@shared/hooks/use-stopwatch'
 import { useActiveSessionState } from './use-active-session-state'
 import { useSessionCompletion } from './use-session-completion'
-import { useSessionLog } from './use-session-log'
+import { useSessionRest } from './use-session-rest'
+import { useExerciseHistory } from './use-exercise-history'
 import type { RirValue } from '../types/rir-value'
 import type { SetLogEntry } from '../types/set-log-entry'
+import { extractStep, restorePreviousStep } from '../utils/active-session-snapshot'
 import { buildLoggedExercises } from '../utils/build-logged-exercises'
 import { deriveActiveExercises } from '../utils/derive-active-exercises'
-import { DEFAULT_REPS, DEFAULT_WEIGHT, resolveSetPrefill } from '../utils/set-prefill'
 import { buildGroups, resolveNextStep } from '../utils/superset-progression'
 
 export const useActiveSession = (sessionId: string | undefined) => {
@@ -19,15 +18,7 @@ export const useActiveSession = (sessionId: string | undefined) => {
   const exercises = deriveActiveExercises(session?.exercises ?? [])
   const groups = buildGroups(exercises.map((exercise) => exercise.linkedToNext))
 
-  const { sessionLog } = useSessionLog()
-  const performanceIndex = buildExercisePerformanceIndex(sessionLog)
-  const prefillFor = (exerciseIndex: number) => {
-    const exercise = exercises[exerciseIndex]
-
-    return exercise
-      ? resolveSetPrefill(performanceIndex, exercise.libraryExerciseId)
-      : { weight: DEFAULT_WEIGHT, reps: DEFAULT_REPS }
-  }
+  const { prefillFor, lastPerformanceFor } = useExerciseHistory(exercises)
 
   const { snapshot, updateSnapshot, clearSnapshot } = useActiveSessionState(
     sessionId,
@@ -36,11 +27,11 @@ export const useActiveSession = (sessionId: string | undefined) => {
   )
   const { isSessionComplete, completeSession } = useSessionCompletion()
 
-  const { progress, setLogsByExercise, currentExerciseIndex, reps, weight, selectedRir } = snapshot
+  const { progress, setLogsByExercise, notesByExercise, currentExerciseIndex } = snapshot
+  const { reps, weight, selectedRir } = snapshot
   const elapsedSeconds = useStopwatch(snapshot.startedAt, !isSessionComplete)
-  const rest = useCountdown()
-
   const currentExercise = exercises[currentExerciseIndex]
+  const rest = useSessionRest(currentExercise?.restSeconds ?? 0, !isSessionComplete)
   const completedSetsOfCurrent = progress[currentExerciseIndex] ?? 0
   const currentSetNumber = currentExercise
     ? Math.min(completedSetsOfCurrent + 1, currentExercise.setCount)
@@ -58,7 +49,10 @@ export const useActiveSession = (sessionId: string | undefined) => {
       name: session.name,
       imageUrl: session.imageUrl,
       startedAt: snapshot.startedAt,
-      exercises: buildLoggedExercises(exercises, finalSetLogsByExercise),
+      exercises: buildLoggedExercises(
+        exercises.map((exercise, index) => ({ ...exercise, note: notesByExercise[index] })),
+        finalSetLogsByExercise,
+      ),
     })
     clearSnapshot()
   }
@@ -100,6 +94,7 @@ export const useActiveSession = (sessionId: string | undefined) => {
       reps: nextPrefill.reps,
       weight: isSameExercise ? weight : nextPrefill.weight,
       selectedRir: null,
+      previous: extractStep(snapshot),
     })
   }
 
@@ -119,6 +114,16 @@ export const useActiveSession = (sessionId: string | undefined) => {
   const skipSet = () => advance(completedSetsOfCurrent + 1, null)
 
   const skipExercise = () => advance(currentExercise?.setCount ?? 0, null)
+
+  const undoLastStep = () => updateSnapshot(restorePreviousStep(snapshot))
+
+  const setNote = (note: string) => {
+    updateSnapshot({
+      notesByExercise: notesByExercise.map((current, index) =>
+        index === currentExerciseIndex ? note : current,
+      ),
+    })
+  }
 
   const selectExercise = (exerciseIndex: number) => {
     const prefill = prefillFor(exerciseIndex)
@@ -148,17 +153,18 @@ export const useActiveSession = (sessionId: string | undefined) => {
     setWeight: (value: number) => updateSnapshot({ weight: value }),
     selectedRir,
     selectRir: (value: RirValue | null) => updateSnapshot({ selectedRir: value }),
-    isResting: rest.isActive,
-    restRemainingSeconds: rest.remainingSeconds,
-    restTotalSeconds: rest.isActive ? rest.totalSeconds : (currentExercise?.restSeconds ?? 0),
-    startRest: () => rest.start(currentExercise?.restSeconds ?? 0),
-    stopRest: rest.stop,
+    ...rest,
     elapsedSeconds,
     isSessionComplete,
     validateSet,
     skipSet,
     skipExercise,
     selectExercise,
+    lastPerformance: lastPerformanceFor(currentExerciseIndex),
+    canUndo: snapshot.previous !== null,
+    undoLastStep,
+    note: notesByExercise[currentExerciseIndex] ?? '',
+    setNote,
     abandonSession: clearSnapshot,
   }
 }

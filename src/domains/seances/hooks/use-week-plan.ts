@@ -18,5 +18,9 @@ export const useWeekPlan = () => {
     setWeekPlan({ ...weekPlan, [dayIndex]: value })
   }
 
-  return { weekPlan, getAssignment, setAssignment }
+  const setAssignments = (assignments: WeekPlan) => {
+    setWeekPlan({ ...weekPlan, ...assignments })
+  }
+
+  return { weekPlan, getAssignment, setAssignment, setAssignments }
 }

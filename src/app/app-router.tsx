@@ -5,6 +5,7 @@ import { SessionHistoryDetailPage } from '@domains/progression/pages/session-his
 import { RankDetailPage } from '@domains/progression/pages/rank-detail-page'
 import { RankPage } from '@domains/progression/pages/rank-page'
 import { VolumePage } from '@domains/progression/pages/volume-page'
+import { SettingsPage } from '@domains/reglages/pages/settings-page'
 import { ActiveSessionPage } from '@domains/seance-active/pages/active-session-page'
 import { SessionLogPage } from '@domains/seance-active/pages/session-log-page'
 import { SessionRecapPage } from '@domains/seance-active/pages/session-recap-page'
@@ -15,11 +16,14 @@ import { SessionBuilderPage } from '@domains/seances/pages/session-builder-page'
 import { WeekPlanPage } from '@domains/seances/pages/week-plan-page'
 import { createBrowserRouter } from 'react-router-dom'
 import { AppLayout } from './layout/app-layout'
+import { NotFoundPage } from './error/not-found-page'
+import { RouteErrorPage } from './error/route-error-page'
 import { RootLayout } from './layout/root-layout'
 
 export const appRouter = createBrowserRouter([
   {
     element: <RootLayout />,
+    errorElement: <RouteErrorPage />,
     children: [
       {
         element: <AppLayout />,
@@ -30,6 +34,7 @@ export const appRouter = createBrowserRouter([
           { path: '/profil', element: <ProfilPage /> },
         ],
       },
+      { path: '/profil/reglages', element: <SettingsPage /> },
       { path: '/progression/volume', element: <VolumePage /> },
       { path: '/progression/seances/:entryId', element: <SessionHistoryDetailPage /> },
       { path: '/progression/rangs', element: <RankPage /> },
@@ -41,6 +46,7 @@ export const appRouter = createBrowserRouter([
       { path: '/seance-active/:sessionId', element: <ActiveSessionPage /> },
       { path: '/seance-log/:sessionId', element: <SessionLogPage /> },
       { path: '/seance-recap', element: <SessionRecapPage /> },
+      { path: '*', element: <NotFoundPage /> },
     ],
   },
 ])

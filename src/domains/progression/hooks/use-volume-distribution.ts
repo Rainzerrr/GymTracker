@@ -2,7 +2,8 @@ import { useSessionLog } from '@domains/seance-active/hooks/use-session-log'
 import { getLibraryExercise } from '@domains/seances/hooks/use-exercise-library'
 import type { Muscle } from '@domains/seances/types/muscle'
 import { getStartOfWeek } from '@shared/utils/date/get-start-of-week'
-import { INDIRECT_SET_WEIGHT, MUSCLE_REGIONS, WEEKLY_TARGET_SETS } from '../data/muscle-config'
+import { INDIRECT_SET_WEIGHT, MUSCLE_REGIONS } from '../data/muscle-config'
+import { useVolumeTargets } from './use-volume-targets'
 import type { MuscleContribution, MuscleVolume } from '../types/volume-status'
 import { getVolumeStatus } from '../utils/get-volume-status'
 
@@ -10,6 +11,7 @@ const MUSCLES: Muscle[] = MUSCLE_REGIONS.flatMap(({ muscles }) => muscles)
 
 export const useVolumeDistribution = () => {
   const { sessionLog } = useSessionLog()
+  const { targets } = useVolumeTargets()
 
   const startOfWeek = getStartOfWeek()
   const endOfWeek = new Date(startOfWeek)
@@ -68,7 +70,7 @@ export const useVolumeDistribution = () => {
       .filter((c) => !c.isDirect)
       .reduce((sum, c) => sum + c.sets, 0)
     const effectiveSets = directSets + indirectSets * INDIRECT_SET_WEIGHT
-    const targetSets = WEEKLY_TARGET_SETS[muscle]
+    const targetSets = targets[muscle]
 
     return {
       muscle,

@@ -43,5 +43,12 @@
       "firstTitle": "Séance enregistrée",
       "firstSubtitle": "Continue comme ça pour construire ta progression."
     }
+  },
+  "lastPerformance": "Dernière fois : {{weight}} kg × {{reps}}",
+  "lastPerformanceReps": "Dernière fois : {{reps}} reps",
+  "undo": "Annuler la dernière série",
+  "note": {
+    "label": "Note",
+    "placeholder": "Sensations, réglage de la machine, tempo…"
   }
 }

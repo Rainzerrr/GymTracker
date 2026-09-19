@@ -3,7 +3,12 @@ import { Thumbnail } from '@shared/atoms/thumbnail'
 import type { HistoryExerciseCardProps } from './history-exercise-card.types'
 import './history-exercise-card.scss'
 
-export const HistoryExerciseCard = ({ name, thumbnailUrl, sets }: HistoryExerciseCardProps) => {
+export const HistoryExerciseCard = ({
+  name,
+  thumbnailUrl,
+  sets,
+  note,
+}: HistoryExerciseCardProps) => {
   const { t } = useTranslation('progression')
 
   return (
@@ -34,6 +39,7 @@ export const HistoryExerciseCard = ({ name, thumbnailUrl, sets }: HistoryExercis
           </li>
         ))}
       </ul>
+      {note && <p className="history-exercise-card__note">{note}</p>}
     </div>
   )
 }

@@ -24,6 +24,10 @@ export const useSessionLog = () => {
     setSessionLog([...storedSessionLog, entry])
   }
 
+  const removeSessionLogEntry = (id: string) => {
+    setSessionLog(storedSessionLog.filter((entry) => entry.id !== id))
+  }
+
   const getEntryForDate = (date: Date) =>
     sessionLog.find((entry) => new Date(entry.completedAt).toDateString() === date.toDateString())
 
@@ -46,5 +50,5 @@ export const useSessionLog = () => {
     ])
   }
 
-  return { sessionLog, logSession, getEntryForDate, upsertSessionLogForDate }
+  return { sessionLog, logSession, removeSessionLogEntry, getEntryForDate, upsertSessionLogForDate }
 }

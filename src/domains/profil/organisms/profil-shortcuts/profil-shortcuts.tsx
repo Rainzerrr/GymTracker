@@ -25,10 +25,19 @@ const progressionIcon = (
   </svg>
 )
 
+const settingsIcon = (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
+    <path d="M4 7h10M18 7h2M4 17h2M10 17h10" strokeLinecap="round" />
+    <circle cx="16" cy="7" r="2" />
+    <circle cx="8" cy="17" r="2" />
+  </svg>
+)
+
 export const ProfilShortcuts = ({
   onSessionsClick,
   onPlanningClick,
   onProgressionClick,
+  onSettingsClick,
 }: ProfilShortcutsProps) => {
   const { t } = useTranslation('profil')
 
@@ -52,6 +61,12 @@ export const ProfilShortcuts = ({
         title={t('shortcuts.progression')}
         trailing={<ChevronIcon />}
         onClick={onProgressionClick}
+      />
+      <ListRow
+        leading={<IconChip icon={settingsIcon} />}
+        title={t('shortcuts.settings')}
+        trailing={<ChevronIcon />}
+        onClick={onSettingsClick}
       />
     </section>
   )

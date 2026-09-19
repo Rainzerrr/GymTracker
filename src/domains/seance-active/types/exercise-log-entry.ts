@@ -7,4 +7,6 @@ export type ExerciseLogEntry = {
   thumbnailUrl: string
   muscleGroup: MuscleGroup
   sets: SetLogEntry[]
+  // Remarque libre saisie pendant la séance (sensations, réglage de machine…)
+  note?: string
 }

@@ -1,0 +1,7 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.settings-volume-targets__hint {
+  margin: 0 0 $spacing-xs;
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+}

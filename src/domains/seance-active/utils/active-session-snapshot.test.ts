@@ -2,8 +2,10 @@ import { describe, expect, it } from 'vitest'
 import {
   SNAPSHOT_MAX_AGE_MS,
   createSnapshot,
+  extractStep,
   isSnapshotResumable,
   isStoredSnapshot,
+  restorePreviousStep,
 } from './active-session-snapshot'
 
 const NOW = 1_800_000_000_000
@@ -58,5 +60,34 @@ describe('isStoredSnapshot', () => {
     expect(isStoredSnapshot({ sessionId: 'push' })).toBe(false)
     expect(isStoredSnapshot('oups')).toBe(false)
     expect(isStoredSnapshot([])).toBe(false)
+  })
+})
+
+describe('undo', () => {
+  const afterOneSet = {
+    ...fresh,
+    progress: [1, 0, 0],
+    setLogsByExercise: [[{ weight: 60, reps: 6, rir: '2' as const }], [], []],
+    reps: 8,
+    weight: 60,
+    previous: extractStep(fresh),
+  }
+
+  it('restaure l’état d’avant la dernière série et garde les notes', () => {
+    const withNote = { ...afterOneSet, notesByExercise: ['tempo lent', '', ''] }
+    const restored = restorePreviousStep(withNote)
+
+    expect(restored.progress).toEqual([0, 0, 0])
+    expect(restored.setLogsByExercise).toEqual([[], [], []])
+    expect(restored.notesByExercise).toEqual(['tempo lent', '', ''])
+    expect(restored.previous).toBeNull()
+  })
+
+  it('ne fait rien sans action à annuler', () => {
+    expect(restorePreviousStep(fresh)).toBe(fresh)
+  })
+
+  it('refuse un snapshot dont les notes ne correspondent plus aux exercices', () => {
+    expect(isSnapshotResumable({ ...fresh, notesByExercise: [] }, 'push', 3, NOW)).toBe(false)
   })
 })

@@ -1,0 +1,48 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.settings-posture__steps {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  padding-top: $spacing-sm;
+}
+
+.settings-posture__label {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.settings-posture__row {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.settings-posture__input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background-color: $color-surface;
+  padding: $spacing-sm;
+  color: $color-text;
+  font: inherit;
+  font-size: $font-size-md;
+}
+
+.settings-posture__input:focus-visible {
+  outline: 1px solid $color-accent;
+}
+
+.settings-posture__remove {
+  min-width: $tap-target-min;
+  min-height: $tap-target-min;
+  border: none;
+  background: none;
+  color: $color-text-dim;
+  font-size: $font-size-xl;
+  cursor: pointer;
+}

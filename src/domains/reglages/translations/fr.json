@@ -1,0 +1,34 @@
+{
+  "title": "Réglages",
+  "appearance": {
+    "label": "Apparence",
+    "theme": {
+      "auto": "Auto",
+      "light": "Clair",
+      "dark": "Sombre"
+    },
+    "hint": "« Auto » suit le réglage de ton téléphone."
+  },
+  "session": {
+    "label": "Séance",
+    "restAlert": "Alerte de fin de repos",
+    "restAlertHint": "Son et vibration quand le repos est terminé (la vibration n'est pas disponible sur iPhone).",
+    "keepScreenAwake": "Garder l'écran allumé",
+    "keepScreenAwakeHint": "Empêche la mise en veille pendant une séance.",
+    "defaultRest": "Repos par défaut"
+  },
+  "volume": {
+    "label": "Objectifs de volume",
+    "hint": "Séries effectives par semaine et par muscle (une série indirecte compte pour une demie).",
+    "reset": "Rétablir les objectifs par défaut"
+  },
+  "posture": {
+    "label": "Routine posture",
+    "enabled": "Afficher la routine sur l'accueil",
+    "stepsLabel": "Étapes",
+    "stepPlaceholder": "Décris l'étape",
+    "addStep": "Ajouter une étape",
+    "newStepPlaceholder": "Nouvelle étape",
+    "reset": "Rétablir les étapes par défaut"
+  }
+}

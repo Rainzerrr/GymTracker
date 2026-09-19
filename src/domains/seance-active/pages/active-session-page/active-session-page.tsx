@@ -1,8 +1,11 @@
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
+import { Button } from '@shared/atoms/button'
+import { ConfirmAction } from '@shared/molecules/confirm-action'
 import { PageTemplate } from '@shared/templates/page-template'
 import { useActiveSession } from '../../hooks/use-active-session'
-import { AbandonSession } from '../../organisms/abandon-session'
+import { ExerciseNote } from '../../molecules/exercise-note'
 import { ActiveExerciseCard } from '../../organisms/active-exercise-card'
 import { ExerciseQueue } from '../../organisms/exercise-queue'
 import { SessionHeader } from '../../organisms/session-header'
@@ -10,6 +13,7 @@ import { SessionHeader } from '../../organisms/session-header'
 export const ActiveSessionPage = () => {
   const { sessionId } = useParams<{ sessionId: string }>()
   const navigate = useNavigate()
+  const { t } = useTranslation('seanceActive')
   const {
     session,
     exercises,
@@ -34,6 +38,11 @@ export const ActiveSessionPage = () => {
     skipSet,
     skipExercise,
     selectExercise,
+    lastPerformance,
+    canUndo,
+    undoLastStep,
+    note,
+    setNote,
     abandonSession,
   } = useActiveSession(sessionId)
 
@@ -52,6 +61,13 @@ export const ActiveSessionPage = () => {
   if (!session || !currentExercise || isSessionComplete) {
     return null
   }
+
+  const showsWeight = lastPerformance && !currentExercise.isBodyweight && lastPerformance.weight > 0
+  const lastPerformanceLabel = lastPerformance
+    ? showsWeight
+      ? t('lastPerformance', { weight: lastPerformance.weight, reps: lastPerformance.reps })
+      : t('lastPerformanceReps', { reps: lastPerformance.reps })
+    : undefined
 
   const handleAbandon = () => {
     abandonSession()
@@ -91,9 +107,19 @@ export const ActiveSessionPage = () => {
         onValidate={validateSet}
         onSkipSet={skipSet}
         onSkipExercise={skipExercise}
+        lastPerformanceLabel={lastPerformanceLabel}
       />
+      {canUndo && <Button label={t('undo')} variant="outline" fullWidth onClick={undoLastStep} />}
+      <ExerciseNote value={note} onChange={setNote} />
       <ExerciseQueue exercises={exercises} onSelect={selectExercise} />
-      <AbandonSession onAbandon={handleAbandon} />
+      <ConfirmAction
+        triggerLabel={t('abandon.trigger')}
+        triggerVariant="outline"
+        warning={t('abandon.warning')}
+        cancelLabel={t('abandon.cancel')}
+        confirmLabel={t('abandon.confirm')}
+        onConfirm={handleAbandon}
+      />
     </PageTemplate>
   )
 }

@@ -17,21 +17,42 @@
   },
   "restDay": {
     "title": "Jour de repos",
-    "meta": "Profite de ta récupération, ou fais ta routine posture ci-dessous."
+    "meta": "Profite de ta récupération, ou fais ta routine posture ci-dessous.",
+    "metaNoRoutine": "Profite de ta récupération."
   },
   "todaySection": {
     "label": "Cette semaine",
     "streakTitle": "Streak musculation",
     "streakSubtitle": "jours consécutifs",
     "postureTitle": "Routine posture",
-    "postureNotValidated": "Pas encore validée ce soir",
-    "postureValidated": "Validée ce soir",
-    "validate": "Valider"
+    "postureNotValidated": "Pas encore validée aujourd'hui",
+    "postureValidated": "Validée aujourd'hui",
+    "validate": "Valider",
+    "viewSteps_one": "Voir l'étape",
+    "viewSteps_other": "Voir les {{count}} étapes"
   },
   "progressSection": {
     "label": "Progression",
     "volumeTitle": "Répartition du volume",
     "volumeSubtitle_one": "{{count}} muscle sous l'objectif",
     "volumeSubtitle_other": "{{count}} muscles sous l'objectif"
+  },
+  "welcome": {
+    "title": "Bienvenue sur GymTracker",
+    "meta": "Commence avec un programme Push / Pull / Jambes sur trois jours, ou crée ta propre séance.",
+    "installStarter": "Utiliser le programme de départ",
+    "createSession": "Créer ma séance"
+  },
+  "postureRoutine": {
+    "sheetTitle": "Routine posture",
+    "sheetEyebrow": "Aujourd'hui",
+    "validate": "Valider la routine",
+    "defaultSteps": [
+      "Rétraction scapulaire : 2 × 10 répétitions",
+      "Étirement des pectoraux dans l'encadrement d'une porte : 30 s de chaque côté",
+      "Chin tucks (menton rentré) : 2 × 10 répétitions",
+      "Étirement des fléchisseurs de hanche : 30 s de chaque côté",
+      "Chat-vache : 10 répétitions lentes"
+    ]
   }
 }

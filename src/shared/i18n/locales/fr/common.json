@@ -21,5 +21,12 @@
   },
   "comingSoon": {
     "message": "Bientôt disponible"
+  },
+  "errors": {
+    "backHome": "Retour à l'accueil",
+    "notFoundTitle": "Page introuvable",
+    "notFoundMessage": "Cette page n'existe pas ou n'existe plus.",
+    "crashTitle": "Quelque chose s'est mal passé",
+    "crashMessage": "Une erreur inattendue est survenue. Tes données sont intactes : reviens à l'accueil et réessaie."
   }
 }

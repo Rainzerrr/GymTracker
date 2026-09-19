@@ -1,0 +1,12 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.settings-appearance__pills {
+  display: flex;
+  gap: $spacing-xs;
+}
+
+.settings-appearance__hint {
+  margin: $spacing-xs 0 0;
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+}

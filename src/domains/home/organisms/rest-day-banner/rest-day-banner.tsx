@@ -4,9 +4,10 @@ import './rest-day-banner.scss'
 
 type RestDayBannerProps = {
   dateLabel: string
+  hasPostureRoutine: boolean
 }
 
-export const RestDayBanner = ({ dateLabel }: RestDayBannerProps) => {
+export const RestDayBanner = ({ dateLabel, hasPostureRoutine }: RestDayBannerProps) => {
   const { t } = useTranslation('home')
 
   return (
@@ -17,7 +18,9 @@ export const RestDayBanner = ({ dateLabel }: RestDayBannerProps) => {
       <div className="rest-day-banner__card">
         <span className="rest-day-banner__date">{dateLabel}</span>
         <h1 className="rest-day-banner__title">{t('restDay.title')}</h1>
-        <p className="rest-day-banner__meta">{t('restDay.meta')}</p>
+        <p className="rest-day-banner__meta">
+          {hasPostureRoutine ? t('restDay.meta') : t('restDay.metaNoRoutine')}
+        </p>
       </div>
     </div>
   )

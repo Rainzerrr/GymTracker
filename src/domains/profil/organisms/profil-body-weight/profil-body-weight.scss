@@ -10,3 +10,44 @@
   color: $color-text-muted;
   font-size: $font-size-xs-plus;
 }
+
+.profil-body-weight__history {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profil-body-weight__row {
+  display: grid;
+  grid-template-columns: 1fr auto 3.5rem 2rem;
+  align-items: center;
+  gap: $spacing-xs;
+  border-bottom: 1px solid $color-border-soft;
+  padding: $spacing-xs 0;
+  font-size: $font-size-md;
+}
+
+.profil-body-weight__date {
+  color: $color-text-muted;
+}
+
+.profil-body-weight__value {
+  font-weight: $font-weight-semibold;
+}
+
+.profil-body-weight__delta {
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+  text-align: right;
+}
+
+.profil-body-weight__remove {
+  min-height: $tap-target-min;
+  border: none;
+  background: none;
+  color: $color-text-dim;
+  font-size: $font-size-xl;
+  cursor: pointer;
+}

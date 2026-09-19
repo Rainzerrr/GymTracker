@@ -1,44 +1,103 @@
+// Palettes : les valeurs réelles vivent dans des variables CSS (voir base/_theme.scss) pour que
+// le thème puisse changer à l'exécution. Ajouter une couleur = l'ajouter aux deux palettes
+// puis à la liste de variables juste en dessous.
+$theme-dark: (
+  'background': #0e0e10,
+  'surface': #1b1b1e,
+  'surface-strong': #161410,
+  'text': #f3f1ec,
+  'text-soft': #e4e1d8,
+  'text-muted': #8e8c86,
+  'text-dim': #6e6c67,
+  'border': #262624,
+  'border-strong': #3a3937,
+  'border-medium': #2c2b29,
+  'border-soft': #232321,
+  'accent': #c9a24b,
+  'accent-ink': #161410,
+  'accent-wash': rgb(201 162 75 / 10%),
+  'accent-soft': rgb(201 162 75 / 35%),
+  'volume-low': rgb(201 162 75 / 22%),
+  'volume-medium': rgb(201 162 75 / 42%),
+  'volume-high': rgb(201 162 75 / 68%),
+  'tier-bronze': #a56a3c,
+  'tier-argent': #a8adb4,
+  'tier-platine': #8fb8be,
+  'danger': #c0464f,
+  'danger-wash': rgb(192 70 79 / 15%),
+);
+$theme-light: (
+  'background': #f6f4ef,
+  'surface': #fff,
+  'surface-strong': #ece8df,
+  'text': #1a1917,
+  'text-soft': #2c2a26,
+  'text-muted': #6b6862,
+  'text-dim': #7d7a73,
+  'border': #dcd8cf,
+  'border-strong': #c4bfb4,
+  'border-medium': #d3cfc5,
+  'border-soft': #e5e1d8,
+  'accent': #8f6a12,
+  'accent-ink': #fbf8f0,
+  'accent-wash': rgb(143 106 18 / 12%),
+  'accent-soft': rgb(143 106 18 / 35%),
+  'volume-low': rgb(143 106 18 / 22%),
+  'volume-medium': rgb(143 106 18 / 42%),
+  'volume-high': rgb(143 106 18 / 68%),
+  'tier-bronze': #a56a3c,
+  'tier-argent': #6f757d,
+  'tier-platine': #3f858f,
+  'danger': #c0464f,
+  'danger-wash': rgb(192 70 79 / 12%),
+);
+
 // Fond & surfaces
-$color-background: #0e0e10;
-$color-surface: #1b1b1e;
-$color-surface-strong: #161410;
+$color-background: var(--color-background);
+$color-surface: var(--color-surface);
+$color-surface-strong: var(--color-surface-strong);
 
 // Texte
-$color-text: #f3f1ec;
-$color-text-soft: #e4e1d8;
-$color-text-muted: #8e8c86;
-$color-text-dim: #6e6c67;
+$color-text: var(--color-text);
+$color-text-soft: var(--color-text-soft);
+$color-text-muted: var(--color-text-muted);
+$color-text-dim: var(--color-text-dim);
 
 // Bordures
-$color-border: #262624;
-$color-border-strong: #3a3937;
-$color-border-medium: #2c2b29;
-$color-border-soft: #232321;
+$color-border: var(--color-border);
+$color-border-strong: var(--color-border-strong);
+$color-border-medium: var(--color-border-medium);
+$color-border-soft: var(--color-border-soft);
 
 // Accent (or)
-$color-accent: #c9a24b;
-$color-accent-ink: #161410;
-$color-accent-wash: rgb(201 162 75 / 10%);
-$color-accent-soft: rgb(201 162 75 / 35%);
+$color-accent: var(--color-accent);
+$color-accent-ink: var(--color-accent-ink);
+$color-accent-wash: var(--color-accent-wash);
+$color-accent-soft: var(--color-accent-soft);
 
 // Volume musculaire (du plus faible au plus fort, l'objectif atteint utilise $color-accent)
-$color-volume-low: rgb(201 162 75 / 22%);
-$color-volume-medium: rgb(201 162 75 / 42%);
-$color-volume-high: rgb(201 162 75 / 68%);
+$color-volume-low: var(--color-volume-low);
+$color-volume-medium: var(--color-volume-medium);
+$color-volume-high: var(--color-volume-high);
 
 // Rangs (paliers)
-$color-tier-bronze: #a56a3c;
-$color-tier-argent: #a8adb4;
+$color-tier-bronze: var(--color-tier-bronze);
+$color-tier-argent: var(--color-tier-argent);
 $color-tier-or: $color-accent;
-$color-tier-platine: #8fb8be;
+$color-tier-platine: var(--color-tier-platine);
 
 // États
-$color-danger: #c0464f;
-$color-danger-wash: rgb(192 70 79 / 15%);
+$color-danger: var(--color-danger);
+$color-danger-wash: var(--color-danger-wash);
 
-// Voile sur photos
+// Voile sur photos (identique dans les deux thèmes : la photo reste sombre)
 $color-scrim-soft: rgb(14 14 16 / 45%);
 $color-scrim-strong: rgb(14 14 16 / 55%);
+
+// Éléments posés sur une photo : ils gardent les couleurs du thème sombre dans les deux thèmes
+$color-photo-text: #f3f1ec;
+$color-photo-accent: #c9a24b;
+$color-photo-accent-wash: rgb(201 162 75 / 10%);
 
 // Typographie
 $font-family-base: 'Inter', system-ui, sans-serif;

@@ -11,13 +11,26 @@ export const SessionList = ({
   editMode,
   onSelect,
   onDelete,
+  onDuplicate,
   onCreate,
+  onInstallStarter,
 }: SessionListProps) => {
   const { t } = useTranslation('seances')
   const { t: tCommon } = useTranslation('common')
 
   return (
     <div className="session-list">
+      {sessions.length === 0 && (
+        <div className="session-list__empty">
+          <p className="session-list__empty-text">{t('list.empty')}</p>
+          <Button
+            label={t('list.installStarter')}
+            variant="outline"
+            fullWidth
+            onClick={onInstallStarter}
+          />
+        </div>
+      )}
       <div>
         {sessions.map((session) => (
           <ListRow
@@ -47,7 +60,19 @@ export const SessionList = ({
             }
             title={session.name}
             subtitle={session.subtitle}
-            trailing={editMode ? undefined : <ChevronIcon />}
+            trailing={
+              editMode ? (
+                <button
+                  type="button"
+                  className="session-list__duplicate"
+                  onClick={() => onDuplicate(session.id)}
+                >
+                  {t('list.duplicate')}
+                </button>
+              ) : (
+                <ChevronIcon />
+              )
+            }
             onClick={editMode ? undefined : () => onSelect(session.id)}
           />
         ))}

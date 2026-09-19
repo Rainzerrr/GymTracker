@@ -1,0 +1,65 @@
+@use 'shared/styles/abstracts/variables' as *;
+
+.setting-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  width: 100%;
+  min-height: $tap-target-min;
+  border: none;
+  border-bottom: 1px solid $color-border-soft;
+  background: none;
+  padding: $spacing-sm 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.setting-toggle-row__text {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3xs;
+}
+
+.setting-toggle-row__title {
+  color: $color-text;
+  font-size: $font-size-base;
+}
+
+.setting-toggle-row__subtitle {
+  color: $color-text-muted;
+  font-size: $font-size-xs-plus;
+}
+
+.setting-toggle-row__switch {
+  position: relative;
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 1.625rem;
+  border-radius: $radius-pill;
+  background-color: $color-border-strong;
+  transition: background-color 0.15s;
+}
+
+.setting-toggle-row__switch::after {
+  content: '';
+  position: absolute;
+  top: 0.1875rem;
+  left: 0.1875rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  background-color: $color-text;
+  transition: transform 0.15s;
+}
+
+.setting-toggle-row__switch--on {
+  background-color: $color-accent;
+}
+
+.setting-toggle-row__switch--on::after {
+  background-color: $color-accent-ink;
+  transform: translateX(1.125rem);
+}

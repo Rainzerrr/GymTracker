@@ -10,7 +10,7 @@
   border-radius: $radius-pill;
   background-color: $color-scrim-soft;
   padding: $spacing-3xs $spacing-xs;
-  color: $color-text;
+  color: $color-photo-text;
   font-size: $font-size-xs-plus;
 }
 
@@ -18,11 +18,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.3125rem;
-  border: 1px solid rgba($color-accent, 45%);
+  border: 1px solid color-mix(in srgb, $color-photo-accent 45%, transparent);
   border-radius: $radius-pill;
-  background-color: $color-accent-wash;
+  background-color: $color-photo-accent-wash;
   padding: $spacing-3xs $spacing-xs;
-  color: $color-accent;
+  color: $color-photo-accent;
   font-weight: $font-weight-semibold;
   font-size: $font-size-2xs;
   letter-spacing: 0.03em;
@@ -37,7 +37,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.3125rem;
-  border: 1px solid rgba($color-danger, 45%);
+  border: 1px solid color-mix(in srgb, $color-danger 45%, transparent);
   border-radius: $radius-pill;
   background-color: $color-danger-wash;
   padding: $spacing-3xs $spacing-xs;
@@ -59,7 +59,7 @@
   border-radius: $radius-pill;
   background-color: $color-scrim-soft;
   padding: $spacing-3xs $spacing-xs;
-  color: $color-accent;
+  color: $color-photo-accent;
   font-weight: $font-weight-semibold;
   font-size: $font-size-sm;
 }

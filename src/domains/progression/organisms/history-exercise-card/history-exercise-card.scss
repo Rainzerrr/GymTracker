@@ -57,3 +57,13 @@
   font-size: $font-size-xs;
   text-align: right;
 }
+
+.history-exercise-card__note {
+  margin: 0;
+  border-top: 1px solid $color-border-soft;
+  padding-top: $spacing-xs;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+  font-style: italic;
+  white-space: pre-wrap;
+}

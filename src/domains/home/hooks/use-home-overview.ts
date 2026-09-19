@@ -10,11 +10,11 @@ import { useBodyWeight } from '@domains/profil/hooks/use-body-weight'
 import { getSubLevelRoman } from '@domains/progression/utils/get-sub-level-roman'
 import { getTierLabel } from '@domains/progression/utils/get-tier-label'
 import { useVolumeDistribution } from '@domains/progression/hooks/use-volume-distribution'
-import { useLocalStorageState } from '@shared/hooks/use-local-storage-state'
 import { computeStreakTrend, computeStreaks } from '@shared/utils/date/compute-streaks'
 import { getTodayLabel } from '@shared/utils/date/get-today-label'
 import { getWeekDays } from '@shared/utils/date/get-week-days'
 import { toLocalDateKey } from '@shared/utils/date/to-local-date-key'
+import { usePostureRoutine } from './use-posture-routine'
 import type { WeekDayStatus } from '../types/week-day-status'
 
 const ESTIMATED_MINUTES_PER_EXERCISE = 12
@@ -32,10 +32,7 @@ export const useHomeOverview = () => {
   const { sessionLog } = useSessionLog()
   const { bodyWeightKg } = useBodyWeight()
   const { musclesUnderTarget } = useVolumeDistribution()
-  const [postureValidated, setPostureValidated] = useLocalStorageState(
-    `home/posture-routine-validated/${todayKey}`,
-    false,
-  )
+  const posture = usePostureRoutine(todayKey)
   const [selectedDayIndex, setSelectedDayIndex] = useState(todayIndex)
   const [activeSnapshot] = useActiveSessionSnapshot()
 
@@ -123,7 +120,7 @@ export const useHomeOverview = () => {
     volumeSummary: { musclesUnderTarget },
     lastExercise,
     weekDays,
-    postureValidated,
-    validatePosture: () => setPostureValidated(true),
+    posture,
+    hasNoSessions: sessions.length === 0,
   }
 }

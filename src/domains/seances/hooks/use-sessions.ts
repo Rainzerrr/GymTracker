@@ -6,7 +6,9 @@ import { resolveSessionImageUrl } from '../utils/default-session-image'
 
 const STORAGE_KEY = 'seances/sessions'
 
-const createId = () => `session-${Date.now()}-${Math.round(Math.random() * 10000)}`
+const createId = (offset = 0) =>
+  `session-${Date.now()}-${offset}-${Math.round(Math.random() * 10000)}`
+const createExerciseId = () => `exercise-${Date.now()}-${Math.round(Math.random() * 100000)}`
 
 // Sessions keep an empty imageUrl until one is chosen explicitly, so the
 // default photo follows the session's focus as its exercises change.
@@ -32,6 +34,30 @@ export const useSessions = () => {
     return withResolvedImage(newSession)
   }
 
+  const createSessions = (drafts: SessionDraft[]): WorkoutSession[] => {
+    const created = drafts.map((draft, index) => ({ ...draft, id: createId(index) }))
+    setSessions([...sessions, ...created])
+    return created
+  }
+
+  const duplicateSession = (id: string, name: string) => {
+    const source = sessions.find((session) => session.id === id)
+
+    if (!source) {
+      return
+    }
+
+    setSessions([
+      ...sessions,
+      {
+        ...source,
+        id: createId(),
+        name,
+        exercises: source.exercises.map((exercise) => ({ ...exercise, id: createExerciseId() })),
+      },
+    ])
+  }
+
   const updateSession = (id: string, draft: SessionDraft) => {
     setSessions(
       sessions.map((session) => {
@@ -52,5 +78,13 @@ export const useSessions = () => {
     setSessions(sessions.filter((session) => session.id !== id))
   }
 
-  return { sessions: resolvedSessions, getSession, createSession, updateSession, removeSession }
+  return {
+    sessions: resolvedSessions,
+    getSession,
+    createSession,
+    createSessions,
+    duplicateSession,
+    updateSession,
+    removeSession,
+  }
 }

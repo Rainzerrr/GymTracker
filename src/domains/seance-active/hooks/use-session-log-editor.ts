@@ -27,15 +27,18 @@ export const useSessionLogEditor = (sessionId: string | undefined, dateIso: stri
     const libraryExercise = getLibraryExercise(exercise.libraryExerciseId)
     const setCount = parseSetCount(exercise.targetLabel)
     const isBodyweight = libraryExercise ? isBodyweightEquipment(libraryExercise.equipment) : false
-    const loggedSets = existingEntry?.exercises.find(
-      (loggedExercise) => loggedExercise.libraryExerciseId === exercise.libraryExerciseId,
-    )?.sets
+    const loggedExercise = existingEntry?.exercises.find(
+      (candidate) => candidate.libraryExerciseId === exercise.libraryExerciseId,
+    )
+    const loggedSets = loggedExercise?.sets
 
     return {
       libraryExerciseId: exercise.libraryExerciseId,
       name: exercise.name,
       thumbnailUrl: exercise.thumbnailUrl,
       muscleGroup: libraryExercise?.muscleGroup,
+      // L'édition ne touche pas aux notes saisies pendant la séance.
+      note: loggedExercise?.note,
       isBodyweight,
       initialSets: Array.from({ length: setCount }, (_unused, index): EditableSet => ({
         weight: loggedSets?.[index]?.weight ?? 0,

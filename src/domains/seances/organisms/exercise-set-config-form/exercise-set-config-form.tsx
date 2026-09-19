@@ -3,10 +3,9 @@ import { Button } from '@shared/atoms/button'
 import { FilterPill } from '@shared/atoms/filter-pill'
 import { NumberField } from '@shared/molecules/number-field'
 import { Stepper } from '@shared/molecules/stepper'
+import { REST_OPTIONS } from '../../data/rest-options'
 import type { ExerciseSetConfigFormProps } from './exercise-set-config-form.types'
 import './exercise-set-config-form.scss'
-
-const REST_OPTIONS = ['60s', '90s', '2min', '2min30', '3min']
 
 export const ExerciseSetConfigForm = ({
   exerciseName,

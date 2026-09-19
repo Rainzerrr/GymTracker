@@ -4,4 +4,5 @@ export type HistoryExerciseCardProps = {
   name: string
   thumbnailUrl: string
   sets: SetLogEntry[]
+  note?: string
 }

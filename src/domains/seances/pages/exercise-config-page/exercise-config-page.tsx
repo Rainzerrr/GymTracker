@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { BackHeader } from '@shared/molecules/back-header'
 import { PageTemplate } from '@shared/templates/page-template'
+import { useAppSettings } from '@domains/reglages/hooks/use-app-settings'
 import { getLibraryExercise } from '../../hooks/use-exercise-library'
 import { ExerciseSetConfigForm } from '../../organisms/exercise-set-config-form'
 import type { SessionExercise } from '../../types/session-exercise'
@@ -18,6 +19,7 @@ export const ExerciseConfigPage = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const { t } = useTranslation('seances')
+  const { settings } = useAppSettings()
 
   const relay = location.state as ConfigRelayState
   const libraryExercise = libraryExerciseId ? getLibraryExercise(libraryExerciseId) : undefined
@@ -30,7 +32,7 @@ export const ExerciseConfigPage = () => {
   const [isMaxObjective, setIsMaxObjective] = useState(false)
   const [repsMin, setRepsMin] = useState(10)
   const [repsMax, setRepsMax] = useState(12)
-  const [restLabel, setRestLabel] = useState('90s')
+  const [restLabel, setRestLabel] = useState(settings.defaultRest)
 
   useEffect(() => {
     if (!isValid) {

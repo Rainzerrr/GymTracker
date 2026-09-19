@@ -1,6 +1,6 @@
 @use 'shared/styles/abstracts/variables' as *;
 
-.abandon-session__confirm {
+.confirm-action {
   display: flex;
   flex-direction: column;
   gap: $spacing-sm;
@@ -9,18 +9,18 @@
   padding: $spacing-md;
 }
 
-.abandon-session__warning {
+.confirm-action__warning {
   margin: 0;
   color: $color-text-soft;
   font-size: $font-size-sm;
 }
 
-.abandon-session__actions {
+.confirm-action__actions {
   display: flex;
   gap: $spacing-sm;
 }
 
-.abandon-session__actions .button--outline,
-.abandon-session__actions .button--danger {
+.confirm-action__actions .button--outline,
+.confirm-action__actions .button--danger {
   padding: 0.6875rem 0;
 }

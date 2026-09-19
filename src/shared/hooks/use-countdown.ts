@@ -6,10 +6,15 @@ const TICK_MS = 250
 export const computeRemainingSeconds = (endsAt: number, now: number, totalSeconds: number) =>
   Math.min(totalSeconds, Math.max(0, Math.ceil((endsAt - now) / 1000)))
 
-export const useCountdown = () => {
+export const useCountdown = (onComplete?: () => void) => {
   const [endsAt, setEndsAt] = useState<number | null>(null)
   const [totalSeconds, setTotalSeconds] = useState(0)
-  const now = useNow(endsAt !== null, TICK_MS, endsAt ?? undefined)
+  const now = useNow({
+    isTicking: endsAt !== null,
+    intervalMs: TICK_MS,
+    until: endsAt ?? undefined,
+    onReachUntil: onComplete,
+  })
 
   const remainingSeconds = endsAt === null ? 0 : computeRemainingSeconds(endsAt, now, totalSeconds)
   const isActive = remainingSeconds > 0

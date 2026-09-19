@@ -10,7 +10,9 @@ export type SessionListProps = {
   editMode: boolean
   onSelect: (id: string) => void
   onDelete: (id: string) => void
+  onDuplicate: (id: string) => void
   onCreate: () => void
+  onInstallStarter: () => void
 }
 
 export type SessionListHeaderProps = {

@@ -23,4 +23,5 @@ export type ActiveExerciseCardProps = {
   onValidate: () => void
   onSkipSet: () => void
   onSkipExercise: () => void
+  lastPerformanceLabel?: string
 }

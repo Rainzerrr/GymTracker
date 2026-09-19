@@ -6,3 +6,15 @@
   font-size: $font-size-2xl-plus;
   font-weight: $font-weight-semibold;
 }
+
+.today-section__steps-link {
+  align-self: flex-start;
+  border: none;
+  background: none;
+  padding: 0;
+  color: $color-accent;
+  font-family: $font-family-base;
+  font-size: $font-size-xs-plus;
+  text-decoration: underline;
+  cursor: pointer;
+}

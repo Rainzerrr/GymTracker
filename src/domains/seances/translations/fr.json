@@ -8,7 +8,11 @@
     "itemSubtitleWithFocus_one": "{{focus}} · {{count}} exercice",
     "itemSubtitleWithFocus_other": "{{focus}} · {{count}} exercices",
     "newSession": "+ Nouvelle séance",
-    "planWeek": "Planning de la semaine"
+    "planWeek": "Planning de la semaine",
+    "duplicate": "Dupliquer",
+    "copyName": "{{name}} (copie)",
+    "empty": "Tu n'as encore aucune séance. Crée la tienne, ou pars d'un programme Push / Pull / Jambes sur trois jours que tu pourras ensuite modifier.",
+    "installStarter": "Utiliser un programme de départ"
   },
   "builder": {
     "headerTitle": "Modifier",
